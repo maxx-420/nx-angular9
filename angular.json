@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "digital-platform": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/digital-platform",
+      "sourceRoot": "apps/digital-platform/src",
+      "prefix": "nx-angular9",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/digital-platform",
+            "index": "apps/digital-platform/src/index.html",
+            "main": "apps/digital-platform/src/main.ts",
+            "polyfills": "apps/digital-platform/src/polyfills.ts",
+            "tsConfig": "apps/digital-platform/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/digital-platform/src/favicon.ico",
+              "apps/digital-platform/src/assets"
+            ],
+            "styles": ["apps/digital-platform/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/digital-platform/src/environments/environment.ts",
+                  "with": "apps/digital-platform/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "digital-platform:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "digital-platform:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "digital-platform:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/digital-platform/tsconfig.app.json",
+              "apps/digital-platform/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/digital-platform/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/digital-platform/jest.config.js",
+            "tsConfig": "apps/digital-platform/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/digital-platform/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "digital-platform-e2e": {
+      "root": "apps/digital-platform-e2e",
+      "sourceRoot": "apps/digital-platform-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/digital-platform-e2e/cypress.json",
+            "tsConfig": "apps/digital-platform-e2e/tsconfig.e2e.json",
+            "devServerTarget": "digital-platform:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "digital-platform:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/digital-platform-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/digital-platform-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "digital-platform"
+}
