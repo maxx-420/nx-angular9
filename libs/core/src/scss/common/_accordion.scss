@@ -1,0 +1,30 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+.mat-accordion {
+  .mat-expansion-panel {
+    border-bottom: 1px solid $grey-200;
+    box-sizing: border-box;
+
+    &.mat-expansion-panel-spacing {
+      margin: 0;
+    }
+  }
+}
+
+.mat-expansion-panel {
+  & &-header {
+    padding: 0 $sp-15;
+  }
+
+  & &-header-description {
+    margin: 0;
+    justify-content: flex-end;
+
+    .symphony-icons {
+      color: $primary-black;
+    }
+  }
+
+  & &-body {
+    padding: 0 $sp-15;
+  }
+}

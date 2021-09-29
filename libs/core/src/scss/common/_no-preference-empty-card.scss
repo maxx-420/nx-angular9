@@ -1,0 +1,31 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.empty-state-card {
+  @include margin($sp-60, 0, 0, 0);
+
+  .card-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: $fs-24;
+    font-weight: $font-weight-bold;
+    color: $grey-700;
+    margin-bottom: $fs-12;
+  }
+
+  .sub-title {
+    font-size: $fs-14;
+    color: $grey-700;
+    margin-bottom: $fs-10;
+  }
+
+  .empty-page-icon {
+    color: $primary-grey;
+    font-size: 80px;
+    height: 95px;
+  }
+}

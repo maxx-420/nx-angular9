@@ -1,0 +1,17 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/_variables.scss";
+
+.legend-wrapper {
+    margin-top: $sp-16;
+    right: 0;
+    @include md-min {
+      position: absolute;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: $sp-20;
+    }
+}
+.legend-list {
+    padding-right: 10px;
+}

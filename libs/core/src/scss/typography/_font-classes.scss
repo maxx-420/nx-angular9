@@ -1,0 +1,180 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/mixins";
+
+.display-1 {
+  font-family: $font-family-base-ups;
+  line-height: 42px;
+  @include font-size($font-size-base * 3.6, $font-size-base * 6);
+  @include md-min {
+    line-height: 66px;
+  }
+}
+
+.display-2 {
+  font-family: $roboto;
+  font-weight: $font-weight-light;
+  line-height: 36px;
+  @include font-size($font-size-base * 3, $font-size-base * 5);
+  @include md-min {
+    line-height: 56px;
+  }
+}
+
+.display-3 {
+  font-family: $roboto;
+  font-weight: $font-weight-light;
+  line-height: 30px;
+  @include font-size($font-size-base * 2.4, $font-size-base * 2.8);
+}
+
+.display-4 {
+  font-family: $roboto;
+  font-weight: $font-weight-light;
+  line-height: 24px;
+  @include font-size($font-size-base * 1.8, $font-size-base * 2);
+}
+
+.body-1 {
+  font-family: $roboto;
+  font-weight: $font-weight-normal;
+  line-height: $sp-18;
+  font-size: $sp-16;
+  letter-spacing: 0px;
+  color: $primary-black;
+}
+
+.body-2 {
+  font-family: $roboto;
+  font-weight: $font-weight-light;
+  line-height: $sp-16;
+  font-size: $sp-14;
+  letter-spacing: 0px;
+  color: $primary-black;
+}
+
+.body-3 {
+  font-family: $roboto;
+  font-weight: $font-weight-normal;
+  line-height: $sp-16;
+  font-size: $sp-12;
+  letter-spacing: 0px;
+  color: $primary-black;
+}
+
+.body-4 {
+  font-family: $roboto;
+  font-weight: $font-weight-normal;
+  line-height: $sp-13;
+  font-size: $sp-11;
+  letter-spacing: 0px;
+  color: $primary-black;
+}
+
+.body-5 {
+  font-family: $roboto;
+  font-weight: $font-weight-normal;
+  line-height: $sp-12;
+  font-size: $sp-10;
+  letter-spacing: 0px;
+  color: $primary-black;
+}
+
+.inline-text {
+  color: $primary-black;
+  font-size: $font-size-base * 1.6;
+  line-height: 24px;
+}
+
+p,
+.paragraph {
+  font-family: $font-family-base-ups;
+  font-size: $font-size-base * 1.6;
+  line-height: 24px;
+  color: $grey-600;
+}
+
+.leadtext {
+  font-size: $font-size-base * 1.8;
+  line-height: 26px;
+  font-family: $font-family-base-ups;
+  color: $primary-black;
+}
+
+.legaltext {
+  font-family: $font-family-base-ups;
+  font-size: $font-size-base * 1.2;
+  line-height: 18px;
+  color: $grey-600;
+}
+
+.block {
+  &-header {
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base * 1.44;
+    color: $primary-black;
+  }
+  &-body {
+    font-size: $font-size-base * 1.2;
+    font-weight: $font-weight-light;
+    color: $primary-black;
+  }
+}
+
+.tertiary-link {
+  color: $primary-black;
+  font-size: $font-size-base * 1.6;
+  font-family: $roboto;
+  font-weight: $font-weight-medium;
+  line-height: 20px;
+}
+
+.tertiary-link-d {
+  color: $grey-700;
+  font-size: $font-size-base * 1.6;
+  font-family: $font-family-base-ups;
+  line-height: 18px;
+}
+
+.eyebrow {
+  font-size: $font-size-base * 1.6;
+  line-height: 19px;
+  font-family: $roboto;
+  font-weight: $font-weight-bold;
+  letter-spacing: 1.5px;
+  color: $primary-black;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  color: $primary-black;
+  @include font-size($font-size-base * 3, $font-size-base * 5);
+  line-height: 36px;
+  text-align: center;
+  font-family: $roboto;
+  font-weight: $font-weight-light;
+  @include margin(null, null, 40px, null);
+  position: relative;
+  padding-bottom: 15px;
+  @include md-min {
+    line-height: 56px;
+    @include margin(null, null, 50px, null);
+  }
+
+  &:before {
+    content: "";
+    height: 1px;
+    width: 35px;
+    border-bottom: 4px solid #ffd61d;
+    display: inline-block; /* Display inline block */
+    text-align: center; /* For button text center */
+    position: absolute; /* Position absolute */
+    left: 50%; /* Move 50% from left */
+    bottom: 0;
+    transform: translateX(-50%);
+    border-radius: 90px;
+  }
+}
+
+.text-right {
+  text-align: right !important;
+}

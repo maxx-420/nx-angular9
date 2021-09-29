@@ -1,0 +1,42 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+.banner-text {
+  &::before {
+    @include padding(null, $sp-8, null, 0);
+    border-radius: $sp-4 $sp-0 $sp-0 $sp-4;
+    content: $symphony-icons-exclamation-triangle;
+    font-family: $icon-family;
+    font-size: $fs-15;
+    vertical-align: text-top;
+  }
+  @include md-min {
+    &::before {
+      @include padding(null, $sp-8, null, $sp-12);
+    }
+  }
+
+  span {
+    font-weight: $font-weight-bold;
+    padding-right: $sp-5;
+  }
+
+  .banner-external-link {
+    text-decoration: underline;
+    padding-left: $sp-5;
+    color: $primary-black;
+  }
+}
+
+// For left nav
+.header-banner-visible .sidenav {
+  top: $height-header-with-banner !important;
+  @include lg-min {
+    top: $height-header-with-banner-lg !important;
+  }
+}
+
+.header-banner-novisible .sidenav {
+  top: $height-header; // top : header menu (75px)
+  @include lg-min {
+    top: $height-header-lg; // top : header menu (80px)
+  }
+}

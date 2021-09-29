@@ -1,0 +1,29 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/_variables.scss";
+
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+  background-color: #2666bf;
+  color: #fff;
+}
+::ng-deep .toggle
+  .mat-button-toggle-appearance-standard
+  .mat-button-toggle-label-content {
+    line-height: 28px;
+    padding: 0 12px;
+  }
+.toggle .mat-button-toggle-checked {
+    background-color: $accent-blue;
+    color: $primary-white;
+}
+.toggle {
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: auto;
+    @include md-min {
+      flex-direction: row;
+      height: 28px;
+      width: 100%;
+    }
+}

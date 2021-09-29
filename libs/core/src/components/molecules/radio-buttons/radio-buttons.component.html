@@ -1,0 +1,20 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<mat-radio-group
+  [formControlName]="controlName"
+  class="{{ 'direction-' + buttonsDirection + ' ' + className }}"
+  [attr.data-automation]="automationAttribute"
+>
+  <ng-template ngFor let-option let-i="index" [ngForOf]="radioOptions">
+    <mat-radio-button
+      [value]="option.value"
+      (change)="radioChange()"
+      [disabled]="option.disabled"
+      [attr.data-automation]="option.automationAttribute"
+      >{{
+        option.isCmsLabel
+          ? (option.label | content)
+          : option.label || option.value
+      }}
+    </mat-radio-button>
+  </ng-template>
+</mat-radio-group>

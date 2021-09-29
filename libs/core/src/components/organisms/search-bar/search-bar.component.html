@@ -1,0 +1,80 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<div
+  class="justify-content-center d-lg-flex search-box-dropdown"
+  [attr.data-automation]="'search'"
+>
+  <ng-container>
+    <form [formGroup]="searchForm" (submit)="search()" class="search-form">
+      <span class="search-bar-item search-text" *ngIf="showSearchByLabel">
+        {{ "lbl_header_search_text" | content }}
+      </span>
+      <div class="searchby-wrapper search-bar-item">
+        <lib-select
+          [customStyle]="{ width: '100%' }"
+          [optionLists]="headerSearchOptionList"
+          [selectedValue]="headerSearchOptionList[0]?.value"
+          [controlName]="'searchBy'"
+          [dataAutomationAttribute]="'upsRef'"
+          ariaLabel="{{ 'lbl_header_search_text' | content }}"
+        ></lib-select>
+      </div>
+      <div class="searchterm-wrapper">
+        <lib-input
+          variation="outline"
+          [customStyle]="{
+            width: '100%',
+            'padding-right': '30px',
+            height: '48px'
+          }"
+          [controlName]="'searchTerm'"
+          [automationAttribute]="'upsRefNo'"
+          [placeholderText]="helperText"
+          [label]="
+            ('lbl_header_search' | content) + ('lbl_form_field_aria' | content)
+          "
+          [labelStyle]="labelStyle"
+          [name]="fieldNameAttribute.searchTerm"
+        ></lib-input>
+        <span
+          class="symphony-icons symphony-icons-circle-close clear-search pt-1"
+          *ngIf="showClearControl"
+          (click)="clearSearchTerm()"
+          (keypress)="clearSearchTerm()"
+          tabindex="0"
+          [attr.data-automation]="'clearRefNo'"
+        >
+          <span class="sr-only">{{ "lbl_header_clear_search" | content }}</span>
+        </span>
+
+        <div class="searchgo-wrapper d-none d-md-block">
+          <lib-button
+            variation="icon-button"
+            iconClassName="symphony-icons-search"
+            [customStyle]="searchBtnStyle"
+            [btnDescription]="'lbl_header_search' | content"
+            (clickEvent)="search()"
+            [automationAttribute]="'upsRefSearch'"
+            [disabled]="searchDisabled"
+            [title]="'lbl_header_search' | content"
+          ></lib-button>
+        </div>
+      </div>
+      <div class="pt-4 d-block d-md-none">
+        <lib-button
+          [text]="'lbl_search_bar_button_text'"
+          color="primary"
+          [disabled]="searchDisabled"
+          [fullWidth]="true"
+          (clickEvent)="search()"
+          [ariaLabel]="'lbl_search_bar_button_text' | content"
+          [attr.data-automation]="'upsRefSearch'"
+          [customStyle]="{ height: '44px' }"
+          ><label class="sr-only">{{
+            "lbl_search_bar_button_text" | content
+          }}</label>
+        </lib-button>
+      </div>
+    </form>
+  </ng-container>
+</div>

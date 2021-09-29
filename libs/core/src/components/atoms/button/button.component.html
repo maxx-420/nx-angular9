@@ -1,0 +1,91 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<ng-container [ngSwitch]="variation">
+  <button
+    *ngSwitchCase="'default'"
+    mat-flat-button
+    [color]="color"
+    [ngClass]="[
+      className ? className : '',
+      fullWidth ? 'full-width' : '',
+      'button-' + color
+    ]"
+    [type]="fieldType"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+    [ngStyle]="customStyle"
+    class="cta-btn"
+    [attr.data-automation]="automationAttribute"
+  >
+    {{ getTextFromCMS ? (text | content) : text }}
+  </button>
+  <button
+    *ngSwitchCase="'link-button'"
+    mat-button
+    href="javascript:void(0)"
+    [color]="color"
+    [ngClass]="[
+      className ? className : '',
+      fullWidth ? 'full-width' : '',
+      'button-' + color,
+      'link-button-' + size
+    ]"
+    [type]="fieldType"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+    [ngStyle]="customStyle"
+    class="cta-link-btn"
+    [attr.data-automation]="automationAttribute"
+    [attr.aria-label]="ariaLabel"
+  >
+    {{ text }}
+  </button>
+  <a
+    *ngSwitchCase="'link'"
+    mat-button
+    href="javascript:void(0)"
+    [color]="color"
+    [ngClass]="[
+      className ? className : '',
+      fullWidth ? 'full-width' : '',
+      'button-' + color
+    ]"
+    [type]="fieldType"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+    (keyup.enter)="onClick($event)"
+    [ngStyle]="customStyle"
+    class="cta-link"
+    [attr.data-automation]="automationAttribute"
+    [attr.aria-label]="ariaLabel"
+    role="button"
+  >
+    <ng-container *ngIf="!text">
+      <ng-content></ng-content>
+    </ng-container>
+    <ng-container *ngIf="text">
+      {{ text }}
+    </ng-container>
+  </a>
+  <button
+    *ngSwitchCase="'icon-button'"
+    mat-flat-button
+    [color]="color"
+    [ngClass]="[
+      className ? className : '',
+      fullWidth ? 'full-width' : '',
+      'button-' + color
+    ]"
+    [type]="fieldType"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+    [ngStyle]="customStyle"
+    class="img-button"
+    [attr.aria-label]="btnDescription"
+    [attr.data-automation]="automationAttribute"
+  >
+    <i
+      class="symphony-icons"
+      [ngClass]="[iconClassName ? iconClassName : '']"
+    ></i>
+  </button>
+</ng-container>

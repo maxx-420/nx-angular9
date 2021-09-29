@@ -1,0 +1,11 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div id="legend-container" class="legend-container" [ngClass]="{ 'd-none': showDonutChartDrilldown }">
+  <!-- Legends list will be populated from generateLegends() -->
+</div>
+<div class="legend-container exception-btn" *ngIf="showDonutChartDrilldown">
+  <button class="symphony-icons symphony-icons-circle-close clear-filter late-delivery-cross-btn"
+    (click)="removeDonutChartDrilldown.emit()" attr.aria-label="{{ hideDrillDownButtonLabel }}">
+    <span class="sr-only">{{ hideDrillDownButtonLabel }}</span>
+  </button>
+  <ng-container *ngTemplateOutlet="component.template; context: {data: component}"></ng-container>
+</div>

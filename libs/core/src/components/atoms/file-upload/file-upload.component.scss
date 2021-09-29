@@ -1,0 +1,86 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.dropzone {
+  height: 100px;
+  padding: $sp-18;
+  border: dashed 1px $grey-500;
+  position: relative;
+
+  button.mat-flat-button {
+    display: none;
+  }
+
+  &:focus,
+  &:hover,
+  &.selected {
+    border-color: transparent;
+    background-color: $grey-200;
+  }
+
+  &.not-selected {
+    @include md-max {
+      border: none;
+      .drag-text,
+      .upload-link {
+        display: none;
+      }
+      button.mat-flat-button {
+        display: inline-block;
+      }
+    }
+  }
+
+  .vertical-middle-align {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    color: $grey-700;
+    a {
+      color: $accent-blue;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  ul li {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    i {
+      vertical-align: middle;
+      margin-right: $sp-10;
+      $font-weight: $font-weight-bold;
+
+      &.correct {
+        color: $accent-blue;
+      }
+      &.error {
+        color: $accent-red;
+      }
+    }
+    & + ul {
+      margin-top: $sp-18;
+    }
+  }
+}

@@ -1,0 +1,168 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.mat-datepicker-content {
+  .mat-calendar {
+    font-family: $roboto;
+    height: auto !important;
+    min-height: 280px;
+  }
+}
+
+.mat-datepicker-toggle button {
+  @include symphony-icon($symphony-icons-calender, before);
+  color: $primary-black;
+  font-size: $fs-24;
+  vertical-align: middle;
+  width: auto;
+  @include margin(null, null, null, $sp-10);
+
+  .mat-button-wrapper {
+    display: none;
+  }
+}
+.date-picker-field .mat-input-element {
+  line-height: $lh-18;
+}
+.date-picker-field .mat-form-field-infix {
+  @include padding($sp-11, $sp-5, $sp-14, $sp-10);
+  border-top: 8px solid transparent !important;
+}
+.date-picker-field .mat-form-field-outline {
+  height: 46px;
+}
+
+mat-calendar-header .mat-calendar-header {
+  padding: 8px 0 0;
+}
+
+.mat-calendar-header {
+  margin: 0 5%;
+
+  .mat-calendar-controls {
+    margin-top: $sp-4;
+  }
+
+  .mat-calendar-arrow {
+    border-left: $sp-4 solid transparent;
+    border-right: $sp-4 solid transparent;
+  }
+
+  .mat-calendar-period-button {
+    padding: 0 8px 0;
+    font-size: $fs-12;
+
+    .mat-button-wrapper {
+      font-weight: normal;
+    }
+  }
+
+  button {
+    height: auto;
+    line-height: $lh-24;
+
+    &.mat-icon-button {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+.mat-icon-button {
+  &.mat-calendar-previous-button,
+  &.mat-calendar-next-button {
+    font-size: $fs-11;
+    font-weight: bold;
+    width: 24px;
+  }
+
+  &.mat-calendar-previous-button {
+    @include symphony-icon($symphony-icons-angle-left, before);
+  }
+
+  &.mat-calendar-next-button {
+    @include symphony-icon($symphony-icons-angle-right, before);
+  }
+}
+
+tbody tr:first-child {
+  &[aria-hidden="true"] {
+    display: none;
+  }
+
+  td[aria-hidden="true"] {
+    color: transparent;
+  }
+}
+
+.mat-calendar-content {
+  .mat-calendar-table-header-divider {
+    display: none;
+  }
+  .mat-calendar-body-cell-content {
+    font-size: $fs-12;
+  }
+  .mat-calendar-body-selected {
+    background-color: $accent-blue;
+    box-shadow: none;
+  }
+}
+
+.mat-datepicker-toggle {
+  color: $accent-blue;
+  &-active {
+    color: $primary-black;
+  }
+}
+
+.mat-form-field-invalid.date-picker-field {
+  .mat-form-field-outline {
+    color: $accent-red !important;
+  }
+}
+
+.mat-form-field.date-picker-field {
+  width: 310px;
+  @include md-max {
+    width: calc(100% - 50px);
+  }
+  .mat-form-field-wrapper .mat-form-field-flex {
+    margin-top: $sp-20;
+    label {
+      position: absolute;
+      color: $grey-600;
+      top: -28px;
+      left: -10px;
+      font-size: $fs-14;
+      line-height: $lh-18;
+      font-weight: $font-weight-medium;
+    }
+    @include sm-max {
+      margin-top: $sp-15;
+      label {
+        top: -30px;
+        line-height: $lh-18;
+      }
+    }
+  }
+}
+
+.set-todays-date-link .cta-link-btn.mat-button {
+  font-size: $fs-14;
+  line-height: $lh-18;
+  margin-top: $sp-12;
+  color: $accent-blue;
+}
+
+.mat-datepicker-toggle .mat-button-ripple.mat-ripple {
+  display: none;
+}
+.mat-datepicker-toggle .mat-button-focus-overlay {
+  background: transparent;
+}
+
+.inline-label {
+  top: 12px !important;
+  left: -84px !important;
+}

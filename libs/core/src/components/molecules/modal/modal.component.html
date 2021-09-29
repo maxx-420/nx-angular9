@@ -1,0 +1,61 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<ng-template #modalWrapper>
+  <div role="document">
+    <mat-dialog-title>
+      <div class="modal-header">
+        <h1 id="dialog-title" class="title">
+          {{ title }}
+        </h1>
+        <button
+          mat-flat-button
+          mat-dialog-close
+          *ngIf="!disableClose"
+          aria-label="{{ 'lbl_modal_close_btn_aria' | content }}"
+          [color]="'primary'"
+          class="img-button"
+        >
+          <i class="symphony-icons symphony-icons-close"></i>
+        </button>
+      </div>
+    </mat-dialog-title>
+    <mat-dialog-content id="dialog-desc">
+      <ng-container *ngIf="!hasTemplate">
+        <ng-container *ngComponentOutlet="component"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="hasTemplate">
+        <ng-container *ngTemplateOutlet="component"></ng-container>
+      </ng-container>
+    </mat-dialog-content>
+    <mat-dialog-actions *ngIf="showOkCTA || showCancelCTA">
+      <button
+        mat-flat-button
+        mat-dialog-close
+        *ngIf="showCancelCTA"
+        color="secondary"
+        class="button-secondary cancel-cta-present"
+      >
+        {{ cancelCTALabel | content }}
+      </button>
+      <button
+        mat-flat-button
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+        *ngIf="showOkCTA"
+        [color]="'primary'"
+        [aria-label]="okCtaAriaLabel"
+        [disabled]="
+          hasTemplate
+            ? isOkCtaDisabled
+            : component['isOkCtaDisabled']
+            ? component['isOkCtaDisabled']()
+            : false
+        "
+        [ngClass]="
+          showCancelCTA ? 'cancel-cta-present' : 'cancel-cta-not-present'
+        "
+      >
+        {{ okCTALabel | content }}
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

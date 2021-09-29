@@ -1,0 +1,68 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<div
+  class="date-filter-container"
+  [formGroup]="filterForm"
+  [ngClass]="[
+    isChartFilter ? 'chart-filter sp-mb-10' : ((routeSegment && isMobileViewport) ? 'multiselect-column-date' : 'sp-mb-20'),
+    !isPageFilter && !isChartFilter ? 'column-labels' : ''
+  ]"
+>
+  <div class="date-filter-select">
+    <div class="h4 date-filter-label" *ngIf="!isChartFilter">
+      {{ routeSegment ? dateRangeLabel : ("lbl_date_range" | content) }}
+    </div>
+    <lib-select
+      [customStyle]="selectBoxStyle"
+      [optionLists]="dateFilterList"
+      controlName="dateRange"
+      [className]="classNameDateRange"
+    ></lib-select>
+  </div>
+  <div
+    *ngIf="showCustomRange"
+    [ngClass]="{ 'chart-date-filter-wrapper': isChartFilter }"
+  >
+    <div
+      class="date-filter-wrapper"
+      [ngClass]="[routeSegment ? 'filter-wrapper' : '']"
+    >
+      <lib-datepicker
+        controlName="startDate"
+        [min]="minRangeDate"
+        [max]="filterForm.get('endDate').value"
+        [showTodaysDate]="showTodaysDate"
+        placeholder="YYYY-MM-DD"
+        label="{{ 'lbl_start_date' | content }}"
+        [customStyle]="!controlFormGroup && datePickerStyle"
+        [showInlineLabel]="!controlFormGroup && showInlineLabel"
+      ></lib-datepicker>
+      <lib-datepicker
+        controlName="endDate"
+        [min]="filterForm.get('startDate').value"
+        [max]="allowFutureDates ? maxRangeDate : todayDate"
+        [showTodaysDate]="showTodaysDate"
+        [customStyle]="!controlFormGroup && datePickerStyle"
+        [showInlineLabel]="!controlFormGroup && showInlineLabel"
+        placeholder="YYYY-MM-DD"
+        label="{{ 'lbl_end_date' | content }}"
+      ></lib-datepicker>
+      <div class="date-range-apply" *ngIf="!controlFormGroup">
+        <lib-button
+          [text]="'lbl_apply'"
+          [disabled]="filterForm?.invalid"
+          color="secondary"
+          [fullWidth]="btnFullWidth"
+          (clickEvent)="onApplyClick()"
+        ></lib-button>
+      </div>
+    </div>
+    <div
+      class="error-msg filter-error-msg"
+      *ngIf="filterForm?.invalid && !controlFormGroup"
+      [ngClass]="[isChartFilter ? 'body5' : 'body2']"
+    >
+      {{ "lbl_date_range_error" | content }}
+    </div>
+  </div>
+</div>

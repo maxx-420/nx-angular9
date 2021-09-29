@@ -1,0 +1,123 @@
+<lib-card-box
+  title="{{ cardTitleLbl | content }}"
+  [contentClass]="'mb-0'"
+  [showLearnMoreInTooltip]="'true'"
+  [headerRightTemplate]="headerRightTemplate"
+  (learnMoreClick)="onLearnMoreClick()"
+>
+  <ul *ngIf="milestones?.length && !hasApiFailed" class="milestone-bar">
+    <ng-template ngFor let-milestone let-i="index" [ngForOf]="milestones">
+      <li
+        class="milestone-wrapper"
+        [attr.data-automation]="
+          dataAutomationAttribute +
+          milestone.id?.toLowerCase().split(' ').join('-') +
+          '-box'
+        "
+        [ngClass]="{
+          'total-count-milestone-wrapper':
+            milestone.id?.toLowerCase() === totalCountTileId.toLowerCase()
+        }"
+      >
+        <a
+          class="milestone-link"
+          (click)="onTileClick(i)"
+          href="javascript:void(0)"
+          (keyup.enter)="onTileClick(i)"
+          [attr.aria-label]="
+            (('lbl_shipment_milestone_' + milestone.id?.toLowerCase()
+              | content) || milestone.name?.toUpperCase()) +
+            ': ' +
+            milestone.count +
+            ' ' +
+            ('lbl_shipment_milestone_shipment' | content)
+          "
+        >
+          <div class="tile-container">
+            <div class="milestone-name">
+              {{
+                ("lbl_shipment_milestone_" +
+                  utility.removeSpace(milestone.id?.toLowerCase()) | content) ||
+                  milestone.name
+              }}
+            </div>
+            <div class="count-wrapper d-flex align-items-center">
+              <div
+                *ngIf="milestone.id?.toLowerCase() !== 'total'"
+                class="milestone-icon-wrapper"
+              >
+                <i
+                  [class]="
+                    'step-icon symphony-icons symphony-icons-milestone-' +
+                    (availableIcons.indexOf(
+                      utility.removeSpace(milestone.id?.toLowerCase())
+                    ) !== -1
+                      ? utility.removeSpace(milestone.id?.toLowerCase())
+                      : defaultIcon)
+                  "
+                  aria-hidden="true"
+                  [attr.data-automation]="
+                    dataAutomationAttribute +
+                    milestone.id?.toLowerCase().split(' ').join('-') +
+                    '-box-icon'
+                  "
+                ></i>
+              </div>
+              <div
+                class="milestone-count"
+                [attr.data-automation]="
+                  dataAutomationAttribute +
+                  milestone.id?.toLowerCase().split(' ').join('-') +
+                  '-box-count'
+                "
+              >
+                {{ milestone.count }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+  <div
+    *ngIf="!milestones?.length && !hasApiFailed"
+    class="milestone-bar-nodata-container"
+  >
+    <span class="no-data-icon-bg-small">
+      <i class="symphony-icons symphony-icons-component-error no-data-icon"></i>
+    </span>
+    <span class="body2">{{ "lbl_no_record_found" | content }}</span>
+  </div>
+  <div *ngIf="hasApiFailed" class="milestone-bar-error-container">
+    <lib-error
+      variation="horizontal"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+</lib-card-box>
+
+<!-- learn more modal template -->
+<lib-context-help
+  [showModal]="isLearnMoreClicked"
+  modalTitle="{{ modalTitleLbl | content }}"
+  [contentHtmlKey]="modalLearnMoreLbl"
+  (modalClosed)="onLearnMoreClick()"
+>
+</lib-context-help>
+
+<ng-template #headerRightTemplate>
+  <div class="filter-chips">
+    <lib-filter-chip
+      [showHeading]="false"
+      [dataAutomationAttr]="dataAutomationAttributeFilterChip"
+      [selectedFilters]="selectedFilters"
+      [defaultFilters]="defaultFilters"
+      [containerClass]="'componentLevel'"
+      (editFilter)="openFilter.emit($event)"
+      [componentFilterId]="componentFilterId"
+      [alwaysEditable]="true"
+      [showClear]="false"
+    ></lib-filter-chip>
+  </div>
+</ng-template>

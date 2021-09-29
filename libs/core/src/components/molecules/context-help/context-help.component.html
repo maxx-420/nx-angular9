@@ -1,0 +1,92 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<lib-modal
+  [title]="modalTitle"
+  [component]="learnMoreTemplate"
+  [hasTemplate]="true"
+  [opened]="showModal"
+  [okCTALabel]="'lbl_chart_modal_close'"
+  (afterClosed)="onPopUpClose($event)"
+  [showCancelCTA]="false"
+  okCtaAriaLabel="{{ 'lbl_modal_close_btn_aria' | content }}"
+></lib-modal>
+
+<ng-template #learnMoreTemplate>
+  <div
+    *ngIf="sanitizedHtml"
+    class="learn-more-body"
+    [ngClass]="isPostSalesCustomer ? 'isPostSalesCustomerModal' : ''"
+    [innerHTML]="sanitizedHtml"
+  ></div>
+  <div class="table-container" *ngIf="tableTitle">
+    <div class="h4 table-header" aria-hidden="true">
+      {{ tableTitle | content }}
+    </div>
+    <div *ngIf="!hasApiFailed; else errorTemplate">
+      <table
+        class="table-wrapper"
+        [ngClass]="{
+          interactive: isTableRowClickable
+        }"
+      >
+        <caption class="sr-only">
+          {{
+            tableTitle | content
+          }}
+        </caption>
+        <tbody>
+          <ng-container *ngIf="isTableRowClickable">
+            <tr
+              *ngFor="let data of tableData"
+              (click)="onRowSelection(data)"
+              (keyup.enter)="onRowSelection(data)"
+              tabindex="0"
+              aria-label="{{ data.label | content }} {{ data.value }} {{
+                'lbl_table_row_view_more_details' | content
+              }}"
+              mat-dialog-close
+            >
+              <th class="body-4 table-field-name" scope="row">
+                {{ data.label | content }}
+              </th>
+              <td class="body-4 table-field-value">
+                <span>{{ data.value || 0 }}</span>
+              </td>
+              <td
+                class="body-4 table-field-value"
+                *ngIf="data.subValue || data.subValue === ''"
+              >
+                <span *ngIf="data.subValue">{{ data.subValue }}</span>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="!isTableRowClickable">
+            <tr *ngFor="let data of tableData">
+              <th class="body-4 table-field-name" scope="row">
+                {{ data.label | content }}
+              </th>
+              <td class="body-4 table-field-value">
+                <span>{{ data.value || 0 }}</span>
+              </td>
+              <td
+                class="body-4 table-field-value"
+                *ngIf="data.subValue || data.subValue === ''"
+              >
+                <span *ngIf="data.subValue">{{ data.subValue }}</span>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
+<ng-template #errorTemplate>
+  <div>
+    <lib-error
+      variation="component"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+</ng-template>

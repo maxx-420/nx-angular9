@@ -1,0 +1,87 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+
+@import "libs/core/src/scss/_variables.scss";
+
+@import "libs/core/src/scss/common/_modeColor.scss";
+
+.mat-card-header {
+
+  &-text {
+    flex: 1;
+  }
+}
+
+.mat-card {
+  max-height: 455px;
+  min-height: 400px;
+  border: 1px solid $grey-200;
+  padding: $sp-16 0 0;
+
+  @include md-min {
+    max-height: 400px;
+  }
+
+  &-header {
+    border-bottom: 1px solid $grey-200;
+    padding-left: $sp-4;
+
+    &-text {
+      margin: 0;
+
+      @include sm-max {
+        display: block;
+      }
+    }
+  }
+
+  &-title {
+    color: $grey-700;
+    line-height: 19px;
+    letter-spacing: .14px;
+    text-align: left;
+  }
+
+  &-header &-title {
+    display: flex;
+    align-items: center;
+
+    @include lg-min {
+      height: 21px;
+    }
+
+    @include sm-max {
+      display: block;
+    }
+  }
+}
+
+.chart-container {
+  padding: $sp-20 0 $sp-45;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+
+  @include margin(0, 0, 0, 0);
+
+  @include md-min {
+    width: 40%;
+
+    @include margin(0, 0, 0, 0);
+  }
+}
+
+.header-right {
+  margin-left: auto;
+
+  @include md-min {
+    margin-right: -10px;
+  }
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,7 @@
+{
+  "bundlerOptions": {
+    "entryFile": "libs/core/src/scss/theme.scss",
+    "rootDir": "./",
+    "outFile": "libs/core/dist/digital/core/assets/theme.scss"
+  }
+}

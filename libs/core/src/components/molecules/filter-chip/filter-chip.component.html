@@ -1,0 +1,112 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="filter-chips">
+  <span class="filters" *ngIf="showHeading">{{ heading | content }}:</span>
+  <div class="chips">
+    <ng-container
+      *ngFor="
+        let selectedFilter of selectedFilters?.slice(0, filterChipsToShow)
+      "
+    >
+      <ng-container *ngIf="isArray(selectedFilter.value); else nonArrayVals">
+        <ng-container *ngIf="hideChips">
+          <ng-container
+            *ngFor="
+              let value of selectedFilter?.value.slice(0, filterChipsToShow)
+            "
+          >
+            <div class="chip-wrapper" [ngClass]="containerClass">
+              <lib-chip
+                (itemRemoved)="getRemovedItem($event)"
+                (itemEdited)="editSelectedItem()"
+                [dataAutomationAttr]="
+                  showFilterKeyInAutomationAttr
+                    ? selectedFilter?.key + '-filter-chip'
+                    : dataAutomationAttr
+                "
+                [filterItem]="{
+                  filterKey: selectedFilter?.key,
+                  filterLabel: selectedFilter?.label,
+                  filterValue: value,
+                  isDefault: isDefaultFilter(selectedFilter?.key, value)
+                }"
+                [alwaysEditable]="alwaysEditable"
+              ></lib-chip>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!hideChips">
+          <ng-container *ngFor="let value of selectedFilter?.value">
+            <div class="chip-wrapper" [ngClass]="containerClass">
+              <lib-chip
+                (itemRemoved)="getRemovedItem($event)"
+                (itemEdited)="editSelectedItem()"
+                [dataAutomationAttr]="
+                  showFilterKeyInAutomationAttr
+                    ? selectedFilter?.key + '-filter-chip'
+                    : dataAutomationAttr
+                "
+                [filterItem]="{
+                  filterKey: selectedFilter?.key,
+                  filterLabel: selectedFilter?.label,
+                  filterValue: value,
+                  isDefault: isDefaultFilter(selectedFilter?.key, value)
+                }"
+                [alwaysEditable]="alwaysEditable"
+              ></lib-chip>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div
+          class="view-more-chip"
+          *ngIf="hideChips && selectedFilter?.value.length > filterChipsToShow"
+          (click)="editFilter.emit(true)"
+        >
+          <span class="chip-value h7"
+            >... {{ "lbl_view_more_link" | content }}</span
+          >
+        </div>
+      </ng-container>
+      <ng-template #nonArrayVals>
+        <div class="chip-wrapper" [ngClass]="containerClass">
+          <lib-chip
+            (itemRemoved)="getRemovedItem($event)"
+            (itemEdited)="editSelectedItem()"
+            [dataAutomationAttr]="
+              showFilterKeyInAutomationAttr
+                ? selectedFilter?.key + '-filter-chip'
+                : dataAutomationAttr
+            "
+            [filterItem]="{
+              filterKey: selectedFilter?.key,
+              filterLabel: selectedFilter?.label,
+              filterValue: selectedFilter?.value,
+              isDefault: isDefaultFilter(
+                selectedFilter?.key,
+                selectedFilter?.value
+              )
+            }"
+            [alwaysEditable]="alwaysEditable"
+          ></lib-chip>
+        </div>
+      </ng-template>
+    </ng-container>
+    <div
+      class="view-more-chip"
+      *ngIf="hideChips && selectedFilters.length > filterChipsToShow"
+      (click)="editFilter.emit(true)"
+    >
+      <span class="chip-value h7"
+        >... {{ "lbl_view_more_link" | content }}</span
+      >
+    </div>
+    <button
+      class="clear-all h6 link"
+      (click)="clearAllFilters()"
+      *ngIf="isClearVisible && showClear"
+      [attr.data-automation]="dataAutomationAttribute.clearFilterChips"
+    >
+      {{ "lbl_clear" | content }}
+    </button>
+    <div></div>
+  </div>
+</div>

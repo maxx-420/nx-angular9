@@ -1,0 +1,21 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.block {
+  padding-top: $sp-12;
+}
+
+.block-header {
+  padding-bottom: $sp-12;
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.block-border {
+  margin-top: $sp-12;
+  border-top: 1px solid $primary-black;
+}

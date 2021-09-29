@@ -1,0 +1,74 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<ng-container [ngSwitch]="variation">
+  <div
+    *ngSwitchCase="'page'"
+    [ngStyle]="customStyle"
+    class="error-container page-error"
+  >
+    <div class="page-error-container">
+      <span>
+        <i
+          class="symphony-icons symphony-icons-page-error page-error-icon error-icon"
+        ></i>
+      </span>
+      <p class="page-error-text error-text h1" data-automation="errorPageText">
+        {{ "lbl_page_unknown_error" | content }}
+      </p>
+      <p class="page-error-description-text error-text body2">
+        {{ "lbl_page_unknown_error_desc" | content }}
+      </p>
+    </div>
+  </div>
+  <div
+    *ngSwitchCase="'component'"
+    [ngStyle]="customStyle"
+    class="error-container"
+  >
+    <div class="component-error-container">
+      <span class="no-data-icon-bg-small">
+        <i
+          class="symphony-icons symphony-icons-component-error no-data-icon"
+        ></i>
+      </span>
+      <p class="body2" data-automation="componentErrorText">
+        {{ customMessage || "lbl_component_error" | content }}
+      </p>
+    </div>
+  </div>
+  <div
+    *ngSwitchCase="'horizontal'"
+    [ngStyle]="customStyle"
+    class="error-container"
+  >
+    <div class="horizontal-error-container row-container">
+      <span>
+        <i
+          class="symphony-icons symphony-icons-component-error horizontal-error-icon error-icon"
+        ></i>
+      </span>
+      <p class="error-text body2" data-automation="componentErrorText">
+        {{ "lbl_component_error_msg" | content }}
+      </p>
+    </div>
+  </div>
+
+  <div
+    *ngSwitchCase="'notFound'"
+    [ngStyle]="customStyle"
+    class="error-container page-error"
+  >
+    <div class="page-error-container">
+      <span>
+        <i
+          class="symphony-icons symphony-icons-page-error page-error-icon error-icon"
+        ></i>
+      </span>
+      <p class="page-error-text error-text h1" data-automation="errorPageText">
+        {{ "lbl_page_not_found" | content }}
+      </p>
+      <p class="page-error-description-text error-text body2">
+        {{ "lbl_page_not_found_desc" | content }}
+      </p>
+    </div>
+  </div>
+</ng-container>

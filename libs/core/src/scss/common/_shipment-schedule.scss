@@ -1,0 +1,89 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+@import "libs/core/src/scss/mixins";
+
+.shipment-schedule-container {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid $grey-200;
+  padding: $sp-20 $sp-16;
+  font-size: $fs-14;
+  background-color: $primary-white;
+
+  @include padding($sp-15, $sp-16, $sp-20, $sp-16);
+
+  @include margin($sp-0, $sp-0, $sp-20, $sp-0);
+
+  &.show-error {
+    border: 2px solid $accent-red;
+  }
+
+  .field {
+    &-section {
+      flex: 1 100%;
+
+      @include lg-min {
+        flex: 1 1 200px;
+      }
+    }
+
+    &-wrapper {
+      display: flex;
+      @include margin($sp-5, $sp-15, $sp-0, $sp-0);
+
+      @include lg-min {
+        flex-direction: column;
+
+      }
+    }
+
+    &-label,
+    &-value {
+      @include md-max {
+        min-width: 130px;
+      }
+    }
+
+    &-label {
+      @include lg-min {
+        @include margin($sp-0, $sp-15, $sp-0, $sp-0);
+      }
+    }
+
+    &-value {
+      font-weight: $font-weight-light;
+    }
+  }
+}
+
+.cancelled-field-section {
+  display: flex;
+  flex-direction: row;
+
+  @include sm-max {
+    flex: 1;
+
+    .cancelled-field-label,
+    .cancelled-field-value {
+      flex: 0 50%;
+    }
+
+    .cancelled-field-value {
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .cancelled-field-value {
+    margin-left: $sp-26;
+    font-weight: $font-weight-light;
+  }
+}
+
+.field-wrapper:first-child {
+  @include md-max {
+    @include padding(null, null, $sp-5, null);
+  }
+}

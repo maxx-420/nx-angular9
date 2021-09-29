@@ -1,0 +1,106 @@
+<div class="metric">
+  <lib-card-box
+    *ngIf="!isLoading"
+    title="{{ titleName | content }}"
+    [dataAutomationHeader]="dataAutomationAttr + 'Header'"
+    [dataAutomationTitle]="dataAutomationAttr + 'Title'"
+    [headerClass]="'no-wrap'"
+    [contentClass]="'mb-0'"
+    [headerLeftTemplate]="headerLeftTemplate"
+    [showLearnMoreInTooltip]="showLearnMore"
+    (learnMoreClick)="onViewDataClick()"
+  >
+    <div class="tile-container">
+      <ng-container
+        [ngTemplateOutlet]="tileVerticalTemplate"
+        [ngTemplateOutletContext]="{ count: config }"
+      >
+      </ng-container>
+    </div>
+  </lib-card-box>
+</div>
+
+<!-- Loader -->
+<div
+  *ngIf="isLoading"
+  class="loader sp-mb-20"
+  [style]="{ height: '400px' }"
+></div>
+
+<ng-template #tileVerticalTemplate let-count="count" let-i="index">
+  <a
+    class="tile"
+    role="button"
+    tabindex="0"
+    (click)="onTileClick($event, count)"
+    (keyup.enter)="onTileClick($event, count)"
+    [attr.data-automation]="
+      ('lbl_hld_dashboard_' + count.id | content)
+        ?.toLowerCase()
+        .split(' ')
+        .join('-') + '-box'
+    "
+  >
+    <div class="count-wrapper">
+      <div [ngStyle]="styles" *ngIf="count.isSVG" class="count-svg">
+        <img
+          alt="{{ count?.icon }}"
+          src="{{ '/scs/assets/' + count.icon + '.svg' }}"
+        />
+      </div>
+      <span
+        class="count shipment-count"
+        [attr.data-automation]="
+          ('lbl_hld_dashboard_' + count.id | content)
+            ?.toLowerCase()
+            .split(' ')
+            .join('-') + '-box-count'
+        "
+        >{{ count.count | number }}
+      </span>
+      <span
+        class="tile-content"
+        [attr.data-automation]="
+          ('lbl_hld_dashboard_' + count.id | content)
+            ?.toLowerCase()
+            .split(' ')
+            .join('-') + '-box-heading'
+        "
+        >{{ "lbl_hld_dashboard_" + count.id | content }}
+      </span>
+    </div>
+    <div class="count-arrow-wrapper">
+      <i class="symphony-icons symphony-icons-arrow-right-light count-arrow h5">
+      </i>
+    </div>
+  </a>
+</ng-template>
+
+<ng-template #headerLeftTemplate>
+  <lib-filter-chip
+    [showHeading]="false"
+    [selectedFilters]="selectedChipFilters"
+    [defaultFilters]="defaultChipFilters"
+    [containerClass]="'componentLevel'"
+    (editFilter)="openFilter.emit($event)"
+    [componentFilterId]="componentFilterId"
+    [alwaysEditable]="true"
+    [showClear]="false"
+  >
+  </lib-filter-chip>
+</ng-template>
+
+<lib-context-help
+  [showModal]="isViewDataClicked"
+  [modalTitle]="(titleName | content) + learnmoreModalTitleDate"
+  [tableTitle]="titleName"
+  [tableData]="learnMoreTableData"
+  [contentHtmlKey]="'lbl_undelivered_exceptions_learn_more_html'"
+  pageSection="Dashboard"
+  [hasApiFailed]="hasShipmentExceptionsApiFailed"
+  errorReason="Shipment Exceptions Api Failed"
+  (modalClosed)="onViewDataClick()"
+  [isTableRowClickable]="true"
+  (tableRowClicked)="onTileClick(null, $event.data)"
+>
+</lib-context-help>

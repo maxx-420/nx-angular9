@@ -1,0 +1,245 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+@import "libs/core/src/scss/mixins";
+
+::ng-deep {
+
+  .mat-card-header {
+
+    &-text {
+      flex: 1;
+    }
+  }
+}
+
+.mat-card {
+  border: 1px solid $grey-200;
+  padding: $sp-16 0 0;
+
+  &-header {
+    border-bottom: 1px solid $grey-200;
+    padding-left: $sp-4;
+
+    &-text {
+      margin: 0;
+
+      @include sm-max {
+        display: block;
+      }
+    }
+  }
+
+  &-title {
+    color: $grey-700;
+    line-height: 19px;
+    letter-spacing: .14px;
+    text-align: left;
+  }
+
+  &-header &-title {
+    display: flex;
+
+    @include sm-max {
+      display: block;
+    }
+  }
+
+  .card-icon {
+    margin: 0 $sp-5;
+    vertical-align: middle;
+
+    @include md-min {
+      margin: 0 $sp-7;
+    }
+  }
+
+  .symphony-icons {
+    margin-right: 10px;
+    font-size: $fs-18;
+    vertical-align: text-bottom;
+  }
+
+  .tooltip-icon {
+    background: transparent;
+    padding: $sp-0;
+    line-height: 1;
+    overflow: visible;
+
+    &:hover {
+      color: $accent-yellow;
+    }
+
+    &:focus {
+      color: $accent-blue;
+    }
+  }
+
+  .tooltip-icon .card-icon {
+    position: relative;
+    font-size: $fs-15;
+    padding: $sp-0;
+    line-height: 1;
+    margin: 0 $sp-5;
+
+    @include md-min {
+      margin: 0 $sp-7;
+    }
+  }
+
+  .learn-more-icon-wrapper {
+    position: relative;
+    width: 25px;
+    height: 16px;
+  }
+
+  .learn-more-info-icon {
+    background: transparent;
+    padding: $sp-0;
+    line-height: 1;
+    overflow: visible;
+    position: absolute;
+    z-index: $zi-1;
+    color: $accent-blue;
+    cursor: pointer;
+
+    &:hover {
+      color: $accent-blue;
+    }
+
+    &:focus {
+      color: $accent-yellow;
+    }
+  }
+
+  .learn-more-info-icon .card-icon {
+    font-size: $fs-15;
+    padding: $sp-0;
+    line-height: 1;
+    margin: 0 $sp-5;
+
+    @include md-min {
+      margin: 0 $sp-7;
+    }
+  }
+}
+
+.learn-more-link {
+  background: transparent;
+  color: inherit;
+  padding: $sp-0;
+  font: inherit;
+  font-weight: $font-weight-medium;
+  font-size: $fs-14;
+  line-height: $lh-21;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.header-right {
+  flex: 1;
+  text-align: right;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @include sm-max {
+    text-align: left;
+    padding-top: $sp-20;
+    padding-bottom: $sp-8;
+  }
+}
+
+.header-height-mobile {
+  height: 70px;
+
+  @include md-min {
+    height: 31px;
+  }
+}
+
+.card-header {
+  line-height: $lh-20;
+  display: inline-flex;
+  align-items: center;
+
+  @include md-min {
+    display: flex;
+  }
+}
+
+.exception-msg-container {
+  @include md-min {
+    display: flex;
+  }
+
+  .extra-title {
+    color: black;
+
+    @include padding($sp-10, $sp-0, $sp-0, $sp-0);
+
+    @include md-min {
+      display: flex;
+      align-items: center;
+      padding: $sp-0 $sp-10;
+    }
+
+    .label {
+      font-weight: normal;
+      font-size: $fs-14;
+
+      .value {
+        display: inline-block;
+        font-weight: 300;
+      }
+
+      .date {
+        font-weight: 300;
+
+        @include padding($sp-5, $sp-0, $sp-0, $sp-0);
+
+        @include md-min {
+          @include padding($sp-0, $sp-0, $sp-0, $sp-5);
+        }
+      }
+    }
+  }
+}
+
+lib-expansion-toggle {
+  margin-left: auto;
+  margin-right: 2px;
+  color: black;
+}
+
+.collapsible .mat-card-title {
+  display: flex;
+}
+
+.hideContent {
+  display: none;
+}
+
+.header-left {
+  margin-left: auto;
+
+  @include padding($sp-0, $sp-16, $sp-0, $sp-10);
+
+  @include md-min {
+    @include padding($sp-0, $sp-0, $sp-0, $sp-20);
+  }
+}
+
+.tooltip-text {
+  width: 253px;
+}
+
+.no-wrap {
+  overflow-x: auto;
+
+  .exception-msg-container {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+  }
+}

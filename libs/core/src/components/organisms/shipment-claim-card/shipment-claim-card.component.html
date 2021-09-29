@@ -1,0 +1,15 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<lib-data-table
+  tableTitle="{{ 'dpf_l3_claims' | content }}"
+  [showTable]="claimsColumnLabels"
+  [displayedColumns]="claimsDisplayedColumns"
+  [tableData]="claimsTableData"
+  [columnInfo]="claimsColumnLabels"
+  defaultSortingColumn="claimType"
+  noRecordMessage=" {{ 'lbl_no_record_found' | content }}"
+  errorReason="Movement Shipment Details Api Failed"
+  pageSection="Movement"
+  class="table-spacing"
+>
+</lib-data-table>

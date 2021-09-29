@@ -1,0 +1,145 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="milestone-section">
+  <mat-accordion [multi]="true" *ngIf="!isDesktop">
+    <mat-expansion-panel
+      [expanded]="false"
+      class="mat-elevation-z0 milestone-panel"
+      hideToggle="true"
+      data-automation="subsec-milestones"
+      #milestonePanel
+    >
+      <mat-expansion-panel-header collapsedHeight="60px" expandedHeight="60px">
+        <mat-panel-title class="h5" data-automation="lblMilestone">
+          {{ "lbl_milestones_trackerTitle" | content }}
+        </mat-panel-title>
+        <mat-panel-description>
+          <lib-expansion-toggle
+            data-automation="milestonesExpansionCol"
+            [expanded]="milestonePanel.expanded"
+            (expansionToggleClicked)="trackExpansionToggle($event)"
+          >
+          </lib-expansion-toggle>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div class="row">
+          <ng-template *ngTemplateOutlet="milestoneContent"></ng-template>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="row" *ngIf="isDesktop">
+    <ng-template *ngTemplateOutlet="milestoneContent"></ng-template>
+  </div>
+</div>
+
+<!-- Open popup modal, when user click on learn-more link- -->
+<lib-context-help
+  [showModal]="isLearnMoreClicked"
+  [modalTitle]="modalTitle"
+  [contentHtmlKey]="contentHtmlKey + '_help'"
+  (modalClosed)="onModalClose($event)"
+></lib-context-help>
+
+<ng-template #milestoneContent>
+  <ul
+    [attr.data-automation]="dataAutomationAttributeName"
+    *ngIf="stepsInfo?.length"
+    class="milestone-container"
+  >
+    <!-- Milestone Steps -->
+    <li class="milestone-wrapper" *ngFor="let step of stepsInfo; let i = index">
+      <button
+        class="milestone-header"
+        [ngClass]="{
+          selected: selectedIndex === i + 1,
+          'unclickable-milestone': !isMilestoneClickable(step)
+        }"
+        mat-button
+        [disabled]="!isMilestoneClickable(step)"
+        (click)="onStepSelection(i + 1)"
+      >
+        <div class="step-container">
+          <div class="progress-marker" [ngClass]="step.status + '-step'"></div>
+          <div class="step-details">
+            <!-- Always display step name -->
+            <div class="step-name h5">
+              {{
+                ("lbl_shipment_milestone_" +
+                  step.id?.split(" ").join("")?.toLowerCase() | content) ||
+                  step.name?.toUpperCase()
+              }}
+            </div>
+
+            <div class="step-detail-wrapper">
+              <!-- Display completion date and checkmark if step is completed -->
+              <div
+                class="completed-step"
+                *ngIf="step.status === milestoneStatus.completed"
+              >
+                <div class="completed-step-date">
+                  {{
+                    step.milestoneCompletionDateTime
+                      | dateFormatter: "yyyy-MM-dd"
+                  }}
+                </div>
+              </div>
+
+              <!-- Display 'In Progress' status if step is in progress -->
+              <div
+                class="inProgress-step"
+                *ngIf="step.status === milestoneStatus.inProgress"
+              >
+                <div class="inProgress-status">
+                  {{ milestoneLabels.inProgress }}
+                </div>
+              </div>
+
+              <!-- If upcoming step, display estimated date if available else display 'Upcoming' -->
+              <div
+                class="upcoming-step"
+                *ngIf="step.status === milestoneStatus.upcoming"
+              >
+                <div
+                  class="upcoming-step-date"
+                  *ngIf="step.milestoneEstimatedDateTime; else statusTemplate"
+                >
+                  {{
+                    step.milestoneEstimatedDateTime
+                      | dateFormatter: "yyyy-MM-dd"
+                  }}
+                </div>
+
+                <ng-template #statusTemplate>
+                  <div class="upcoming-status">
+                    {{ milestoneLabels.upcoming }}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="step-angle-icon" *ngIf="isMilestoneClickable(step)">
+            <i
+              class="symphony-icons symphony-icons-angle-right"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+      </button>
+    </li>
+  </ul>
+
+  <!-- Learnmore  section -->
+  <div
+    class="milestone-learn-more-wrapper"
+    *ngIf="!isGFFMovement && (!isMobileDevice || selectedIndex === -1)"
+  >
+    <lib-button
+      variation="link-button"
+      size="xs"
+      (clickEvent)="onLearnMoreClick()"
+      [text]="'lbl_learn_more_link' | content"
+    >
+    </lib-button>
+  </div>
+</ng-template>

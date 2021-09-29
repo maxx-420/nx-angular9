@@ -1,0 +1,58 @@
+<span class="learn-more-icon-wrapper">
+  <button
+    *ngIf="isDesktopDevice"
+    class="learn-more-info-icon"
+    [libPopoverDirective]="learnMorePopoverTemplate"
+    popoverPlacement="top"
+    (click)="onViewDataClick()"
+    popoverType="tooltip"
+    [attr.data-automation]="dataAutomationAttr"
+  >
+    <span class="sr-only">
+      {{ "lbl_chart_learn_more" | content }}
+    </span>
+    <i
+      aria-hidden="true"
+      class="card-icon symphony-icons symphony-icons-info-circle"
+    ></i>
+  </button>
+  <button
+    *ngIf="!isDesktopDevice"
+    class="learn-more-info-icon"
+    (click)="onViewDataClick()"
+    [attr.data-automation]="dataAutomationAttr"
+  >
+    <i
+      aria-hidden="true"
+      class="card-icon symphony-icons symphony-icons-info-circle"
+    ></i>
+  </button>
+</span>
+
+<ng-template #learnMorePopoverTemplate>
+  <button (click)="onViewDataClick()" class="learn-more-link">
+    {{ "lbl_chart_learn_more" | content }}
+  </button>
+</ng-template>
+
+<lib-chart-modal
+  [modalTitle]="modalTitle"
+  [showModal]="isViewDataClicked"
+  [modalData]="modalData"
+  [attrToFetchData]="attrToFetchData"
+  [contentHtmlKey]="contentHtmlKey"
+  [hasApiFailed]="hasApiFailed"
+  [errorReason]="errorReason"
+  [pageSection]="pageSection"
+  [isMultiColumnOrTableLayout]="isMultiColumnOrTableLayout"
+  [toggleTypes]="toggleTypes"
+  [isTableRowClickable]="isTableRowClickable"
+  [isTableColumnClickable]="isTableColumnClickable"
+  [customLabelMapping]="customLabelMapping"
+  [showSubValueColumn]="showSubValueColumn"
+  [tableTitle]="tableTitle"
+  [dataAutomationAttr]="dataAutomationAttr"
+  [showTableTitle]="showTableTitle"
+  (modalClosed)="onModalClose($event)"
+  (tableRowClicked)="onTableRowClick($event)"
+></lib-chart-modal>

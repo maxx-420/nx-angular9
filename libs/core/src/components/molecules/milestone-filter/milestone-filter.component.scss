@@ -1,0 +1,43 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/_variables.scss";
+@import "libs/core/src/scss/mixins";
+
+::ng-deep .multi-select-section {
+  mat-list-item {
+    display: block;
+    @include margin($sp-0, $sp-0, $sp-12, $sp-0);
+  }
+
+  .mat-checkbox-inner-container {
+    background-color: $primary-white;
+    height: $sp-20;
+    width: $sp-20;
+    margin-right: $sp-10;
+  }
+
+  .mat-checkbox-label, .mat-radio-button .mat-radio-label-content {
+    font-size: $fs-14;
+    line-height: $lh-20;
+    font-weight: $font-weight-normal;
+  }
+
+  .mat-checkbox:hover {
+    .mat-checkbox-ripple {
+      display: none;
+    }
+  }
+
+  .subList {
+    display: flex;
+    align-items: stretch;
+    padding-top: 10px;
+    .subList-left-border {
+      margin-left: 9px;
+      border: 1px solid $grey-300;
+    }
+    .subList-options {
+      display: block;
+      padding-left: 20px;
+    }
+  }
+}

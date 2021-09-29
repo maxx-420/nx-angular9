@@ -1,0 +1,55 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.chip {
+  background-color: $accent-blue;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid $accent-blue;
+  border-radius: $sp-4;
+
+  @include padding($sp-3, $sp-12, $sp-3, $sp-7);
+
+  .chip-label,
+  .chip-value {
+    text-transform: uppercase;
+    color: $primary-white;
+  }
+
+  .chip-btn {
+    padding: $sp-0;
+    margin-left: $sp-5;
+    background-color: transparent;
+    line-height: $lh-14;
+
+    &:focus {
+      outline: auto;
+    }
+
+    .symphony-icons {
+      color: $primary-white;
+      font-size: $sp-10;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+.default-chip {
+  background-color: rgba(38,102,191,.1);
+  border: 0;
+
+  .chip-label,
+  .chip-value {
+    color: $accent-blue;
+  }
+
+  .chip-btn {
+
+    .symphony-icons {
+      color: $accent-blue;
+      font-weight: normal;
+    }
+  }
+}

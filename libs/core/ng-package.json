@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/core",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "moment": "moment",
+      "chart.js": "Chart",
+      "@microsoft/applicationinsights-web": "Microsoft.ApplicationInsights",
+      "@azure/msal-browser": "msal",
+      "@azure/msal-angular": "azure.msal-angular"
+    },
+    "flatModuleFile": "core"
+  },
+   "deleteDestPath": false,
+  "whitelistedNonPeerDependencies": ["."]
+}

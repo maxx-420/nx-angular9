@@ -1,0 +1,108 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<ng-template #headerLeftTemplate>
+  <form [formGroup]="costOvertimeForm">
+    <lib-select
+      [optionLists]="dropdownOptions"
+      (selectionChange)="dropdownSelectionChange()"
+      [selectedValue]="dropdownOptions[0].viewValue"
+      controlName="costBy"
+      [customStyle]="selectBoxStyle"
+      [getValueFromCMS]="true"
+      [dataAutomationAttribute]="dataAutomationAttr.costOvertimeChartDropdown"
+    ></lib-select>
+  </form>
+</ng-template>
+
+<div [attr.data-automation]="dataAutomationAttr.costOvertimeChart">
+  <mat-card class="mat-elevation-z0 app-card">
+    <mat-card-header>
+      <mat-card-title>
+        <div
+          class="header-container"
+          [attr.data-automation]="dataAutomationAttr.costOvertimeChartHeader"
+        >
+          <div class="header-left">
+            <ng-container *ngTemplateOutlet="headerLeftTemplate"></ng-container>
+            <lib-learn-more
+              [learnMoreType]="LearnMoreTypes.TwoColumns"
+              [modalTitle]="(learnMoreTitle | content) + ' - ' + filterLabel"
+              [modalData]="learnMoreData"
+              [attrToFetchData]="attrToFetchData"
+              [contentHtmlKey]="contentHtmlKey"
+              [hasApiFailed]="costOvertimeData?.errorDetails?.length"
+              pageSection="Financial Tab"
+              errorReason="Financial Summary Api Failed"
+              (tableRowClicked)="clickOnChartData.emit($event)"
+              [isTableRowClickable]="true"
+              [tableTitle]="learnMoreTableTitle"
+              [dataAutomationAttr]="
+                dataAutomationAttr.costOvertimeChartLearnMore
+              "
+            ></lib-learn-more>
+          </div>
+          <div class="header-right pl-1 pl-md-0 pl-xs-0"></div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="costOvertimeData?.errorDetails?.length">
+        <lib-error
+          variation="component"
+          [customStyle]="{ height: '323px' }"
+          errorReason="Financial Summary API has failed"
+          pageSection="FinancialShipments"
+        ></lib-error>
+      </div>
+      <div
+        *ngIf="
+          !costOvertimeData?.errorDetails?.length && !costOvertimeData?.isLoaded
+        "
+      >
+        <div class="no-chart-data" [style]="{ height: '300px' }">
+          <span class="no-data-icon-bg-small">
+            <i
+              class="symphony-icons symphony-icons-component-error no-data-icon"
+              aria-hidden="true"
+            ></i>
+          </span>
+          <span class="body2">{{ "lbl_data_not_available" | content }}</span>
+        </div>
+      </div>
+      <ng-container
+        *ngTemplateOutlet="ShipmentFinancialCostsOverTimeChart"
+      ></ng-container>
+    </mat-card-content>
+    <mat-card-footer> </mat-card-footer>
+  </mat-card>
+</div>
+
+<ng-template #ShipmentFinancialCostsOverTimeChart>
+  <div class="chart-container" *ngIf="!costOvertimeData.errorDetails.length">
+    <div
+      class="chart"
+      [ngClass]="{
+        'no-scroll':
+          !costOvertimeData.data || costOvertimeData.data?.length === 0
+      }"
+    >
+      <lib-chart
+        *ngIf="costOvertimeData.isLoaded"
+        [chartId]="chartConfig.chartId"
+        [chartType]="chartConfig.chartType"
+        [chartData]="chartData"
+        [chartOptions]="chartOptions"
+        [ariaLabel]="'dpf_financialShpts_cstOvrTme' | content"
+        [yAxisLabel]="
+          '(' +
+          ('dpf_financialShpts_cst' | content) +
+          costOvertimeData.currency +
+          ')'
+        "
+        (clickOnChartEvent)="clickOnChartData.emit($event)"
+        [emitClickEvent]="true"
+        [customTooltipCallback]="true"
+      ></lib-chart>
+    </div>
+  </div>
+</ng-template>

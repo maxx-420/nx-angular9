@@ -1,0 +1,81 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="end-to-end-shipment">
+  <p class="learn-text">
+    <ng-container *ngIf="milestoneStatusType === shipmentType.inbound">
+      {{
+        (isConvergenceExperience === true
+          ? "lbl_learn_more_asn_info"
+          : "lbl_learn_more_inbound_info"
+        ) | content
+      }}
+    </ng-container>
+    <ng-container *ngIf="milestoneStatusType !== shipmentType.inbound">
+      {{
+        (isConvergenceExperience === true
+          ? "lbl_learn_more_distr_info"
+          : "lbl_learn_more_outbound_info"
+        ) | content
+      }}
+    </ng-container>
+  </p>
+  <p
+    class="learn-text milestone-msg milestone-msg-imp"
+    [attr.data-automation]="'milestones-disclaimer-text'"
+  >
+    {{ "lbl_milestone_not_applicable_info" | content }}
+  </p>
+
+  <div class="learn-more">
+    <h5 class="learn-sub-heading">
+      {{ "lbl_shipment_milestone_shipment" | content }}
+    </h5>
+    <p class="learn-text">
+      <ng-container *ngIf="milestoneStatusType === shipmentType.inbound">
+        {{
+          (isConvergenceExperience === true
+            ? "lbl_learn_more_asn_shipments"
+            : "lbl_learn_more_inbound_shipments"
+          ) | content
+        }}
+      </ng-container>
+      <ng-container *ngIf="milestoneStatusType !== shipmentType.inbound">
+        {{
+          (isConvergenceExperience === true
+            ? "lbl_learn_more_distr_shipments"
+            : "lbl_learn_more_outbound_shipments"
+          ) | content
+        }}
+      </ng-container>
+    </p>
+  </div>
+  <div
+    class="learn-more"
+    *ngFor="let milestoneStatusConfig of milestoneStatusConfigurations"
+  >
+    <h5 class="learn-sub-heading">
+      {{
+        "lbl_shipment_milestone_grp_" + milestoneStatusConfig?.name | content
+      }}
+    </h5>
+    <p class="learn-text">{{ "lbl_learn_more_milestones_info" | content }}</p>
+    <ul class="main-section">
+      <li
+        class="milestone-grp col-sm-6 col-md-3 col-lg-4"
+        *ngFor="let milestoneStatus of milestoneStatusConfig.statusMapping"
+      >
+        <div class="icon-wrapper">
+          <i
+            [class]="
+              'milestone-icon symphony-icons symphony-icons-milestone-' +
+              milestoneStatus
+            "
+            aria-hidden="true"
+          ></i>
+        </div>
+        <div class="tertiary-link milestone-status">
+          {{ "lbl_shipment_milestone_" + milestoneStatus | content }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

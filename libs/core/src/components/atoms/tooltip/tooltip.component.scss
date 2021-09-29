@@ -1,0 +1,25 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+@import "libs/core/src/scss/mixins";
+
+.popover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $sp-10;
+  font-weight: $font-weight-light;
+  letter-spacing: 0;
+  font-size: $fs-14;
+  line-height: $lh-18;
+  text-align: left;
+  min-height: 30px;
+  background: $grey-800;
+  color: $primary-white;
+  border-radius: $sp-5;
+
+  &:before {
+    background: $grey-800 !important;
+    border-color: transparent !important;
+  }
+}

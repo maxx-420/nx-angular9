@@ -1,0 +1,68 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+.mat-paginator-outer-container .mat-paginator-container {
+  justify-content: center;
+  @include padding($sp-8, $sp-8, $sp-8, $sp-8);
+  min-height: 40px;
+}
+
+.mat-paginator-range-label {
+  display: none;
+}
+
+.mat-paginator-range-actions {
+  .mat-icon-button {
+    margin-right: $sp-3;
+    &:hover {
+      background-color: $grey-100;
+    }
+  }
+  .mat-icon-button,
+  .mat-mini-fab {
+    height: $sp-40;
+    width: $sp-40;
+    line-height: 14px;
+    font-size: $fs-13;
+    @include padding($sp-13, 0, $sp-13, 0);
+    color: $primary-black;
+    letter-spacing: 0px;
+    @include md-min {
+      height: $sp-24;
+      width: $sp-24;
+      line-height: 13px;
+      @include padding($sp-5, 0, $sp-5, 0);
+      font-size: $fs-10;
+    }
+
+    border: 1px solid $grey-200;
+  }
+  .mat-mini-fab {
+    margin-right: $sp-3;
+    &.active {
+      background: $accent-blue 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px $box-shadow-color;
+      color: $primary-white;
+      pointer-events: none;
+    }
+    &:hover {
+      background-color: $grey-100;
+    }
+  }
+  svg.mat-paginator-icon {
+    width: $sp-16;
+    bottom: $sp-2;
+    position: relative;
+    @include md-min {
+      width: $sp-13;
+      bottom: $sp-1;
+    }
+  }
+  span.ng-star-inserted {
+    letter-spacing: 0px;
+    font-size: $fs-10;
+    @include margin($sp-26, $sp-3, 0, 0);
+    @include md-min {
+      @include margin($sp-10, $sp-3, 0, 0);
+    }
+  }
+}

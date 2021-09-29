@@ -1,0 +1,41 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.shipment-navigation-wrapper {
+  background-color: transparent;
+  position: absolute;
+  width: 99.9%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include lg-min {
+    padding-left: 320px;
+    lib-button:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+.shipment-navigation-content {
+  display: flex;
+  padding: $sp-14 0;
+  justify-content: space-between;
+  background-color: $primary-white;
+  padding-left: $sp-15;
+  padding-right: $sp-15;
+  @include md-min {
+    padding-left: $sp-20;
+    padding-right: $sp-20;
+  }
+  @include lg-min {
+    padding-left: $sp-20;
+    padding-right: $sp-20;
+  }
+}
+lib-button {
+  @include sm-max {
+    width: calc(50% - 3px);
+  }
+}

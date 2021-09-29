@@ -1,0 +1,137 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<div
+  class="shipment-schedule-container gld-shipment"
+  *ngIf="isCancelledShipment || scheduleData?.isLoaded"
+  [ngClass]="{
+    'show-error': isCancelledShipment
+  }"
+>
+  <ng-container *ngIf="isCancelledShipment">
+    <div class="cancelled-field-section">
+      <div class="cancelled-field-label">
+        {{ "lbl_shipment_cancelledOn" | content | titlecase }}
+      </div>
+      <div class="cancelled-field-value">
+        <span
+          >{{
+            cancellationDateTime
+              | dateFormatter
+                : undefined
+                : showTimeZone && shipmentCanceledDateTimeZone
+          }}&nbsp;&nbsp;
+        </span>
+        <span>{{ cancellationReason }}</span>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!isCancelledShipment">
+    <div
+      *ngIf="
+        !shipmentTypeExclusions ||
+        !shipmentTypeExclusions[
+          COMPONENT_IDS?.shipmentScheduleCardSchedulePickup
+        ]
+      "
+      class="field-section"
+    >
+      <div class="field-wrapper">
+        <div class="field-label">
+          {{ "lbl_core_shipmentSchedule_scheduledPickup" | content }}
+        </div>
+        <div class="field-value">
+          {{
+            scheduleData?.data?.originalPickupDateTime
+              ? (scheduleData.data.originalPickupDateTime | dateFormatter)
+              : ("lbl_shipment_deliveryNotYetAvailable" | content)
+          }}
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        !shipmentTypeExclusions ||
+        !shipmentTypeExclusions[COMPONENT_IDS?.shipmentScheduleCardActualPickup]
+      "
+      class="field-section"
+    >
+      <div class="field-wrapper">
+        <div class="field-label">
+          {{ "lbl_core_shipmentSchedule_actualPickup" | content }}
+        </div>
+        <div class="field-value">
+          {{
+            scheduleData?.data?.actualPickupDateTime
+              ? (scheduleData.data.actualPickupDateTime | dateFormatter)
+              : ("lbl_shipment_deliveryNotYetAvailable" | content)
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="field-section">
+      <div class="field-wrapper">
+        <div class="field-label">
+          {{ "lbl_shipment_detailsScheduledDelivery" | content }}
+        </div>
+        <div class="field-value">
+          {{
+            scheduleData?.data?.originalScheduledDeliveryDateTime
+              ? (scheduleData.data.originalScheduledDeliveryDateTime
+                | dateFormatter
+                  : undefined
+                  : showTimeZone &&
+                      scheduleData.data.originalScheduledDeliveryDateTimeZone)
+              : ("lbl_shipment_deliveryNotYetAvailable" | content)
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="field-section">
+      <div class="field-wrapper">
+        <ng-container *ngIf="scheduleData?.data?.actualDeliveryDateTime">
+          <div class="field-label">
+            {{ "lbl_shipment_actualDelivery" | content }}
+          </div>
+          <div class="field-value">
+            {{
+              scheduleData?.data?.actualDeliveryDateTime
+                ? (scheduleData.data.actualDeliveryDateTime
+                  | dateFormatter
+                    : "yyyy-MM-dd HH:mm"
+                    : showTimeZone &&
+                        scheduleData.data.actualDeliveryDateTimeZone)
+                : ("lbl_shipment_deliveryNotYetAvailable" | content)
+            }}
+          </div>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            (!shipmentTypeExclusions ||
+              (!scheduleData?.data?.actualDeliveryDateTime &&
+                !shipmentTypeExclusions[
+                  COMPONENT_IDS?.shipmentScheduleCardDeliveryETA
+                ])) &&
+            !scheduleData?.data?.actualDeliveryDateTime
+          "
+        >
+          <div class="field-label">
+            {{ "lbl_shipment_deliveryETA" | content }}
+          </div>
+          <div class="field-value">
+            {{
+              scheduleData?.data?.shipmentEstimatedDateTime
+                ? (scheduleData?.data?.shipmentEstimatedDateTime
+                  | dateFormatter: "yyyy-MM-dd HH:mm")
+                : ("lbl_shipment_deliveryNotYetAvailable" | content)
+            }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div
+  *ngIf="!isCancelledShipment && !scheduleData?.isLoaded"
+  class="loader"
+  [style.height]="'60px'"
+></div>

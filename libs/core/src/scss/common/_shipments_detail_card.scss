@@ -1,0 +1,96 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+@import "libs/core/src/scss/mixins";
+
+.shipments-details-container {
+  @include padding($sp-20, $sp-20, $sp-20, $sp-15);
+}
+
+.shipments-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// TODO: Clean up required
+.shipments-item-section {
+  &:nth-child(2n + 1) {
+    background-color: $grey-50;
+  }
+}
+
+.shipments-item-section {
+  flex: 1 100%;
+
+  @include lg-min {
+    flex: 1 50%;
+
+    &:nth-child(2n + 1) {
+      background-color: $primary-white;
+    }
+
+    &:nth-child(4n + 1),
+    &:nth-child(4n + 2) {
+      background-color: $grey-50;
+    }
+  }
+
+  &:last-child:nth-child(odd) {
+    .shipment-field-wrapper {
+      @include lg-min {
+        width: 50%;
+      }
+    }
+  }
+}
+
+.shipments-item {
+  font-size: $sp-14;
+  line-height: $sp-24;
+  color: $primary-black;
+  flex: 0 100%;
+  padding-left: $sp-5;
+
+  @include lg-min {
+    flex: 0 50%;
+  }
+}
+
+.shipments-data {
+  font-weight: $font-weight-normal;
+}
+
+.shipments-value {
+  font-weight: $font-weight-light;
+}
+
+.shipment-field-wrapper {
+  max-width: 686px;
+  display: flex;
+  flex-direction: row;
+
+  @include lg-min {
+    flex: 0 50%;
+    max-width: 415px;
+  }
+}
+
+.transport-order-number {
+  color: $accent-blue;
+  cursor: pointer;
+}
+
+.documents-table {
+  max-height: 286px;
+  overflow-y: auto;
+}
+
+.contact-details-wrapper {
+  .title {
+    font-size: $sp-16;
+    width: 100%;
+    font-weight: bold;
+
+    @include padding($sp-15, $sp-5, $sp-0, $sp-20);
+  }
+}

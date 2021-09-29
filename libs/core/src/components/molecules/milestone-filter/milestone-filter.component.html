@@ -1,0 +1,48 @@
+<mat-accordion class="filter-panel">
+  <mat-expansion-panel
+    [attr.data-automation]="'bar-filter-' + filterConfiguration.key"
+  >
+    <mat-expansion-panel-header
+      [class.showSelection]="filterConfiguration.showSelection"
+    >
+      <mat-panel-title>
+        {{ filterConfiguration.label | content }}
+        {{ viewValue }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="multi-select-section">
+      <mat-list>
+        <mat-list-item>
+          <mat-checkbox
+            [(ngModel)]="masterChecked"
+            (change)="masterChange()"
+            disableRipple
+            [attr.data-automation]="'milestone-filter-bar-All'"
+            >{{ "lbl_multi-select_selectall" | content }}
+            {{
+              showCount ? " (" + filterConfiguration.totalCount + ")" : ""
+            }}</mat-checkbox
+          >
+        </mat-list-item>
+        <mat-list-item *ngFor="let item of checkboxList">
+          <mat-checkbox
+            [(ngModel)]="item.checked"
+            (change)="listChange()"
+            [value]="item.value"
+            disableRipple
+            [attr.data-automation]="'milestone-filter-bar-' + item.name"
+            >{{ item.label || item.value }}</mat-checkbox
+          >
+          <div class="subList" *ngIf="item.subProperties" [formGroup]="subList">
+            <div class="subList-left-border"></div>
+            <lib-radio-buttons
+              [controlName]="item.value"
+              [radioOptions]="item.subProperties"
+              class="subList-options"
+            ></lib-radio-buttons>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

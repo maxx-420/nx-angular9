@@ -1,0 +1,118 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="shipment-mode-container-parent">
+  <div class="shipment-mode-container-title">
+    <span tabindex="0">{{ title }}</span>
+    <div *ngIf="showFilterChip" class="header-right body2">
+      <ng-container *ngTemplateOutlet="headerRightChipTemplate"></ng-container>
+    </div>
+  </div>
+  <div *ngIf="!hasApiFailed">
+    <ng-container
+      *ngIf="shipmentModeSummary?.length; else shipmentModesNotPresent"
+    >
+      <ng-container *ngTemplateOutlet="shipmentModesPresent"></ng-container>
+    </ng-container>
+  </div>
+  <div *ngIf="hasApiFailed">
+    <lib-error
+      variation="component"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+</div>
+
+<ng-template #shipmentModeTemplate let-shipmentMode="shipmentMode">
+  <div class="mode-container">
+    <i
+      [ngClass]="
+        'mode-icon mode-icon-wrapper ' +
+        'symphony-icons symphony-icons-shipmentMode-' +
+        getIcon(shipmentMode)
+      "
+    ></i>
+    <div class="mode-details">
+      <div class="mode-name h7">
+        {{
+          ("lbl_shipment_mode_" + shipmentMode.id?.toLowerCase() | content) ||
+            shipmentMode?.name
+        }}
+      </div>
+      <div class="h2">
+        {{ shipmentMode.count }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- template for shipment mode summary present -->
+<ng-template #shipmentModesPresent>
+  <ul
+    class="shipment-mode-container"
+    [attr.data-automation]="dataAutomationAttribute + '-first-row'"
+  >
+    <li
+      class="shipment-wrapper"
+      *ngFor="let shipmentMode of shipmentModeSummary"
+    >
+      <a
+        class="link-decoration-none link-icon-color-black"
+        (click)="clickOnChart(shipmentMode)"
+        href="javascript:void(0)"
+        (keyup.enter)="clickOnChart(shipmentMode)"
+        *ngIf="isModeClickable"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            shipmentModeTemplate;
+            context: {
+              shipmentMode: shipmentMode
+            }
+          "
+        ></ng-container>
+      </a>
+      <ng-container *ngIf="!isModeClickable">
+        <ng-container
+          *ngTemplateOutlet="
+            shipmentModeTemplate;
+            context: {
+              shipmentMode: shipmentMode
+            }
+          "
+        ></ng-container>
+      </ng-container>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #shipmentModesNotPresent>
+  <div class="no-shipment-mode-container">
+    <div class="no-shipment-mode-wrapper">
+      <span class="no-data-icon-bg-small">
+        <i
+          class="symphony-icons symphony-icons-component-error no-data-icon"
+        ></i>
+      </span>
+      <div class="no-shipment-mode-text body2">
+        {{ "lbl_no_shipment_mode" | content }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #headerRightChipTemplate>
+  <div class="filter-chips">
+    <lib-filter-chip
+      [showHeading]="false"
+      [selectedFilters]="selectedFilters"
+      [defaultFilters]="defaultFilters"
+      [containerClass]="'componentLevel'"
+      (editFilter)="openFilter.emit($event)"
+      (changedFilters)="chipFilterRemoved.emit($event)"
+      [alwaysEditable]="true"
+      [showClear]="false"
+      [componentFilterId]="componentFilterId"
+    ></lib-filter-chip>
+  </div>
+</ng-template>

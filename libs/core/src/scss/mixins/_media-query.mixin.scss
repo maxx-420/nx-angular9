@@ -1,0 +1,66 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "../variables/grid/breakpoints";
+
+// keep it if required but not exposed
+@mixin sm-min {
+  /* @include media-breakpoint-up(sm) {
+    @content;
+  } */
+  @media only screen and (min-width: $screen-sm) {
+    @content;
+  }
+}
+
+// max-width : 767px | Use the same for sm-only also
+@mixin sm-max {
+  @media only screen and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+// min-width : 768px
+@mixin md-min {
+  @media only screen and (min-width: $screen-md) {
+    @content;
+  }
+}
+
+// max-width : 1023px
+@mixin md-max {
+  @media only screen and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+// min-width : 768px and max-width : 1023px
+@mixin md-only {
+  @media only screen and (min-width: $screen-md) and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+// min-width : 1024px
+@mixin lg-min {
+  @media only screen and (min-width: $screen-lg) {
+    @content;
+  }
+}
+
+// Keep it for future requirement but not exposed
+// @mixin lg-max {
+//   @include media-breakpoint-down(lg) {
+//     @content;
+//   }
+// }
+
+// @mixin lg-only {
+//   @include media-breakpoint-only(lg) {
+//     @content;
+//   }
+// }
+
+// @mixin xl-min {
+//   @include media-breakpoint-up(xl) {
+//     @content;
+//   }
+// }

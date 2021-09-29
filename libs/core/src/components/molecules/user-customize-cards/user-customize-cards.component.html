@@ -1,0 +1,100 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<button
+  class="preference-cta"
+  (click)="togglePreferenceSlideout()"
+  [attr.aria-label]="'dpf_usrPref_customize_page' | content"
+  [attr.data-automation]="dataAutomationAttribute.userPreferenceButton"
+  [disabled]="disabled"
+>
+  <i
+    class="symphony-icons symphony-icons-edit-pencil"
+    aria-hidden="true"
+    [attr.data-automation]="dataAutomationAttribute.userPreferenceButtonIcon"
+  ></i>
+  <span
+    class="body-5 preference-cta-label"
+    [attr.data-automation]="dataAutomationAttribute.userPreferenceButtonLabel"
+    >{{ "dpf_usrPref_customize_page" | content }}</span
+  >
+</button>
+<div *ngIf="showPreferencePanel">
+  <div
+    class="preference-wrapper"
+    [ngClass]="{
+      'overlay overlay-left': isMobile,
+      bannerVisible: isBannerVisible
+    }"
+    role="content"
+  >
+    <div class="preference-header">
+      <lib-button
+        variation="link-button"
+        (clickEvent)="resetPreferences()"
+        [text]="'dpf_reset_preferences' | content"
+        [ariaLabel]="'dpf_reset_preferences' | content"
+        size="sm"
+        [attr.data-automation]="dataAutomationAttribute.preferenceResetButton"
+      ></lib-button>
+      <button
+        class="closeBtn"
+        [attr.aria-label]="'lbl_close' | content"
+        (click)="togglePreferenceSlideout(true)"
+        [attr.data-automation]="dataAutomationAttribute.preferenceCloseButton"
+      >
+        <i
+          class="symphony-icons symphony-icons-close"
+          id="closeIcon"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </div>
+    <div class="preference-body">
+      <div class="message-bar" *ngIf="showNotification">
+        <lib-message-bar
+          [isMessageBarVisible]="showNotification"
+          [message]="notifcationMessage"
+          [messageType]="notificationType"
+          (closed)="hideNotificationBar()"
+          [autoCloseEnabled]="false"
+          ariaLabel="{{ 'lbl_aria_msg_bar_close' | content }}"
+        ></lib-message-bar>
+      </div>
+      <div
+        class="body-1 preference-label"
+        [attr.data-automation]="dataAutomationAttribute.customizeLabel"
+        *ngIf="!showNotification"
+      >
+        {{ "dpf_usrPref_customize_page" | content }}
+      </div>
+      <ng-container *ngTemplateOutlet="listComponents"></ng-container>
+    </div>
+    <div class="preference-footer">
+      <lib-button
+        [text]="applyButtonText"
+        color="primary"
+        [disabled]="preferenceForm?.invalid || isApplyBtnDisabled"
+        [fullWidth]="true"
+        (clickEvent)="onApplyClick()"
+        [ariaLabel]="applyButtonText | content"
+        [attr.data-automation]="dataAutomationAttribute.preferenceApply"
+      ></lib-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #listComponents>
+  <div class="multi-select-section">
+    <mat-list [attr.data-automation]="dataAutomationAttribute.componentList">
+      <mat-list-item *ngFor="let item of selectorPanelComponentList">
+        <mat-checkbox
+          [(ngModel)]="item.isDisplay"
+          [value]="item.isDisplay"
+          disableRipple
+          [attr.data-automation]="dataAutomationAttribute.componentListOption"
+        >
+          {{ item.viewValue | content }}
+        </mat-checkbox>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</ng-template>

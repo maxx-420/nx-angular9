@@ -1,0 +1,15 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<i
+  *ngIf="!expanded"
+  [style.fontSize]="fontSize"
+  class="symphony-icons symphony-icons-plusCircle"
+  (click)="onExpansionToggleClick()"
+  (keydown)="onKeyDown()"
+></i>
+<i
+  *ngIf="expanded"
+  [style.fontSize]="fontSize"
+  class="symphony-icons symphony-icons-minusCircle"
+  (click)="onExpansionToggleClick()"
+  (keydown)="onKeyDown()"
+></i>

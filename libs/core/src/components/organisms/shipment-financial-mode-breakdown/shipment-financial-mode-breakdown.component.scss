@@ -1,0 +1,160 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+$black-color: #000000;
+$min-width: 500px; // increase min width to accomodate 4th column
+$mode-col-width: 30%; // change it to 20% when avg cost/ship unit is added
+$cost-col-width: 40%; // change it to 30% when avg cost/ship unit is added
+$height-50: 50px;
+$height-54: 54px;
+$height-70: 70px;
+$height-245: 245px;
+$height-349: 349px;
+
+.mode-breakdown-card {
+  @include padding($sp-17, 0, 0, 0);
+}
+
+.no-wrap {
+  overflow-x: auto;
+  height: $sp-32;
+  border-bottom: 1px solid $grey-200;
+
+  .exception-msg-container {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.mode-breakdown-container {
+  height: $height-349;
+}
+
+.mode-breakdown-header {
+  width: 100%;
+  height: $height-50;
+  min-width: $min-width;
+  padding: 0 $sp-20 0 0;
+
+  @include md-min {
+    min-width: auto;
+  }
+}
+
+.mode-breakdown-table {
+  width: 100%;
+  height: $height-245;
+  overflow-y: auto;
+  min-width: $min-width;
+
+  @include md-min {
+    min-width: auto;
+  }
+}
+
+.mode-breakdown-status {
+  width: 100%;
+  height: $height-54;
+}
+
+.mode-breakdown {
+  width: 100%;
+  height: calc(
+    100% - #{$height-54}
+  ); // Height: 54 is for the mode-breakdown-status in bottom section
+  overflow-y: auto;
+
+  .mode-breakdown-row {
+    padding: $sp-15;
+    width: 100%;
+    min-height: $height-70;
+    border-bottom: 1px solid $grey-200;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .04);
+      cursor: pointer;
+    }
+
+    .mode {
+      display: flex;
+      align-items: center;
+      padding-bottom: $sp-4;
+
+      &_label {
+        flex: 1;
+        font-size: $fs-14;
+        font-weight: $font-weight-light;
+      }
+
+      &_value {
+        flex: 1;
+        font-size: $fs-14;
+        font-weight: $font-weight-light;
+        display: flex;
+        justify-content: flex-end;
+
+        .percent {
+          width: $sp-55;
+          text-align: right;
+          padding-left: $sp-5;
+        }
+      }
+    }
+
+    .emphasise {
+      font-weight: $font-weight-normal;
+      font-size: $fs-16;
+      padding-bottom: $sp-10;
+    }
+  }
+}
+
+.fin-data-header {
+  color: $grey-700;
+  font-weight: $font-weight-light;
+  text-align: right;
+
+  @include padding(0, $sp-30, 0, 0);
+
+  @include lg-min {
+    @include padding(0, $sp-15, 0, 0);
+  }
+}
+
+.fin-data-width {
+  flex: 1;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.fin-data-mode {
+  font-size: $fs-14;
+  text-align: left;
+}
+
+.fin-data-charge {
+  font-size: $fs-14;
+  font-weight: $font-weight-medium;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.fin-data {
+  font-size: $fs-14;
+  text-align: right;
+  padding: 0 $sp-2;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status-line {
+  font-size: $fs-12;
+  color: $grey-700;
+  text-align: center;
+  justify-content: center;
+
+  @include padding($sp-24, 0, $sp-17, 0);
+}

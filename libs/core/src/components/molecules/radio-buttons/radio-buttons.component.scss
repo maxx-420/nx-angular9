@@ -1,0 +1,63 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+.mat-radio-button {
+  margin-bottom: $sp-20;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .mat-radio-outer-circle {
+    border-width: 1px;
+    border-color: $ui-element-grey;
+    background-color: $primary-white;
+
+    &:hover{
+      border-width: 2px;
+      border-color: $accent-yellow;
+    }
+  }
+  &.mat-radio-checked {
+    .mat-radio-outer-circle {
+      border-width: 7px;
+    }
+    .mat-radio-inner-circle {
+      display: none;
+    }
+  }
+
+  .mat-radio-label-content {
+    font-weight: 500;
+    line-height: $lh-18;
+  }
+}
+
+.mat-radio-group {
+  display: flex;
+}
+
+.direction {
+  &-row {
+    flex-direction: row;
+  }
+
+  &-column {
+    flex-direction: column;
+
+  }
+}
+
+.report-wip {
+  @include lg-min {
+    height: 100%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+}
+
+.mat-radio-button .mat-radio-ripple {
+  height: 0px !important;
+  width: 0px !important;
+}
+
+.mat-radio-button.cdk-keyboard-focused .mat-radio-outer-circle {
+  box-shadow: 0 0 0 2px $accent-yellow;
+}

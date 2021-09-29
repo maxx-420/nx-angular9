@@ -1,0 +1,93 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<lib-card-box
+  [title]="chartTitle"
+  class="line-chart-card"
+  [attr.data-automation]="dataAutomationAttribute + '-card'"
+  [dataAutomationHeader]="dataAutomationAttribute + '-header'"
+  [showLearnMoreInTooltip]="showLearnMoreInTooltip"
+  [headerRightTemplate]="
+    !showLearnMoreInTooltip || showFilterChip ? headerRightTemplate : null
+  "
+  (learnMoreClick)="onViewDataClick()"
+>
+  <div *ngIf="hasChartFilter" class="chart-filter">
+    <time-chart-filters
+      [isChartFilter]="hasChartFilter"
+      (dateRangeChanged)="dateRangeChanged.emit($event)"
+      [showDateRangeFilter]="showDateRangeFilter"
+      [title]="chartTitle"
+      [selectClassName]="classNameForSelect"
+    >
+    </time-chart-filters>
+  </div>
+  <div class="chart-container" *ngIf="!hasApiFailed">
+    <div
+      class="chart"
+      [ngClass]="{ 'no-scroll': !shipmentData || shipmentData?.length === 0 }"
+    >
+      <lib-chart
+        *ngIf="isLoaded"
+        [chartId]="chartId"
+        [chartType]="chartType"
+        [chartData]="chartData"
+        [chartOptions]="chartOptions"
+        [ariaLabel]="ariaLabel"
+        [yAxisLabel]="yAxisLabel"
+        [noDataMessage]="noDataMessage"
+        [isChartWithFilter]="hasChartFilter"
+        (clickOnChartEvent)="clickOnChart($event, chartId)"
+        [emitClickEvent]="enableDrilldown"
+      ></lib-chart>
+      <div *ngIf="!isLoaded" class="loader" [style.height]="'245px'"></div>
+    </div>
+  </div>
+  <div *ngIf="hasApiFailed">
+    <lib-error
+      variation="component"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+</lib-card-box>
+
+<lib-chart-modal
+  [showModal]="isViewDataClicked"
+  [modalTitle]="modalTitle"
+  [modalData]="modalData"
+  [attrToFetchData]="attrToFetchData"
+  [contentHtmlKey]="contentHtmlKey"
+  [hasApiFailed]="hasApiFailed"
+  [pageSection]="pageSection"
+  [errorReason]="errorReason"
+  (modalClosed)="onModalClose($event)"
+  (tableRowClicked)="clickOnChart($event, chartId)"
+  [isTableRowClickable]="enableDrilldown"
+></lib-chart-modal>
+
+<ng-template #headerRightTemplate>
+  <div *ngIf="!showLearnMoreInTooltip">
+    <lib-button
+      variation="link-button"
+      (clickEvent)="onViewDataClick()"
+      [text]="'lbl_chart_learn_more' | content"
+      [ariaLabel]="learnMoreAriaLbl"
+      size="sm"
+    >
+    </lib-button>
+  </div>
+  <div class="filter-chips" *ngIf="showFilterChip">
+    <lib-filter-chip
+      [showHeading]="false"
+      [dataAutomationAttr]="dataAutomationAttributeFilterChip"
+      [selectedFilters]="selectedFilters"
+      [defaultFilters]="defaultFilters"
+      [containerClass]="'componentLevel'"
+      (editFilter)="openFilter.emit($event)"
+      (changedFilters)="chipFilterRemoved.emit($event)"
+      [componentFilterId]="chartId"
+      [alwaysEditable]="true"
+      [showClear]="false"
+    ></lib-filter-chip>
+  </div>
+</ng-template>

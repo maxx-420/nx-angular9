@@ -1,0 +1,75 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+// CUSTOM THEME FOR ANGULAR MATERIALS
+@import "node_modules/@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: "Roboto",
+);
+
+// included at global level to break checkboxes long labels and wrap in given space
+.mat-checkbox-layout {
+  white-space: normal !important;
+  .mat-checkbox-label {
+    word-break: break-all;
+  }
+}
+
+// Be sure to ever include this mixin once!
+@include mat-core($custom-typography);
+
+$mat-primary: (
+  100: $primary-black,
+  500: $primary-black,
+  700: $primary-black,
+  contrast: (
+    500: $light-primary-text,
+  ),
+);
+
+$mat-accent-yellow: (
+  100: $accent-yellow,
+  500: $accent-blue,
+  700: $accent-yellow,
+  contrast: (
+    500: $dark-primary-text,
+  ),
+);
+
+$mat-danger: (
+  100: $accent-red,
+  500: $accent-red,
+  700: $accent-red,
+  contrast: (
+    500: $light-primary-text,
+  ),
+);
+
+//color-palettes:
+$app-theme-primary: mat-palette($mat-primary);
+$app-theme-accent: mat-palette($mat-accent-yellow);
+// The warn palette is optional (defaults to red).
+$app-theme-warn: mat-palette($mat-danger);
+
+//theme-object
+$app-theme: mat-light-theme(
+  $app-theme-primary,
+  $app-theme-accent,
+  $app-theme-warn
+);
+
+$custom-mat-card-typography: mat-typography-config(
+  $font-family: "Roboto",
+  $headline: mat-typography-level(14px, 19px, 500),
+  $title: mat-typography-level(14px, 19px, 500),
+);
+
+$custom-mat-expansion-panel-typography: mat-typography-config(
+  $font-family: "Roboto",
+  $body-1: mat-typography-level(14px, 19px, 400),
+  $subheading-1: mat-typography-level(14px, 19px, 400),
+);
+
+@include mat-card-typography($custom-mat-card-typography);
+@include mat-expansion-panel-typography($custom-mat-expansion-panel-typography);
+
+@include angular-material-theme($app-theme);

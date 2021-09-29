@@ -1,0 +1,69 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="multi-selection-list-container">
+  <div class="selected-customer-account">
+    <button
+      [attr.data-automation]="dataAutomationAttribute.selectedCompany"
+      aria-label="back"
+      (click)="
+        $event.stopPropagation(); showBackButton && backClicked.emit($event)
+      "
+      (keyup.enter)="
+        $event.stopPropagation(); showBackButton && backClicked.emit($event)
+      "
+      (keyup.spacebar)="
+        $event.stopPropagation(); showBackButton && backClicked.emit($event)
+      "
+      class="back-button label-style"
+    >
+      <i
+        *ngIf="showBackButton"
+        class="back-icon symphony-icons symphony-icons-arrow-left-light count-arrow h5 mr-2"
+      ></i>
+      <span class="customer-account">{{ listHeaderTitle }}</span>
+    </button>
+  </div>
+  <div
+    class="selction-list selction-list-multiple"
+    #scrollMe
+    (scroll)="onScroll()"
+  >
+    <div class="list-wrapper" [style.max-height.px]="wrapperMaxHeight">
+      <div class="checkbox label-style" *ngIf="!filterBy">
+        <mat-checkbox
+          disableRipple
+          (keydown.arrowDown)="keyManager?.onKeydown($event)"
+          (keydown.arrowUp)="keyManager?.onKeydown($event)"
+          (keyup.tab)="setActiveItem(+1)"
+          (keyup.shift.tab)="setActiveItem(-1)"
+          [(ngModel)]="isAllSelected"
+          (change)="selectAllClicked()"
+          class="checkbox-margin"
+          [aria-label]="'lbl_multi-select_selectall' | content"
+        >
+          {{ "lbl_multi-select_selectall" | content }}
+        </mat-checkbox>
+      </div>
+      <div
+        class="checkbox label-style"
+        *ngFor="let item of accountsList; let i = index"
+      >
+        <mat-checkbox
+          disableRipple
+          (keydown.arrowDown)="keyManager?.onKeydown($event)"
+          (keydown.arrowUp)="keyManager?.onKeydown($event)"
+          (keyup.tab)="setActiveItem(+1)"
+          (keyup.shift.tab)="setActiveItem(-1)"
+          class="checkbox-margin"
+          [(ngModel)]="item.isSelected"
+          (change)="checkAllSelected()"
+          [aria-label]="item.name"
+        >
+          {{ item.name }}
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <label class="label-style" *ngIf="!accountsList?.length">
+    <span> {{ "lbl_account_no_entries_label" | content }}</span>
+  </label>
+</div>

@@ -1,0 +1,21 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+// FONTS
+// ----------------------------------
+$sans-fallback: Tahoma, helvetica, arial, sans-serif;
+$icon-family: "symphony-icons";
+$roboto: "Roboto";
+$ups-berlingske-sans: "UPS Berlingske Sans";
+
+$spacer: 1rem !default;
+$font-family-base-ups: $roboto, "Open Sans", sans-serif;
+
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+$font-weight-extra-bold: 700 !default;
+$font-weight-base: $font-weight-normal !default;
+
+$line-height-base: 1.5 !default;
+
+$font-size-base: 0.625rem !default; // Assumes the browser default, typically `10px`

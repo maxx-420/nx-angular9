@@ -1,0 +1,46 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+
+.tabs-bar {
+  background-color: $grey-200;
+  border: 1px solid $grey-300;
+  border-left: 0;
+  height: 54px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include padding($sp-8, $sp-15, $sp-8, $sp-36);
+  @include margin(-$sp-20, $sp-5, $sp-20, -$sp-20);
+  @include lg-min {
+    @include padding($sp-8, $sp-36, $sp-8, $sp-36);
+    @include margin(-$sp-20, $sp-24, $sp-20, -$sp-40);
+  }
+}
+
+.shipment-subnav .mat-tab-nav-bar {
+  height: 54px;
+  @include margin(-$sp-20, -$sp-15, $sp-20, -$sp-15);
+  @include md-min {
+    @include margin(null, -$sp-40, null, -$sp-40);
+  }
+  .mat-tab-links {
+    margin-left: -$sp-24;
+  }
+  .mat-tab-link {
+    min-width: $sp-0;
+  }
+  .mat-tab-list {
+    padding-left: $sp-15;
+    @include md-min {
+      padding-left: $sp-40;
+    }
+  }
+}
+
+.shipment-subnav {
+  position: fixed;
+  z-index: $zi-4;
+  width:100%;
+   & + div {
+    margin-top: 70px;
+   }
+}

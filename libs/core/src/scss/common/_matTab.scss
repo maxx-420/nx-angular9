@@ -1,0 +1,19 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $accent-blue;
+  height: 4px;
+}
+
+a.mat-tab-link{
+  opacity:1
+}
+
+a.mat-tab-link.mat-focus-indicator.mat-tab-label-active {
+  color: $accent-blue;
+}
+
+.mat-tab-header {
+  background: $grey-200;
+  border: 1px solid $grey-300;
+}

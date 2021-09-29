@@ -1,0 +1,59 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+// Global  body
+
+.body1 {
+  font-size: $fs-16;
+  line-height: $sp-20;
+  font-weight: $font-weight-normal;
+  color: $primary-black;
+  letter-spacing: 0px;
+}
+
+.body2 {
+  font-size: $fs-14;
+  line-height: $sp-16;
+  font-weight: $font-weight-light;
+  color: $primary-black;
+  letter-spacing: 0px;
+}
+
+.body2-normal {
+  @extend .body2;
+  font-weight: $font-weight-normal;
+}
+
+.body3 {
+  font-size: $fs-12;
+  line-height: $sp-14;
+  font-weight: $font-weight-normal;
+  color: $primary-black;
+  letter-spacing: 0px;
+}
+
+.body4 {
+  font-size: $fs-11;
+  line-height: $sp-13;
+  font-weight: $font-weight-light;
+  color: $primary-black;
+  letter-spacing: 0px;
+}
+
+.body5 {
+  font-size: $fs-10;
+  line-height: $sp-12;
+  font-weight: $font-weight-normal;
+  color: $primary-black;
+  letter-spacing: 0px;
+}
+
+.link {
+  color: $accent-blue;
+}
+
+.text-white {
+  color: $primary-white !important;
+}
+
+.text-black {
+  color: $primary-black !important;
+}

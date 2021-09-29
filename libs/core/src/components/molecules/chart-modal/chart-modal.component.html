@@ -1,0 +1,228 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<lib-modal
+  *ngIf="showModal"
+  [title]="modalTitle"
+  [component]="viewDataTemplate"
+  [hasTemplate]="true"
+  [opened]="showModal"
+  [okCTALabel]="'lbl_chart_modal_close'"
+  (afterClosed)="onPopUpClose($event)"
+  [showCancelCTA]="false"
+  okCtaAriaLabel="{{ 'lbl_modal_close_btn_aria' | content }}"
+></lib-modal>
+
+<ng-template #errorTemplate>
+  <div>
+    <lib-error
+      variation="component"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+</ng-template>
+
+<ng-template
+  #tableTemplate
+  let-chartData="chartData"
+  let-toggleType="toggleType"
+  let-modes="modes"
+>
+  <table
+    *ngIf="chartData?.length"
+    class="table-wrapper"
+    [ngClass]="{
+      'wip-chart-table': isMultiColumnOrTableLayout && modes?.length,
+      clickable: isTableRowClickable && !isTableColumnClickable,
+      clickableTableCell: isTableRowClickable && isTableColumnClickable
+    }"
+  >
+    <caption class="sr-only">
+      {{
+        getTableHeader(toggleType)
+      }}
+    </caption>
+    <tbody>
+      <tr *ngIf="modes?.length" class="modes-header">
+        <td class="body-4 table-field-name"></td>
+        <th
+          class="body-4 table-field-name"
+          scope="col"
+          *ngFor="let mode of modes"
+          [attr.data-automation]="dataAutomationAttr + '-column-header'"
+        >
+          {{ mode }}
+        </th>
+      </tr>
+      <ng-container
+        [ngTemplateOutlet]="
+          isTableRowClickable
+            ? isTableColumnClickable
+              ? clickableRowColumn
+              : clickableRow
+            : nonClickableRow
+        "
+        [ngTemplateOutletContext]="{ chartData: chartData, modes: modes }"
+      >
+      </ng-container>
+    </tbody>
+  </table>
+  <div *ngIf="!chartData?.length" class="no-chart-data" [ngStyle]="customStyle">
+    <span class="no-data-icon-bg-small">
+      <i class="symphony-icons symphony-icons-component-error no-data-icon"></i>
+    </span>
+    <span class="body2">{{ "lbl_data_not_available_chart" | content }}</span>
+  </div>
+</ng-template>
+
+<ng-template #clickableRow let-chartData="chartData" let-modes="modes">
+  <tr
+    *ngFor="let data of chartData; let i = index"
+    (click)="onRowSelection(data[attrToFetchData[0]], i, data)"
+    (keyup.enter)="onRowSelection(data[attrToFetchData[0]], i, data)"
+    tabindex="0"
+    aria-label="{{ data[attrToFetchData[0]] }} {{ data[attrToFetchData[1]] }} {{
+      'lbl_table_row_view_more_details' | content
+    }}"
+    mat-dialog-close
+  >
+    <th
+      class="body-4 table-field-name"
+      scope="row"
+      [attr.data-automation]="dataAutomationAttr + '-row-header'"
+    >
+      {{ data[attrToFetchData[0]] }}
+    </th>
+    <td class="body-4 table-field-value" *ngIf="!modes?.length">
+      {{ data[attrToFetchData[1]] }}
+    </td>
+    <td
+      class="body-4 table-field-value"
+      *ngIf="!modes?.length && showSubValueColumn"
+    >
+      {{ data[attrToFetchData[2]] }}
+    </td>
+    <ng-template ngFor let-mode [ngForOf]="modes" *ngIf="modes?.length">
+      <td
+        class="body-4 table-field-value get-column-data"
+        [innerHTML]="getColumnData(chartData, data[attrToFetchData[0]], mode)"
+      ></td>
+    </ng-template>
+  </tr>
+</ng-template>
+
+<ng-template #clickableRowColumn let-chartData="chartData" let-modes="modes">
+  <tr *ngFor="let data of chartData">
+    <th
+      class="body-4 table-field-name"
+      scope="row"
+      [attr.data-automation]="dataAutomationAttr + '-row-header'"
+    >
+      {{ data[attrToFetchData[0]] }}
+    </th>
+    <td class="body-4 table-field-value" *ngIf="!modes?.length">
+      {{ data[attrToFetchData[1]] }}
+    </td>
+    <ng-template ngFor let-mode [ngForOf]="modes" *ngIf="modes?.length">
+      <td
+        class="body-4 table-field-value get-column-data"
+        (click)="onColumnSelection(data[attrToFetchData[0]], mode)"
+        (keyup.enter)="onColumnSelection(data[attrToFetchData[0]], mode)"
+        tabindex="0"
+        aria-label="{{ data[attrToFetchData[0]] }} {{
+          data[attrToFetchData[1]]
+        }} {{ 'lbl_table_row_view_more_details' | content }}"
+        mat-dialog-close
+      >
+        {{ getColumnData(chartData, data[attrToFetchData[0]], mode) }}
+      </td>
+    </ng-template>
+  </tr>
+</ng-template>
+
+<ng-template #nonClickableRow let-chartData="chartData" let-modes="modes">
+  <tr *ngFor="let data of chartData">
+    <th
+      class="body-4 table-field-name"
+      scope="row"
+      [attr.data-automation]="dataAutomationAttr + '-row-header'"
+    >
+      {{ data[attrToFetchData[0]] }}
+    </th>
+    <td class="body-4 table-field-value" *ngIf="!modes?.length">
+      {{ data[attrToFetchData[1]] }}
+    </td>
+    <td
+      class="body-4 table-field-value"
+      *ngIf="!modes?.length && showSubValueColumn"
+    >
+      {{ data[attrToFetchData[2]] }}
+    </td>
+    <ng-template ngFor let-mode [ngForOf]="modes" *ngIf="modes?.length">
+      <td class="body-4 table-field-value get-column-data">
+        {{ getColumnData(chartData, data[attrToFetchData[0]], mode) }}
+      </td>
+    </ng-template>
+  </tr>
+</ng-template>
+
+<ng-template #viewDataTemplate>
+  <div
+    *ngIf="sanitizedHtml"
+    class="table-description"
+    [ngClass]="{
+      isPostSalesCustomerModal: isPostSalesCustomer,
+      'wip-chart-content': isMultiColumnOrTableLayout
+    }"
+    [innerHTML]="sanitizedHtml"
+    [attr.data-automation]="dataAutomationAttr + '-description'"
+  ></div>
+  <div class="table-container" *ngIf="!isMultiColumnOrTableLayout">
+    <div
+      class="h4 table-header"
+      aria-hidden="true"
+      [attr.data-automation]="dataAutomationAttr + '-table-header'"
+    >
+      {{ getTableHeader() }}
+    </div>
+    <div *ngIf="!hasApiFailed; else errorTemplate">
+      <ng-container
+        *ngTemplateOutlet="
+          tableTemplate;
+          context: {
+            chartData: modalData
+          }
+        "
+      ></ng-container>
+    </div>
+  </div>
+  <ng-template
+    ngFor
+    let-toggleType
+    [ngForOf]="toggleTypes"
+    *ngIf="isMultiColumnOrTableLayout"
+  >
+    <div class="table-container">
+      <div
+        class="h4 table-header"
+        aria-hidden="true"
+        *ngIf="showTableTitle"
+        [attr.data-automation]="dataAutomationAttr + '-table-header'"
+      >
+        {{ getTableHeader(toggleType) }}
+      </div>
+      <div *ngIf="!hasApiFailed; else errorTemplate">
+        <ng-container
+          *ngTemplateOutlet="
+            tableTemplate;
+            context: {
+              chartData: modalData[toggleType]?.shipmentData,
+              toggleType: toggleType,
+              modes: modalData[toggleType]?.modesAvailable
+            }
+          "
+        ></ng-container>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

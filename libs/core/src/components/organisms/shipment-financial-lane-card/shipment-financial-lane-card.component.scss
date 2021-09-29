@@ -1,0 +1,64 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.lane-card {
+  @include padding($sp-19, 0, 0, 0);
+}
+
+.lane-card-header {
+  overflow-x: auto;
+  height: $sp-33;
+  border-bottom: 1px solid $grey-200;
+
+  .exception-msg-container {
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.lane-card-container {
+  height: $sp-349;
+  overflow-y: auto;
+}
+
+.lane-card-row {
+  width: 100%;
+  height: 20%;
+  border-bottom: 1px solid $grey-200;
+  text-decoration: none;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+}
+
+.lane-text {
+  flex-wrap: wrap;
+  font-weight: $font-weight-normal;
+  line-height: $sp-21;
+  color: $primary-black;
+  width: 60%;
+
+  @include padding($sp-9, 0, $sp-11, $sp-22);
+}
+
+.charge-text {
+  font-weight: $font-weight-medium;
+  line-height: $sp-24;
+  color: $primary-black;
+  width: 40%;
+
+  @include padding($sp-9, $sp-18, $sp-35, 0);
+}
+
+.origin-text {
+  width: 100%;
+}
+
+.arrow-icon {
+  font-size: $sp-8;
+  font-weight: $font-weight-bold;
+  padding-right: $sp-8;
+}

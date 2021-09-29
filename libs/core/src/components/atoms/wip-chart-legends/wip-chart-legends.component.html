@@ -1,0 +1,50 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div
+  class="legend-wrapper"
+  [ngStyle]="
+    customStyle
+      ? customStyle
+      : {
+          'margin-top': chartFilterForm.get('mode')?.errors?.required
+            ? '10px'
+            : '20px'
+        }
+  "
+  *ngIf="showCustomLegends"
+>
+  <span
+    class="legend-list"
+    *ngFor="let mode of chartFilterForm?.get('mode').value"
+  >
+    <i
+      [attr.data-automation]="
+        dataAutomationAttribute +
+        '-' +
+        mode?.toLowerCase().replace(automationAttrRegex, '-') +
+        '-icon'
+      "
+      class="symphony-icons symphony-icons-circle mode-circle"
+      aria-hidden="true"
+      [ngClass]="
+        customStyle
+          ? ['delivery-status-color-' + legendList.indexOf(mode)]
+          : ['mode-color-' + legendList.indexOf(mode)]
+      "
+    ></i>
+    <span
+      [attr.data-automation]="
+        dataAutomationAttribute +
+        '-' +
+        mode?.toLowerCase().replace(automationAttrRegex, '-') +
+        '-label'
+      "
+      >{{ mode }}</span
+    >
+  </span>
+  <span
+    *ngIf="chartFilterForm.get('mode')?.errors?.required"
+    class="error-msg"
+    aria-live="polite"
+    >{{ "lbl_modesdropdown_error" | content }}</span
+  >
+</div>

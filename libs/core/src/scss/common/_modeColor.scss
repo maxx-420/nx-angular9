@@ -1,0 +1,57 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+
+$ocean-mode: #b57bc7;
+$ltl-mode: #ffa0c3;
+$tl-mode: #ff9d7d;
+$parcel-mode: #ffc100;
+$couier-mode: #c3d24a;
+$intermodal-mode: #4caf85;
+$other-mode: #00857d;
+
+$delivered-late: #b92f23;
+$delivered-onTime: #39837d;
+
+.mode-circle {
+  font-size: $fs-10;
+  vertical-align: middle;
+}
+
+.mode-color-0 {
+  color: $accent-blue;
+}
+
+.mode-color-1 {
+  color: $ocean-mode;
+}
+
+.mode-color-2 {
+  color: $ltl-mode;
+}
+
+.mode-color-3 {
+  color: $tl-mode;
+}
+
+.mode-color-4 {
+  color: $parcel-mode;
+}
+
+.mode-color-5 {
+  color: $couier-mode;
+}
+
+.mode-color-6 {
+  color: $intermodal-mode;
+}
+
+.mode-color-7 {
+  color: $other-mode;
+}
+
+.delivery-status-color-0 {
+  color: $delivered-onTime !important;
+}
+
+.delivery-status-color-1 {
+  color: $delivered-late !important;
+}

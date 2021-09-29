@@ -1,0 +1,54 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/_variables.scss";
+
+:host ::ng-deep {
+  .symphony-icons-exclamation-triangle {
+    margin-right: 7px;
+    font-size: 12px;
+  }
+
+  .symphony-icons-cancelled-shipment {
+    font-size: 18px;
+    vertical-align: text-bottom;
+    margin-right: 8px;
+    color: $accent-red;
+  }
+
+  .cancelled-shipment-header {
+    width: 100%;
+    height: 65px;
+    border: 1px solid $grey-200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $primary-white;
+    @include padding($sp-0, $sp-0, $sp-0, $sp-15);
+  }
+
+  .cancelled-shipment-header-title {
+    color: $grey-700;
+    line-height: $sp-19;
+    letter-spacing: 0.14px;
+    text-align: left;
+    font-weight: $font-weight-medium;
+    font-size: $fs-14;
+  }
+
+  .angle-right {
+    font-size: $fs-32;
+    margin-right: $sp-24;
+  }
+
+  .cancelled-shipment-list-title {
+    color: $primary-black;
+    font-size: $fs-22;
+    font-weight: $font-weight-light;
+    @include margin($sp-0, $sp-0, $sp-20, $sp-0);
+  }
+
+  .cancelled-shipment-table {
+    min-height: 400px;
+    background-color: $primary-white;
+    border-radius: 4px;
+  }
+}

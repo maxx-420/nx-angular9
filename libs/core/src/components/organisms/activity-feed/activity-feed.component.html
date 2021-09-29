@@ -1,0 +1,364 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="activity-feed-container" data-automation="activity-feed-container">
+  <div class="heading-label">
+    <div
+      [attr.data-automation]="
+        'activity-feed-' + headerLabel?.replace(' ', '')?.toLowerCase()
+      "
+    >
+      {{
+        ("lbl_shipment_milestone_" +
+          headerLabel?.replace(" ", "")?.toLowerCase() | content) ||
+          headerLabel?.toUpperCase()
+      }}
+    </div>
+    <div
+      data-automation="activity-feed-milestone-status"
+      class="activity-feed-milestone-status body5"
+    >
+      {{ getMilestoneStatusLabel() }}
+    </div>
+  </div>
+  <div class="activity-feed-body" *ngIf="!hasApiFailed">
+    <ng-container
+      *ngIf="listOfActivities && listOfActivities.length; else noActivities"
+    >
+      <ng-container *ngFor="let activity of listOfActivities; let i = index">
+        <!-- Segment Activity Feed -->
+        <ng-container *ngIf="activity.segmentNumber">
+          <ng-container
+            *ngTemplateOutlet="
+              SegmentActivityFeed;
+              context: {
+                activity: activity
+              }
+            "
+          ></ng-container>
+        </ng-container>
+
+        <!-- Carrier Shipment or ASN Activity Feed -->
+        <ng-container
+          *ngIf="
+            (activity.carrierShipmentNumber || activity.upsASNNumber) &&
+            !activity.segmentNumber
+          "
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              CarrierShipmentAndASNActivityFeed;
+              context: {
+                activity: activity,
+                index: i
+              }
+            "
+          ></ng-container>
+        </ng-container>
+
+        <!-- Standard/Orphan Activity Feed -->
+        <ng-container
+          *ngIf="
+            !activity.carrierShipmentNumber &&
+            !activity.upsASNNumber &&
+            !activity.segmentNumber
+          "
+        >
+          <ng-container
+            *ngIf="
+              activity.activities && activity.activities.length;
+              else noActivities
+            "
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                ActivityFeedsList;
+                context: {
+                  activityFeeds: activity.activities,
+                  className: 'activity-single-feed'
+                }
+              "
+            ></ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="activity-feed-body" *ngIf="hasApiFailed">
+    <lib-error
+      variation="component"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+  <ng-template
+    #ActivityFeedsTabs
+    let-activityInfo="activityInfo"
+    let-index="index"
+  >
+    <mat-expansion-panel
+      [expanded]="true"
+      class="mat-elevation-z0 reference-panel"
+      hideToggle="true"
+      #referencePanel
+    >
+      <mat-expansion-panel-header collapsedHeight="60px" expandedHeight="60px">
+        <mat-panel-title
+          class="career-shipment-number-title body2"
+          data-automation="career-shipment-number-title"
+        >
+          {{
+            activityInfo.upsASNNumber
+              ? ("lbl_activity_feed_asn" | content) +
+                " " +
+                activityInfo.upsASNNumber
+              : ("lbl_activity_feed_tracking" | content) +
+                " " +
+                activityInfo.carrierShipmentNumber
+          }}
+        </mat-panel-title>
+        <mat-panel-description>
+          <lib-expansion-toggle
+            data-automation="activity-feed-ExpCol"
+            [expanded]="referencePanel.expanded"
+          >
+          </lib-expansion-toggle>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div
+          class="activity-tab"
+          *ngIf="
+            activityInfo.activities && activityInfo.activities.length;
+            else noActivities
+          "
+        >
+          <div
+            *ngIf="
+              activityInfo.carrierShipmentNumber &&
+              (isUPSShipmentServiceLevel ||
+                shipmentUtility.showCarrierLink(
+                  activityInfo.carrierCode,
+                  activityInfo.carrierName,
+                  showExternalCarrier
+                ))
+            "
+          >
+            <a
+              class="tracking-detail-link h4 link-btn-text"
+              href="javascript:void(0)"
+              (click)="
+                handleCarrierLinkClick({
+                  carrierShipmentNumber: activityInfo.carrierShipmentNumber,
+                  externalCarrierCondition: showExternalCarrier,
+                  activityObj: activityInfo
+                })
+              "
+              >{{ "lbl_activity_feed_tracking_detail_link" | content }}
+              <i
+                class="symphony-icons symphony-icons-external-link link-btn-icon"
+              ></i
+            ></a>
+          </div>
+          <a
+            *ngIf="showEntryDetails(activityInfo.carrierShipmentNumber)"
+            class="entry-detail-link h4 link-btn-text"
+            href="{{ entryDetailUrl }}{{ activityInfo.carrierShipmentNumber }}{{
+              entryDetailsBusinessId
+            }}{{ businessID }}{{ entryDetailsProcessingCountry }}{{
+              countryCode
+            }}{{ entryDetailsSource }}"
+            >{{ "lbl_activity_feed_entry_detail_link" | content }}
+            <i
+              class="symphony-icons symphony-icons-external-link link-btn-icon"
+            ></i
+          ></a>
+
+          <ng-container
+            *ngTemplateOutlet="
+              ActivityFeedsList;
+              context: {
+                activityFeeds: activityInfo.activities
+              }
+            "
+          ></ng-container>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  </ng-template>
+
+  <ng-template #noActivities>
+    <div class="no-activities-section">
+      <div class="no-activities-wrapper">
+        <span class="no-data-icon-bg">
+          <i
+            class="symphony-icons symphony-icons-component-error no-data-icon"
+          ></i>
+        </span>
+        <span class="no-activities-text body2">
+          {{ "no_activity_feed" | content }}
+        </span>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template
+    #ActivityFeedsList
+    let-activityFeeds="activityFeeds"
+    let-className="className"
+  >
+    <ol class="activity-feed" [ngClass]="[className ? className : '']">
+      <li
+        class="feed-item"
+        *ngFor="let activity of activityFeeds"
+        [ngClass]="[
+          activity.isActivityCompleted?.toLowerCase() === 'y'
+            ? 'feed-item-completed'
+            : 'feed-item-incompleted'
+        ]"
+      >
+        <span class="activity-name h7" data-automation="activity-name">
+          {{ activity.activityName }}</span
+        >
+        <span class="date body1" data-automation="time-stamp">{{
+          activity.activityDateTime
+            | dateFormatter
+              : undefined
+              : (showDateTimeZone ? activity.activityDateTimeZone : undefined)
+        }}</span>
+        <span class="description body4" data-automation="activity-description">
+          {{ activity.activityNote1 }}</span
+        >
+        <span class="description body4" data-automation="activity-description">
+          {{ activity.activityNote2 }}</span
+        >
+        <span *ngIf="activity.ftzStatus" class="activity-specs body4">
+          <span data-automation="ftz-status-label">{{
+            "activity_feed_ftz_status" | content
+          }}</span>
+          <span data-automation="ftz-status-value">
+            {{ activity.ftzStatus }}</span
+          ></span
+        >
+        <span
+          *ngIf="activity.proofOfDelivery"
+          class="activity-specs body4"
+          data-automation="activity-deliveryProof"
+        >
+          {{ "activity_feed_delivery_proof" | content }}
+          {{ activity.proofOfDelivery }}</span
+        >
+      </li>
+    </ol>
+  </ng-template>
+
+  <ng-template
+    #CarrierShipmentAndASNActivityFeed
+    let-activity="activity"
+    let-i="index"
+  >
+    <mat-accordion [multi]="true">
+      <ng-container
+        *ngTemplateOutlet="
+          ActivityFeedsTabs;
+          context: {
+            activityInfo: activity,
+            index: i
+          }
+        "
+      ></ng-container>
+    </mat-accordion>
+  </ng-template>
+
+  <ng-template #SegmentActivityFeed let-activity="activity">
+    <div
+      class="segment-number-title body2"
+      [ngClass]="{ 'sp-mb-20': activity.carrierShipmentNumber }"
+    >
+      <ng-container *ngIf="showSegmentNumber">
+        {{
+          ("lbl_activity_feed_segmentNumber" | content) +
+            " " +
+            activity.segmentNumber +
+            "- "
+        }}
+      </ng-container>
+      <span *ngIf="activity.carrierType">
+        {{ activity.carrierType }}
+      </span>
+    </div>
+
+    <div
+      *ngIf="
+        activity.activities && activity.activities.length;
+        else noActivities
+      "
+      class="segment-activity-container"
+    >
+      <div class="segment-activity-tab" *ngIf="activity.carrierShipmentNumber">
+        <a
+          *ngIf="
+            isUPSShipmentServiceLevel ||
+              shipmentUtility.showCarrierLink(
+                activity.carrierCode,
+                activity.carrierName,
+                showExternalCarrier
+              );
+            else nonUPSTrackingNumber
+          "
+          class="tracking-detail-link h4 link-btn-text"
+          href="javascript:void(0)"
+          (click)="
+            handleCarrierLinkClick({
+              carrierShipmentNumber: activity.carrierShipmentNumber,
+              externalCarrierCondition: showExternalCarrier,
+              activityObj: activity
+            })
+          "
+          >{{
+            ("lbl_activity_feed_tracking" | content) +
+              " " +
+              activity.carrierShipmentNumber
+          }}
+          <i
+            class="symphony-icons symphony-icons-external-link link-btn-icon"
+          ></i>
+        </a>
+        <ng-template #nonUPSTrackingNumber>
+          <div class="h4">
+            {{
+              ("lbl_activity_feed_tracking" | content) +
+                " " +
+                activity.carrierShipmentNumber
+            }}
+          </div>
+        </ng-template>
+      </div>
+
+      <ng-container
+        *ngTemplateOutlet="
+          ActivityFeedsList;
+          context: {
+            activityFeeds: activity.activities,
+            className: 'segment-activity-single-feed'
+          }
+        "
+      ></ng-container>
+      <div
+        class="segment-activity-tab"
+        *ngIf="showLogiNextLink(activity.additionalTrackingIndicator)"
+      >
+        <a
+          class="tracking-detail-link h4 link-btn-text"
+          [href]="openLogiNextTrackUrl(activity.segmentNumber)"
+          target="_blank"
+          rel="noopener"
+          >{{ "lbl_activity_feed_additional_tracking_info_link" | content }}
+          <i
+            class="symphony-icons symphony-icons-external-link link-btn-icon"
+          ></i>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</div>

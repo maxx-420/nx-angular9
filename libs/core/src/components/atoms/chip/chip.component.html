@@ -1,0 +1,50 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div
+  class="chip"
+  [ngClass]="alwaysEditable || filterItem?.isDefault ? 'default-chip' : ''"
+  *ngIf="filterItem?.filterValue"
+>
+  <span
+    [attr.data-automation]="
+      dataAutomationAttr ? dataAutomationAttr + '-label' : null
+    "
+    class="chip-label h7"
+    *ngIf="filterItem?.filterLabel"
+    >{{ filterItem?.filterLabel | content }}:&nbsp;</span
+  >
+  <span
+    [attr.data-automation]="
+      dataAutomationAttr ? dataAutomationAttr + '-value' : null
+    "
+    class="chip-value h7"
+    >{{ filterItem?.filterValue }}</span
+  >
+  <button
+    class="chip-btn"
+    [attr.data-automation]="
+      dataAutomationAttr ? dataAutomationAttr + '-close' : null
+    "
+    (click)="removeSelectedItem(filterItem)"
+    *ngIf="!alwaysEditable && !filterItem.isDefault"
+  >
+    <span class="sr-only"
+      >{{ "lbl_file_remove" | content }}{{ filterItem?.filterLabel
+      }}{{ filterItem?.filterValue }}</span
+    >
+    <i class="symphony-icons symphony-icons-close" aria-hidden="true"></i>
+  </button>
+  <button
+    class="chip-btn"
+    (click)="editSelectedItem()"
+    [attr.data-automation]="
+      dataAutomationAttr ? dataAutomationAttr + '-button' : null
+    "
+    *ngIf="alwaysEditable || filterItem.isDefault"
+  >
+    <span class="sr-only"
+      >{{ "lbl_viewing_account_edit" | content }}{{ filterItem?.filterLabel
+      }}{{ filterItem?.filterValue }}</span
+    >
+    <i class="symphony-icons symphony-icons-edit-solid" aria-hidden="true"></i>
+  </button>
+</div>

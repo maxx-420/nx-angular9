@@ -1,0 +1,17 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="row">
+  <div class="col-12 bu-item-wrapper">
+    <div class="display-1">
+      <span class="display-3">{{ preHeadTxt }}</span
+      ><br />
+      {{ heading }}
+    </div>
+    <div class="bu-items">
+      <div class="bu-item" *ngFor="let bu of buList">
+        <div class="symphony-icons symphony-icons-plane"></div>
+        <div class="h6">{{ bu?.name }}</div>
+      </div>
+    </div>
+    <div class="leadtext">{{ descriptionText }}</div>
+  </div>
+</div>

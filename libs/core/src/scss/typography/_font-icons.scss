@@ -1,0 +1,798 @@
+$symphony-icons-account: "\e300";
+
+$symphony-icons-activity-complete: "\e301";
+
+$symphony-icons-activity-incomplete: "\e302";
+
+$symphony-icons-angle-left: "\e303";
+
+$symphony-icons-angle-right: "\e304";
+
+$symphony-icons-arrow-alt-circle-down-regular: "\e305";
+
+$symphony-icons-arrow-down: "\e306";
+
+$symphony-icons-arrow-left-light: "\e307";
+
+$symphony-icons-arrow-right-light: "\e308";
+
+$symphony-icons-arrow-right-small: "\e309";
+
+$symphony-icons-arrow-up: "\e30a";
+
+$symphony-icons-billing: "\e30b";
+
+$symphony-icons-brokerage: "\e30c";
+
+$symphony-icons-calender: "\e30d";
+
+$symphony-icons-cancelled-shipment: "\e30e";
+
+$symphony-icons-check-solid: "\e30f";
+
+$symphony-icons-checkMark: "\e310";
+
+$symphony-icons-circle: "\e311";
+
+$symphony-icons-circle-close: "\e312";
+
+$symphony-icons-claim: "\e313";
+
+$symphony-icons-clock: "\e314";
+
+$symphony-icons-close: "\e315";
+
+$symphony-icons-completed: "\e316";
+
+$symphony-icons-component-error: "\e317";
+
+$symphony-icons-customerservice: "\e318";
+
+$symphony-icons-dashboard: "\e319";
+
+$symphony-icons-distribution-orders: "\e31a";
+
+$symphony-icons-download-link: "\e31b";
+
+$symphony-icons-edit-pencil: "\e31c";
+
+$symphony-icons-edit-solid: "\e31d";
+
+$symphony-icons-error-exclamation-triangle: "\e31e";
+
+$symphony-icons-exclamation-triangle: "\e31f";
+
+$symphony-icons-exclamation-triangle-solid: "\e320";
+
+$symphony-icons-export-link: "\e321";
+
+$symphony-icons-external-link: "\e322";
+
+$symphony-icons-filter: "\e323";
+
+$symphony-icons-freight: "\e324";
+
+$symphony-icons-ground: "\e325";
+
+$symphony-icons-hamburger-menu: "\e326";
+
+$symphony-icons-inbound: "\e327";
+
+$symphony-icons-info-circle: "\e328";
+
+$symphony-icons-milestone-asncreated: "\e329";
+
+$symphony-icons-milestone-booked: "\e32a";
+
+$symphony-icons-milestone-booking: "\e32b";
+
+$symphony-icons-milestone-created: "\e32c";
+
+$symphony-icons-milestone-customs: "\e32d";
+
+$symphony-icons-milestone-default: "\e32e";
+
+$symphony-icons-milestone-delivered: "\e32f";
+
+$symphony-icons-milestone-delivery: "\e330";
+
+$symphony-icons-milestone-departure: "\e331";
+
+$symphony-icons-milestone-ftz: "\e332";
+
+$symphony-icons-milestone-intransit: "\e333";
+
+$symphony-icons-milestone-pending: "\e334";
+
+$symphony-icons-milestone-putaway: "\e335";
+
+$symphony-icons-milestone-rated: "\e336";
+
+$symphony-icons-milestone-receiving: "\e337";
+
+$symphony-icons-milestone-shipment: "\e338";
+
+$symphony-icons-milestone-warehouse: "\e339";
+
+$symphony-icons-milestone-warehousecomplete: "\e33a";
+
+$symphony-icons-minusCircle: "\e33b";
+
+$symphony-icons-movement-flight-info: "\e33c";
+
+$symphony-icons-movement-late-arrival: "\e33d";
+
+$symphony-icons-movement-ontime-arrival: "\e33e";
+
+$symphony-icons-movement-shipment: "\e33f";
+
+$symphony-icons-movement-voyage-info: "\e340";
+
+$symphony-icons-no-activities-icon: "\e341";
+
+$symphony-icons-no-preference-empty-card: "\e342";
+
+$symphony-icons-noaccess: "\e343";
+
+$symphony-icons-outbound: "\e344";
+
+$symphony-icons-page-error: "\e345";
+
+$symphony-icons-pencil-regular: "\e346";
+
+$symphony-icons-plane: "\e347";
+
+$symphony-icons-plusCircle: "\e348";
+
+$symphony-icons-reports: "\e349";
+
+$symphony-icons-reports-error: "\e34a";
+
+$symphony-icons-reports-success: "\e34b";
+
+$symphony-icons-search: "\e34c";
+
+$symphony-icons-search-btn: "\e34d";
+
+$symphony-icons-search-results: "\e34e";
+
+$symphony-icons-search-solid: "\e34f";
+
+$symphony-icons-settings: "\e350";
+
+$symphony-icons-ship: "\e351";
+
+$symphony-icons-shipment-count-booked: "\e352";
+
+$symphony-icons-shipment-count-deliver: "\e353";
+
+$symphony-icons-shipment-count-delivered: "\e354";
+
+$symphony-icons-shipment-count-deliveries: "\e355";
+
+$symphony-icons-shipment-count-in-transit: "\e356";
+
+$symphony-icons-shipment-count-pending: "\e357";
+
+$symphony-icons-shipment-count-pickups: "\e358";
+
+$symphony-icons-shipmentMode-air: "\e359";
+
+$symphony-icons-shipmentMode-courier: "\e35a";
+
+$symphony-icons-shipmentMode-default: "\e35b";
+
+$symphony-icons-shipmentMode-intermodal: "\e35c";
+
+$symphony-icons-shipmentMode-ltl: "\e35d";
+
+$symphony-icons-shipmentMode-ocean: "\e35e";
+
+$symphony-icons-shipmentMode-parcel: "\e35f";
+
+$symphony-icons-shipmentMode-tl: "\e360";
+
+$symphony-icons-shipments: "\e361";
+
+$symphony-icons-snowflake-light: "\e362";
+
+$symphony-icons-sort-default: "\e363";
+
+$symphony-icons-sort-down: "\e364";
+
+$symphony-icons-sort-up: "\e365";
+
+$symphony-icons-speech: "\e366";
+
+$symphony-icons-success-modal-icon: "\e367";
+
+$symphony-icons-sync-alt-regular: "\e368";
+
+$symphony-icons-timer: "\e369";
+
+$symphony-icons-tracking: "\e36a";
+
+$symphony-icons-trash: "\e36b";
+
+$symphony-icons-truck: "\e36c";
+
+$symphony-icons-ucp: "\e36d";
+
+$symphony-icons-upload-document: "\e36e";
+
+$symphony-icons-upsLogo: "\e36f";
+
+$symphony-icons-warehouse: "\e370";
+
+$symphony-icons-zero-cancellation: "\e371";
+
+@font-face {
+  font-family: "symphony-icons";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.eot");
+  src: url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.eot?#iefix")
+      format("embedded-opentype"),
+    url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.woff2")
+      format("woff2"),
+    url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.woff")
+      format("woff"),
+    url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.ttf")
+      format("truetype"),
+    url("/scs/assets/fonts/font-formats/symphony-icons.1630563452446.svg#symphony-icons")
+      format("svg");
+}
+
+%symphony-icons {
+  display: inline-block;
+  font-family: "symphony-icons";
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.symphony-icons {
+  @extend %symphony-icons;
+}
+
+.symphony-icons-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.symphony-icons-xs {
+  font-size: 0.75em;
+}
+
+.symphony-icons-sm {
+  font-size: 0.875em;
+}
+
+.symphony-icons-1x {
+  font-size: 1em;
+}
+
+.symphony-icons-2x {
+  font-size: 2em;
+}
+
+.symphony-icons-3x {
+  font-size: 3em;
+}
+
+.symphony-icons-4x {
+  font-size: 4em;
+}
+
+.symphony-icons-5x {
+  font-size: 5em;
+}
+
+.symphony-icons-6x {
+  font-size: 6em;
+}
+
+.symphony-icons-7x {
+  font-size: 7em;
+}
+
+.symphony-icons-8x {
+  font-size: 8em;
+}
+
+.symphony-icons-9x {
+  font-size: 9em;
+}
+
+.symphony-icons-10x {
+  font-size: 10em;
+}
+
+.symphony-icons-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.symphony-icons-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.symphony-icons-pull-left {
+  float: left;
+}
+
+.symphony-icons-pull-right {
+  float: right;
+}
+
+.symphony-icons.symphony-icons-pull-left {
+  margin-right: 0.3em;
+}
+
+.symphony-icons.symphony-icons-pull-right {
+  margin-left: 0.3em;
+}
+
+.symphony-icons-account::before {
+  content: "\e300";
+}
+
+.symphony-icons-activity-complete::before {
+  content: "\e301";
+}
+
+.symphony-icons-activity-incomplete::before {
+  content: "\e302";
+}
+
+.symphony-icons-angle-left::before {
+  content: "\e303";
+}
+
+.symphony-icons-angle-right::before {
+  content: "\e304";
+}
+
+.symphony-icons-arrow-alt-circle-down-regular::before {
+  content: "\e305";
+}
+
+.symphony-icons-arrow-down::before {
+  content: "\e306";
+}
+
+.symphony-icons-arrow-left-light::before {
+  content: "\e307";
+}
+
+.symphony-icons-arrow-right-light::before {
+  content: "\e308";
+}
+
+.symphony-icons-arrow-right-small::before {
+  content: "\e309";
+}
+
+.symphony-icons-arrow-up::before {
+  content: "\e30a";
+}
+
+.symphony-icons-billing::before {
+  content: "\e30b";
+}
+
+.symphony-icons-brokerage::before {
+  content: "\e30c";
+}
+
+.symphony-icons-calender::before {
+  content: "\e30d";
+}
+
+.symphony-icons-cancelled-shipment::before {
+  content: "\e30e";
+}
+
+.symphony-icons-check-solid::before {
+  content: "\e30f";
+}
+
+.symphony-icons-checkMark::before {
+  content: "\e310";
+}
+
+.symphony-icons-circle::before {
+  content: "\e311";
+}
+
+.symphony-icons-circle-close::before {
+  content: "\e312";
+}
+
+.symphony-icons-claim::before {
+  content: "\e313";
+}
+
+.symphony-icons-clock::before {
+  content: "\e314";
+}
+
+.symphony-icons-close::before {
+  content: "\e315";
+}
+
+.symphony-icons-completed::before {
+  content: "\e316";
+}
+
+.symphony-icons-component-error::before {
+  content: "\e317";
+}
+
+.symphony-icons-customerservice::before {
+  content: "\e318";
+}
+
+.symphony-icons-dashboard::before {
+  content: "\e319";
+}
+
+.symphony-icons-distribution-orders::before {
+  content: "\e31a";
+}
+
+.symphony-icons-download-link::before {
+  content: "\e31b";
+}
+
+.symphony-icons-edit-pencil::before {
+  content: "\e31c";
+}
+
+.symphony-icons-edit-solid::before {
+  content: "\e31d";
+}
+
+.symphony-icons-error-exclamation-triangle::before {
+  content: "\e31e";
+}
+
+.symphony-icons-exclamation-triangle::before {
+  content: "\e31f";
+}
+
+.symphony-icons-exclamation-triangle-solid::before {
+  content: "\e320";
+}
+
+.symphony-icons-export-link::before {
+  content: "\e321";
+}
+
+.symphony-icons-external-link::before {
+  content: "\e322";
+}
+
+.symphony-icons-filter::before {
+  content: "\e323";
+}
+
+.symphony-icons-freight::before {
+  content: "\e324";
+}
+
+.symphony-icons-ground::before {
+  content: "\e325";
+}
+
+.symphony-icons-hamburger-menu::before {
+  content: "\e326";
+}
+
+.symphony-icons-inbound::before {
+  content: "\e327";
+}
+
+.symphony-icons-info-circle::before {
+  content: "\e328";
+}
+
+.symphony-icons-milestone-asncreated::before {
+  content: "\e329";
+}
+
+.symphony-icons-milestone-booked::before {
+  content: "\e32a";
+}
+
+.symphony-icons-milestone-booking::before {
+  content: "\e32b";
+}
+
+.symphony-icons-milestone-created::before {
+  content: "\e32c";
+}
+
+.symphony-icons-milestone-customs::before {
+  content: "\e32d";
+}
+
+.symphony-icons-milestone-default::before {
+  content: "\e32e";
+}
+
+.symphony-icons-milestone-delivered::before {
+  content: "\e32f";
+}
+
+.symphony-icons-milestone-delivery::before {
+  content: "\e330";
+}
+
+.symphony-icons-milestone-departure::before {
+  content: "\e331";
+}
+
+.symphony-icons-milestone-ftz::before {
+  content: "\e332";
+}
+
+.symphony-icons-milestone-intransit::before {
+  content: "\e333";
+}
+
+.symphony-icons-milestone-pending::before {
+  content: "\e334";
+}
+
+.symphony-icons-milestone-putaway::before {
+  content: "\e335";
+}
+
+.symphony-icons-milestone-rated::before {
+  content: "\e336";
+}
+
+.symphony-icons-milestone-receiving::before {
+  content: "\e337";
+}
+
+.symphony-icons-milestone-shipment::before {
+  content: "\e338";
+}
+
+.symphony-icons-milestone-warehouse::before {
+  content: "\e339";
+}
+
+.symphony-icons-milestone-warehousecomplete::before {
+  content: "\e33a";
+}
+
+.symphony-icons-minusCircle::before {
+  content: "\e33b";
+}
+
+.symphony-icons-movement-flight-info::before {
+  content: "\e33c";
+}
+
+.symphony-icons-movement-late-arrival::before {
+  content: "\e33d";
+}
+
+.symphony-icons-movement-ontime-arrival::before {
+  content: "\e33e";
+}
+
+.symphony-icons-movement-shipment::before {
+  content: "\e33f";
+}
+
+.symphony-icons-movement-voyage-info::before {
+  content: "\e340";
+}
+
+.symphony-icons-no-activities-icon::before {
+  content: "\e341";
+}
+
+.symphony-icons-no-preference-empty-card::before {
+  content: "\e342";
+}
+
+.symphony-icons-noaccess::before {
+  content: "\e343";
+}
+
+.symphony-icons-outbound::before {
+  content: "\e344";
+}
+
+.symphony-icons-page-error::before {
+  content: "\e345";
+}
+
+.symphony-icons-pencil-regular::before {
+  content: "\e346";
+}
+
+.symphony-icons-plane::before {
+  content: "\e347";
+}
+
+.symphony-icons-plusCircle::before {
+  content: "\e348";
+}
+
+.symphony-icons-reports::before {
+  content: "\e349";
+}
+
+.symphony-icons-reports-error::before {
+  content: "\e34a";
+}
+
+.symphony-icons-reports-success::before {
+  content: "\e34b";
+}
+
+.symphony-icons-search::before {
+  content: "\e34c";
+}
+
+.symphony-icons-search-btn::before {
+  content: "\e34d";
+}
+
+.symphony-icons-search-results::before {
+  content: "\e34e";
+}
+
+.symphony-icons-search-solid::before {
+  content: "\e34f";
+}
+
+.symphony-icons-settings::before {
+  content: "\e350";
+}
+
+.symphony-icons-ship::before {
+  content: "\e351";
+}
+
+.symphony-icons-shipment-count-booked::before {
+  content: "\e352";
+}
+
+.symphony-icons-shipment-count-deliver::before {
+  content: "\e353";
+}
+
+.symphony-icons-shipment-count-delivered::before {
+  content: "\e354";
+}
+
+.symphony-icons-shipment-count-deliveries::before {
+  content: "\e355";
+}
+
+.symphony-icons-shipment-count-in-transit::before {
+  content: "\e356";
+}
+
+.symphony-icons-shipment-count-pending::before {
+  content: "\e357";
+}
+
+.symphony-icons-shipment-count-pickups::before {
+  content: "\e358";
+}
+
+.symphony-icons-shipmentMode-air::before {
+  content: "\e359";
+}
+
+.symphony-icons-shipmentMode-courier::before {
+  content: "\e35a";
+}
+
+.symphony-icons-shipmentMode-default::before {
+  content: "\e35b";
+}
+
+.symphony-icons-shipmentMode-intermodal::before {
+  content: "\e35c";
+}
+
+.symphony-icons-shipmentMode-ltl::before {
+  content: "\e35d";
+}
+
+.symphony-icons-shipmentMode-ocean::before {
+  content: "\e35e";
+}
+
+.symphony-icons-shipmentMode-parcel::before {
+  content: "\e35f";
+}
+
+.symphony-icons-shipmentMode-tl::before {
+  content: "\e360";
+}
+
+.symphony-icons-shipments::before {
+  content: "\e361";
+}
+
+.symphony-icons-snowflake-light::before {
+  content: "\e362";
+}
+
+.symphony-icons-sort-default::before {
+  content: "\e363";
+}
+
+.symphony-icons-sort-down::before {
+  content: "\e364";
+}
+
+.symphony-icons-sort-up::before {
+  content: "\e365";
+}
+
+.symphony-icons-speech::before {
+  content: "\e366";
+}
+
+.symphony-icons-success-modal-icon::before {
+  content: "\e367";
+}
+
+.symphony-icons-sync-alt-regular::before {
+  content: "\e368";
+}
+
+.symphony-icons-timer::before {
+  content: "\e369";
+}
+
+.symphony-icons-tracking::before {
+  content: "\e36a";
+}
+
+.symphony-icons-trash::before {
+  content: "\e36b";
+}
+
+.symphony-icons-truck::before {
+  content: "\e36c";
+}
+
+.symphony-icons-ucp::before {
+  content: "\e36d";
+}
+
+.symphony-icons-upload-document::before {
+  content: "\e36e";
+}
+
+.symphony-icons-upsLogo::before {
+  content: "\e36f";
+}
+
+.symphony-icons-warehouse::before {
+  content: "\e370";
+}
+
+.symphony-icons-zero-cancellation::before {
+  content: "\e371";
+}

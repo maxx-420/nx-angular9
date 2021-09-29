@@ -1,0 +1,102 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.no-tooltip {
+  opacity: 0;
+}
+
+.chart-parent {
+  position: relative;
+}
+
+.default-chart {
+  height: 289px;
+}
+
+.wip-chart {
+  height: 235px !important;
+}
+
+.performance-chart {
+  height: 260px !important;
+}
+
+.donut-chart {
+  height: 665px;
+
+  @include md-min {
+    height: 315px !important;
+  }
+
+  @include sm-max {
+    height: auto;
+
+    .canvas-container {
+      height: 100vw;
+      flex: auto;
+    }
+  }
+}
+
+.chartjs-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  @include sm-max {
+    flex-direction: column;
+  }
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  margin: $sp-20;
+
+  @include md-min {
+    width: calc(50% - 30px);
+    height: 100%;
+  }
+}
+
+.canvas-container {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  position: relative;
+
+  @include md-min {
+    width: 50%;
+  }
+}
+
+.donut-container {
+  max-height: 283px;
+
+  .donut-chart {
+    height: 100% !important;
+  }
+}
+
+.table {
+  position: relative;
+}
+
+.chart-with-filter {
+  height: 245px !important;
+}
+
+.y-axis-label {
+  text-align: left;
+
+  @include margin(0, 0, $sp-8, 0);
+}
+
+.legend-on {
+  width: 50%;
+}

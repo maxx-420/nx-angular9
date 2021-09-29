@@ -1,0 +1,72 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+.sp-mb-20 {
+  @include margin(null, null, $sp-20, null);
+}
+
+.sp-mb-24 {
+  @include margin(null, null, $sp-24, null);
+}
+
+.sp-pb-20 {
+  @include padding(null, null, $sp-20, null);
+}
+
+.sp-pb-10 {
+  @include padding(null, null, $sp-10, null);
+}
+
+.sp-pb-5 {
+  @include padding(null, null, $sp-5, null);
+}
+
+.sp-pl-20 {
+  @include padding(null, null, null, $sp-20);
+}
+
+.sp-pt-5 {
+  @include padding($sp-5, null, null, null);
+}
+
+.sp-mb-10 {
+  @include margin(null, null, $sp-10, null);
+}
+
+.sp-mb-15 {
+  @include margin(null, null, $sp-15, null);
+}
+
+.sp-ml-26 {
+  @include margin(null, null, null, $sp-26);
+}
+
+.sp-ml-50 {
+  @include margin(null, null, null, $sp-50);
+}
+
+.sp-pb-30 {
+  @include padding(null, null, $sp-30, null);
+}
+
+.sp-pt-30 {
+  @include padding($sp-30, null, null, null);
+}
+
+.sp-pl-38 {
+  @include padding(null, null, null, $sp-38);
+}
+
+.sp-mt-20 {
+  @include margin($sp-20, null, null, null);
+}
+
+.sp-mt-10 {
+  @include margin($sp-10, null, null, null);
+}
+
+.sp-mt-54 {
+  @include margin($sp-54, null, null, null);
+}
+
+.sp-pr-10 {
+  @include padding(null, $sp-10, null, null);
+}

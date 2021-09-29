@@ -1,0 +1,30 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+.filter-container {
+  margin-bottom: $sp-40;
+
+  @include lg-min {
+    margin-bottom: $sp-20;
+  }
+
+  @include md-only {
+    margin-bottom: $sp-20;
+  }
+}
+
+.filter {
+  display: block;
+
+  @include md-min {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.reset-filters {
+  margin-left: auto;
+  color: $accent-blue;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+}

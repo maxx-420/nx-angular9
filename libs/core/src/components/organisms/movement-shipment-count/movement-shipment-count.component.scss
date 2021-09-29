@@ -1,0 +1,85 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+@import "libs/core/src/scss/common/_modeColor.scss";
+
+.tile-container {
+  flex-grow: 1;
+  height: 346px;
+}
+
+.tile {
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .count-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 160px;
+    margin-bottom: 12px;
+  }
+
+  .count-arrow {
+    display: none;
+  }
+
+  &:hover {
+    border: 2px solid $accent-yellow !important;
+    border-radius: 4px;
+    cursor: pointer;
+
+    .count-arrow {
+      display: block;
+      animation: move-right 0.5s ease-out forwards;
+    }
+  }
+}
+
+@keyframes move-right {
+  0% {
+    @include margin(0, 0, 0, -$sp-15);
+  }
+
+  100% {
+    @include margin(0, 0, 0, 0);
+  }
+}
+
+.count-svg {
+  height: 103px;
+  width: 103px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $alternate-blue;
+
+  img {
+    height: 34px;
+    width: 49px;
+  }
+}
+
+.shipment-count {
+  font-size: 32px;
+  letter-spacing: -0.32px;
+  font-weight: $font-weight-light;
+
+  @include padding($sp-28, 0, $sp-14, 0);
+}
+
+.tile-content {
+  text-align: center;
+  font-size: 16px;
+  line-height: 22px;
+  color: $primary-black;
+  letter-spacing: -0.16px;
+}
+
+.count-arrow-wrapper {
+  height: 14px;
+}

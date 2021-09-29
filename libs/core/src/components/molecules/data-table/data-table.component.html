@@ -1,0 +1,420 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<lib-card-box
+  *ngIf="wrapInCard; else dataTable"
+  title="{{ enablePagination ? getHeader() : tableTitle }}"
+  [extraTitle]="extraTitle"
+  [dataAutomationTitle]="dataAutomationTitle"
+  [dataAutomationHeader]="dataAutomationHeader"
+  [dataAutomationTooltip]="dataAutomationTooltip"
+  [attr.data-automation]="dataAutomationAttribute + '-table-card'"
+  [customTooltipTemplate]="customTooltipTemplate"
+  [showInfoIcon]="
+    (showInfoIcon &&
+      tableData &&
+      (showTotalRecordsCount
+        ? totalRecordsCount && totalRecordsCount > maxRecords
+        : tableData.length >= maxRecords)) ||
+    alwaysShowInfoIcon
+  "
+  [headericon]="headericon"
+  [headerClass]="headerClass"
+  [headerRightTemplate]="
+    headerRightTemplate
+      ? headerRightTemplate
+      : showFilterChip && canExport
+      ? headerRightExportAndChip
+      : showFilterChip
+      ? headerRightChipTemplate
+      : canExport && headerRightExportTemplate
+  "
+  [headerLeftTemplate]="headerLeftTemplate"
+  [isCardBoxAccordion]="collapsible"
+>
+  <ng-container *ngTemplateOutlet="dataTable"></ng-container>
+</lib-card-box>
+
+<ng-template #actualCell let-col="col" let-row="row">
+  {{ columnInfo[col].customTemplate }}
+  {{ formatTableDate(columnInfo[col].type, row[col]) }}
+</ng-template>
+
+<ng-template #customCell let-col="col" let-row="row" let-colName="colName">
+  <ng-container
+    *ngTemplateOutlet="
+      columnInfo[col].customTemplate;
+      context: {
+        columnData: row[col],
+        rowData: row,
+        colName: colName
+      }
+    "
+  ></ng-container>
+</ng-template>
+<ng-template #dataTable>
+  <div class="table-container" [ngClass]="[tableContainerClass]">
+    <ng-container>
+      <span
+        aria-live="polite"
+        class="sr-only"
+        *ngIf="matPaginator?.pageIndex > 0 || matSort?.active"
+      >
+        {{ tableTitle }} {{ "lbl_table_header_first" | content }}
+        {{ getTableHeaderCaption() }} {{ "lbl_table_header_second" | content }}
+        {{
+          matSort?.active &&
+            "and sorted by " +
+              columnInfo[matSort.active]?.displayLabel +
+              " in " +
+              (matSort.direction === "asc" ? "ascending" : "descending") +
+              " order"
+        }}
+      </span>
+      <!-- on the basis of 'enableSort = true' it will render table from here with sort functionality-->
+      <table
+        mat-table
+        matSort
+        (matSortChange)="onMatSortChange($event)"
+        [matSortDisableClear]="true"
+        [dataSource]="dataSource"
+        class="{{ elevationClass }}"
+        [ngClass]="[
+          rowClickable
+            ? 'table-row-clickable'
+            : greyOutUnclickableRow
+            ? 'table-row-unclickable'
+            : ''
+        ]"
+        [ngStyle]="{ 'minWidth.px': isTableScrollable ? tableMinWidth : '' }"
+        [attr.data-automation]="dataAutomationAttribute + '-table'"
+        [matSortActive]="dataSource?.data?.length ? defaultSortingColumn : null"
+        [matSortDirection]="
+          dataSource?.data?.length ? defaultSortingOrder : null
+        "
+      >
+        <caption class="sr-only">
+          {{
+            tableTitle
+          }}
+        </caption>
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <!-- for loop on displayedColumns array-->
+        <ng-template ngFor let-col let-i="index" [ngForOf]="displayedColumns">
+          <!-- template if we want first column as sticky -->
+          <ng-template [ngIf]="i === 0 && firstColumnSticky">
+            <ng-container [matColumnDef]="col" sticky *ngIf="col !== 'select'">
+              <th
+                scope="col"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [disabled]="!dataSource?.data?.length"
+                class="h7"
+                [attr.aria-label]="columnInfo && columnInfo[col].displayLabel"
+                [ngStyle]="columnInfo && columnInfo[col].style"
+              >
+                {{
+                  columnInfo && columnInfo[col].noUpperCase
+                    ? columnInfo[col].displayLabel
+                    : (columnInfo[col].displayLabel | uppercase)
+                }}
+                <span *ngIf="columnInfo[col]?.srOnlyLabel" class="sr-only">
+                  {{ columnInfo[col]?.srOnlyLabel | content }}
+                </span>
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row"
+                class="body4"
+                [ngClass]="
+                  columnInfo[col].type === 'date'
+                    ? columnInfo[col].styleClass
+                      ? columnInfo[col].styleClass + ' nowrap'
+                      : 'nowrap'
+                    : columnInfo[col].styleClass
+                "
+                [ngStyle]="columnInfo[col].styles"
+              >
+                <ng-container
+                  *ngTemplateOutlet="
+                    columnInfo && !columnInfo[col].customTemplate
+                      ? actualCell
+                      : customCell;
+                    context: {
+                      col: col,
+                      row: row,
+                      colName: columnInfo[col].displayLabel
+                    }
+                  "
+                ></ng-container>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="col" *ngIf="col === 'select'">
+              <th
+                scope="col"
+                mat-header-cell
+                *matHeaderCellDef
+                [ngStyle]="columnInfo && columnInfo[col].style"
+              >
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="
+                    columnInfo?.select?.selection.hasValue() && isAllSelected()
+                  "
+                >
+                  <span class="sr-only"
+                    >{{ "lbl_reports_select" | content }}
+                    {{ "lbl_multi-select_selectall" | content }}</span
+                  >
+                </mat-checkbox>
+                <span class="sr-only">{{
+                  "lbl_reports_select" | content
+                }}</span>
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row"
+                [ngStyle]="columnInfo && columnInfo[col].styles"
+              >
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? rowToggle(row) : null"
+                  [checked]="columnInfo?.select?.selection.isSelected(row)"
+                >
+                  <span class="sr-only">{{
+                    "lbl_reports_select" | content
+                  }}</span>
+                </mat-checkbox>
+              </td>
+            </ng-container>
+          </ng-template>
+
+          <!-- template to render column with their column defns,
+          it will render list of columns depending on firstColumnSticky value if its true then in below template it will not render first column because its been rendered above with sticky behavior,
+            if its value false then it will render all columns here with non-sticky behavior -->
+          <ng-template [ngIf]="i !== 0 || !(i === 0 && firstColumnSticky)">
+            <ng-container [matColumnDef]="col" *ngIf="col !== 'select'">
+              <th
+                scope="col"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [disabled]="
+                  columnInfo[col].isSortable !== undefined
+                    ? !columnInfo[col].isSortable || !dataSource?.data?.length
+                    : !dataSource?.data?.length
+                "
+                class="h7"
+                [attr.aria-label]="columnInfo && columnInfo[col].displayLabel"
+                [ngStyle]="columnInfo && columnInfo[col].style"
+              >
+                {{
+                  columnInfo && columnInfo[col].noUpperCase
+                    ? columnInfo[col].displayLabel
+                    : (columnInfo[col].displayLabel | uppercase)
+                }}
+                <span *ngIf="columnInfo[col]?.srOnlyLabel" class="sr-only">
+                  {{ columnInfo[col]?.srOnlyLabel | content }}
+                </span>
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row"
+                class="body4"
+                [class.nowrap]="columnInfo[col].type === 'date'"
+                [ngClass]="columnInfo[col].styleClass"
+                [ngStyle]="columnInfo[col].styles"
+              >
+                <ng-container
+                  *ngTemplateOutlet="
+                    columnInfo && !columnInfo[col].customTemplate
+                      ? actualCell
+                      : customCell;
+                    context: {
+                      col: col,
+                      row: row,
+                      colName: columnInfo[col].displayLabel
+                    }
+                  "
+                ></ng-container>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="col" *ngIf="col === 'select'">
+              <th
+                scope="col"
+                mat-header-cell
+                *matHeaderCellDef
+                [ngStyle]="columnInfo && columnInfo[col].style"
+              >
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="
+                    columnInfo?.select?.selection.hasValue() && isAllSelected()
+                  "
+                >
+                  <span class="sr-only"
+                    >{{ "lbl_reports_select" | content }}
+                    {{ "lbl_multi-select_selectall" | content }}</span
+                  >
+                </mat-checkbox>
+                <span class="sr-only">{{
+                  "lbl_reports_select" | content
+                }}</span>
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let row"
+                [ngStyle]="columnInfo && columnInfo[col].styles"
+              >
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? rowToggle(row) : null"
+                  [checked]="columnInfo?.select?.selection.isSelected(row)"
+                >
+                  <span class="sr-only">{{
+                    "lbl_reports_select" | content
+                  }}</span>
+                </mat-checkbox>
+              </td>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          [attr.data-automation]="dataAutomationAttribute + '-table-header'"
+        ></tr>
+        <tr
+          mat-row
+          scope="row"
+          [attr.tabindex]="rowClickable ? 0 : null"
+          *matRowDef="let row; columns: displayedColumns"
+          [attr.data-automation]="dataAutomationAttribute + '-table-body'"
+          (click)="rowClickable && onRowSelection(row)"
+          (keyup.enter)="rowClickable && onRowSelection(row)"
+          [attr.aria-label]="
+            columnInfo &&
+            columnInfo[displayedColumns[0]]?.displayLabel +
+              ' ' +
+              row[displayedColumns[0]] +
+              '. ' +
+              (rowClickable ? rowAriaLabel : '')
+          "
+        ></tr>
+      </table>
+    </ng-container>
+    <ng-container
+      *ngIf="
+        (!tableData?.length || !dataSource?.filteredData?.length) && showTable
+      "
+    >
+      <div
+        class="no-data"
+        [attr.data-automation]="dataAutomationAttribute + '-msg'"
+        *ngIf="noRecordMessage !== ''"
+      >
+        <span class="no-data-icon-bg-small">
+          <i
+            class="symphony-icons symphony-icons-component-error no-data-icon"
+          ></i>
+        </span>
+        <span class="body2">{{ noRecordMessage }}</span>
+      </div>
+      <div
+        class="no-data"
+        [attr.data-automation]="dataAutomationAttribute + '-msg'"
+        *ngIf="noRecordMessage === ''"
+      >
+        <span class="no-data-icon-bg-small">
+          <i
+            class="symphony-icons symphony-icons-component-error no-data-icon"
+          ></i>
+        </span>
+        <span class="body2">{{
+          noRecordLabel || "lbl_no_record_found" | content
+        }}</span>
+      </div>
+    </ng-container>
+    <div *ngIf="!showTable">
+      <lib-error
+        variation="component"
+        [customStyle]="customStyle"
+        [errorReason]="errorReason"
+        [pageSection]="pageSection"
+        [customMessage]="customErrorMessage"
+      ></lib-error>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="
+      !(
+        showTable &&
+        enablePagination &&
+        tableData?.length &&
+        (filterValue !== ''
+          ? dataSource?.filteredData?.length
+          : tableData?.length) /
+          paginatorPageSize >
+          1
+      )
+        ? 'table-pagination-hide'
+        : ''
+    "
+  >
+    <mat-paginator
+      libPaginator
+      [hidePageSize]="true"
+      [showTotalPages]="showPaginatorTotalPages"
+      [pageSize]="paginatorPageSize"
+      [length]="dataSource?.filteredData?.length"
+    ></mat-paginator>
+  </div>
+</ng-template>
+
+<ng-template #headerRightChipTemplate>
+  <div class="filter-chips" *ngIf="showFilterChip">
+    <lib-filter-chip
+      [showHeading]="false"
+      [selectedFilters]="selectedFilters"
+      [defaultFilters]="defaultFilters"
+      [containerClass]="'componentLevel'"
+      (editFilter)="openFilter.emit($event)"
+      (changedFilters)="chipFilterRemoved.emit($event)"
+      [alwaysEditable]="true"
+      [showClear]="false"
+      [componentFilterId]="componentFilterId"
+      [dataAutomationAttr]="dataAutomationAttrFilterChip"
+    ></lib-filter-chip>
+  </div>
+</ng-template>
+
+<ng-template #headerRightExportTemplate>
+  <div class="export-container">
+    <a
+      *ngIf="canExport && tableData?.length && showTable && !isExportBtnLoading"
+      [attr.aria-label]="'dpf_xprt_ToXl' | content"
+      [attr.data-automation]="dataAutomationAttribute + '-export-icon'"
+      class="link-btn-icon export-link"
+      href="javascript:void(0)"
+      (keyup.spacebar)="exportTableAsExcel()"
+      (keyup.space)="exportTableAsExcel()"
+      (click)="exportTableAsExcel()"
+      ><i
+        class="symphony-icons symphony-icons-export-link"
+        aria-hidden="true"
+      ></i
+    ></a>
+  </div>
+  <div class="download-link" *ngIf="isExportBtnLoading">
+    <lib-spinner class="spinner"></lib-spinner>
+  </div>
+</ng-template>
+
+<ng-template #headerRightExportAndChip>
+  <ng-container *ngTemplateOutlet="headerRightExportTemplate"></ng-container>
+  <ng-container *ngTemplateOutlet="headerRightChipTemplate"></ng-container>
+</ng-template>

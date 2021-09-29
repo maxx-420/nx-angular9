@@ -1,0 +1,29 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.symphony-icons-error-exclamation-triangle {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $alternate-blue;
+  height: 75px;
+  width: 75px;
+  font-size: $fs-35;
+  color: $primary-black !important;
+
+  @include md-min {
+    height: 140px;
+    width: 140px;
+    font-size: $fs-65;
+  }
+}
+
+.modal-error-text {
+  max-width: 100%;
+  text-align: center;
+  @include padding(null, null, 235px, null);
+  @include md-min {
+    @include padding(null, 60px, 80px, 60px);
+  }
+}

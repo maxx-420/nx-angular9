@@ -1,0 +1,730 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="row main-content">
+  <div
+    class="col-lg-12 col-md-12 col-sm-12"
+    data-automation="shipment-details-card"
+  >
+    <lib-card-box
+      *ngIf="milestoneData"
+      title="{{ 'lbl_shipments_details' | content }}"
+      dataAutomationHeader="shipDtlCardHeader"
+      dataAutomationTitle="shipDtlCardTitle"
+    >
+      <div class="shipments-details-container">
+        <div class="shipment-field-wrapper" *ngIf="isMultiView">
+          <div
+            class="shipments-item shipments-data"
+            data-automation="labels-AccountNo"
+          >
+            {{ "lbl_shipment_AccountNo" | content }}
+          </div>
+          <div
+            class="shipments-item shipments-value text-break"
+            data-automation="values-AccountNo"
+          >
+            {{ milestoneData?.primaryDetail?.info?.accountNumber }}
+          </div>
+        </div>
+        <div class="shipments-details">
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.customerPO]) &&
+              milestoneData?.primaryDetail?.info?.clientRefPONo?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-ClientRefPONo"
+              >
+                {{ "lbl_shipment_refCustomerPONo" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-ClientRefPONo"
+              >
+                {{ milestoneData?.primaryDetail?.info?.clientRefPONo }}
+              </div>
+            </div>
+          </div>
+          <div class="shipments-item-section" *ngIf="showCustomerPONumber">
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-CustomerPONumber"
+              >
+                {{ "lbl_shipment_refCustomerPONo" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-CustomerPONumber"
+              >
+                {{ milestoneData?.primaryDetail?.info?.customerPONumber }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[
+                  COMPONENT_IDS.upsTransportationShipment
+                ]) &&
+              milestoneData?.primaryDetail?.info?.upsTMSShipmentNo?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-UPSTMSShipmentNo"
+              >
+                {{ "lbl_shipment_refTransportationShipmentNo" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-UPSTMSShipmentNo"
+              >
+                {{ milestoneData?.primaryDetail?.info?.upsTMSShipmentNo }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOutRefNumber1
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-referenceNumber1"
+              >
+                {{ "lbl_shipment_referenceNumber1" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-referenceNumber1"
+              >
+                {{ milestoneData?.primaryDetail?.info?.referenceNumber1 }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOutRefNumber2
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-referenceNumber2"
+              >
+                {{ "lbl_shipment_referenceNumber2" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-referenceNumber2"
+              >
+                {{ milestoneData?.primaryDetail?.info?.referenceNumber2 }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOutRefNumber3
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-referenceNumber3"
+              >
+                {{ "lbl_shipment_referenceNumber3" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-referenceNumber3"
+              >
+                {{ milestoneData?.primaryDetail?.info?.referenceNumber3 }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOutRefNumber4
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-referenceNumber4"
+              >
+                {{ "lbl_shipment_referenceNumber4" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-referenceNumber4"
+              >
+                {{ milestoneData?.primaryDetail?.info?.referenceNumber4 }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOutRefNumber5
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-referenceNumber5"
+              >
+                {{ "lbl_shipment_referenceNumber5" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-referenceNumber5"
+              >
+                {{ milestoneData?.primaryDetail?.info?.referenceNumber5 }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardQcReasonCode
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-qcReasonCode"
+              >
+                {{ "lbl_shipment_qcReasonCode" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-qcReasonCode"
+              >
+                {{ milestoneData?.primaryDetail?.info?.qcReasonCode }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardAuthorizorName
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-authorizorName"
+              >
+                {{ "lbl_shipment_authorizorName" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-authorizorName"
+              >
+                {{ milestoneData?.primaryDetail?.info?.authorizorName }}
+              </div>
+            </div>
+          </div>
+
+          <div class="shipments-item-section">
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-CreatedOn"
+              >
+                {{ "lbl_shipment_detailsCreatedOn" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-CreatedOn"
+              >
+                {{
+                  milestoneData?.primaryDetail?.info?.createdOn
+                    | dateFormatter
+                      : undefined
+                      : (!shipmentTypeExclusions ||
+                        !shipmentTypeExclusions[COMPONENT_IDS.showDateTimeZone]
+                          ? milestoneData?.primaryDetail?.info
+                              ?.shipmentPlaceDateTimeZone
+                          : undefined)
+                }}
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[
+                  COMPONENT_IDS.shipmentDetailCardExpectedShippedByDate
+                ]) &&
+              milestoneData?.primaryDetail?.info?.expectedShipByDateTime?.trim()
+            "
+            class="shipments-item-section"
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-CreatedOn"
+              >
+                {{
+                  "lbl_outbound_shipmentDetails_expectedShippedByDate" | content
+                }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-CreatedOn"
+              >
+                {{
+                  milestoneData?.primaryDetail?.info?.expectedShipByDateTime
+                    | dateFormatter
+                }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.shipmentType]) &&
+              milestoneData?.primaryDetail?.info?.inboundType?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-ShipmenType"
+              >
+                {{ "lbl_shipment_detailsShipmentType" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-ShipmentType"
+              >
+                {{ milestoneData?.primaryDetail?.info?.inboundType }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.shipmentMode]) &&
+              milestoneData?.primaryDetail?.info?.shipmentMode?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-ShipmenMode"
+              >
+                {{ "lbl_shipment_detailsShipmentMode" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-ShipmentMode"
+              >
+                {{ milestoneData?.primaryDetail?.info?.shipmentMode }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.airWayBillNumber]) &&
+              milestoneData?.primaryDetail?.info?.airWayBillNumber?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-Waybill-Airbill"
+              >
+                {{ "lbl_shipment_detailsAirWayBillNumber" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-Waybill-Airbill"
+              >
+                {{ milestoneData?.primaryDetail?.info?.airWayBillNumber }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.freightCarrierCode]) &&
+              milestoneData?.primaryDetail?.info?.freightCarrierCode?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-CarrierCode"
+              >
+                {{ "lbl_shipment_detailsFreightCarrierCode" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-CarrierCode"
+              >
+                {{ milestoneData?.primaryDetail?.info?.freightCarrierCode }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              (!shipmentTypeExclusions ||
+                !shipmentTypeExclusions[COMPONENT_IDS.careerServiceLevel]) &&
+              milestoneData?.primaryDetail?.info?.carrierServiceLevel?.trim()
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-CarrierServiceLevel"
+              >
+                {{ "lbl_shipment_detailsCarrierServiceLevel" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-CarrierServiceLevel"
+              >
+                {{ milestoneData?.primaryDetail?.info?.carrierServiceLevel }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardWaybillAirbillNumber
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-waybillAirbillNumber"
+              >
+                {{ "lbl_shipment_waybillAirbillNumber" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-waybillAirbillNumber"
+              >
+                {{ milestoneData?.primaryDetail?.info?.waybillAirbillNumber }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardDeliveryInstructions
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-deliveryInstructions"
+              >
+                {{ "lbl_shipment_deliveryInstructions" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-deliveryInstructions"
+              >
+                <lib-view-more
+                  [variation]="viewMoreVariations.modalVariation"
+                  offset="200"
+                  [columnData]="
+                    milestoneData?.primaryDetail?.info?.deliveryInstructions
+                  "
+                  dataAutoAttr="values-delivery-instructions"
+                ></lib-view-more>
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardOriginLocationCode
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-OrgLocnCode"
+              >
+                {{ "lbl_shipment_orgLocnCode" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-OrgLocnCode"
+              >
+                {{ milestoneData?.primaryDetail?.addresses[0]?.locationCode }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[COMPONENT_IDS.origin]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-Origin"
+              >
+                {{ "lbl_shipment_originTitle" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-Origin"
+                *ngIf="
+                  milestoneData?.primaryDetail?.addresses &&
+                    milestoneData?.primaryDetail?.addresses[0] &&
+                    ((milestoneData?.primaryDetail?.addresses[0].city &&
+                      milestoneData?.primaryDetail?.addresses[0].state) ||
+                      milestoneData?.primaryDetail?.addresses[0].zipCode);
+                  else noData
+                "
+              >
+                {{
+                  formatCompleteAddress(
+                    milestoneData?.primaryDetail?.addresses[0]
+                  )
+                }}
+              </div>
+            </div>
+          </div>
+          <div class="shipments-item-section" *ngIf="showConsigneeField">
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-consignee"
+              >
+                {{ "lbl_shipment_details_consignee" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value"
+                data-automation="values-consignee"
+              >
+                {{ milestoneData?.primaryDetail?.info?.consignee }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions ||
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardDestinationLocationCode
+              ]
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-DestLocnCode"
+              >
+                {{ "lbl_shipment_destLocnCode" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-DestLocnCode"
+              >
+                {{ milestoneData?.primaryDetail?.addresses[1]?.locationCode }}
+              </div>
+            </div>
+          </div>
+          <div class="shipments-item-section">
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-Destination"
+              >
+                {{ "lbl_shipment_destinationTitle" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value word-break"
+                data-automation="values-Destination"
+                *ngIf="
+                  milestoneData?.primaryDetail?.addresses &&
+                    milestoneData?.primaryDetail?.addresses[1] &&
+                    ((milestoneData?.primaryDetail?.addresses[1].city &&
+                      milestoneData?.primaryDetail?.addresses[1].state) ||
+                      milestoneData?.primaryDetail?.addresses[1].zipCode);
+                  else noData
+                "
+              >
+                {{
+                  formatCompleteAddress(
+                    milestoneData?.primaryDetail?.addresses[1]
+                  )
+                }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              hasFtzAccess &&
+              milestoneData?.primaryDetail?.info?.inboundType ===
+                INBOUNDTYPE.transportOrder
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-FTZShipmentNumber"
+              >
+                {{ "lbl_shipment_detailsFtz" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value text-break"
+                data-automation="values-FTZShipmentNumber"
+              >
+                {{ milestoneData?.primaryDetail?.info?.ftzShipmentNumber }}
+              </div>
+            </div>
+          </div>
+          <div
+            class="shipments-item-section"
+            *ngIf="
+              !shipmentTypeExclusions[
+                COMPONENT_IDS.shipmentDetailCardTransportOrderNo
+              ] &&
+              milestoneData?.primaryDetail?.info?.inboundType ===
+                INBOUNDTYPE.asn &&
+              milestoneData?.primaryDetail?.info?.transportOrderNumbers?.length
+            "
+          >
+            <div class="shipment-field-wrapper">
+              <div
+                class="shipments-item shipments-data"
+                data-automation="labels-transportOrderNumbers"
+              >
+                {{ "lbl_shipment_details_transport_Order_No" | content }}
+              </div>
+              <div
+                class="shipments-item shipments-value"
+                data-automation="values-transportOrderNumbers"
+              >
+                <div
+                  *ngFor="
+                    let order of milestoneData?.primaryDetail?.info
+                      ?.transportOrderNumbers
+                  "
+                >
+                  <span
+                    (click)="OnClickNavigate(order)"
+                    class="transport-order-number"
+                    >{{ order }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-container *ngIf="milestoneData?.primaryDetail?.info?.loadValue">
+            <ng-container
+              *ngTemplateOutlet="
+                itemSection;
+                context: {
+                  data: {
+                    autoAttrLabel: 'labels-load-dimenstions',
+                    autoAttrValue: 'values-load-dimenstions',
+                    label: 'dpf_l3_loadDim',
+                    postFix: milestoneData?.primaryDetail?.info?.loadDimension,
+                    value: milestoneData?.primaryDetail?.info?.loadValue
+                  }
+                }
+              "
+            ></ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </lib-card-box>
+  </div>
+</div>
+
+<ng-template #noData>
+  <div class="shipments-item shipments-value text-break"></div>
+</ng-template>
+
+<ng-template #itemSection let-data="data">
+  <div class="shipments-item-section">
+    <div class="shipment-field-wrapper">
+      <div
+        class="shipments-item shipments-data"
+        [attr.data-automation]="data.autoAttrLabel"
+      >
+        {{
+          (data.label | content) +
+            (data.postFix
+              ? "(" + milestoneData?.primaryDetail?.info?.loadDimension + ")"
+              : "")
+        }}
+      </div>
+      <div
+        class="shipments-item shipments-value text-break"
+        [attr.data-automation]="data.autoAttrvalue"
+      >
+        {{ data.value | number: DECIMAL_NUMBER_DEFAULT_FORMAT }}
+      </div>
+    </div>
+  </div>
+</ng-template>

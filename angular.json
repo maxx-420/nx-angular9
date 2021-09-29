@@ -13,20 +13,258 @@
       "prefix": "nx-angular9",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
+            "plugin": "~libs/core/scripts/hooks/plugin.js",
             "outputPath": "dist/apps/digital-platform",
             "index": "apps/digital-platform/src/index.html",
             "main": "apps/digital-platform/src/main.ts",
-            "polyfills": "apps/digital-platform/src/polyfills.ts",
+            "polyfills": "libs/core/src/polyfills.ts",
             "tsConfig": "apps/digital-platform/tsconfig.app.json",
             "aot": true,
             "assets": [
               "apps/digital-platform/src/favicon.ico",
               "apps/digital-platform/src/assets"
             ],
-            "styles": ["apps/digital-platform/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              {
+                "bundleName": "style",
+                "input": "apps/digital-platform/src/styles.scss"
+              },
+              {
+                "bundleName": "theme",
+                "input": "dist/libs/core/assets/theme/theme.css"
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": []
+            },
+            "outputHashing": "all",
+            "scripts": [
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              {
+                "bundleName": "moment",
+                "input": "node_modules/moment/moment.js"
+              },
+              "node_modules/@angular/core/__ivy_ngcc__/bundles/core.umd.js",
+              "node_modules/@angular/common/__ivy_ngcc__/bundles/common.umd.js",
+              "node_modules/@angular/common/__ivy_ngcc__/bundles/common-http.umd.js",
+              "node_modules/@angular/forms/__ivy_ngcc__/bundles/forms.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/__ivy_ngcc__/bundles/elements.umd.js",
+              "node_modules/@angular/router/__ivy_ngcc__/bundles/router.umd.js",
+              "node_modules/@angular/platform-browser/__ivy_ngcc__/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/__ivy_ngcc__/bundles/platform-browser-dynamic.umd.js",
+              "node_modules/@angular/animations/__ivy_ngcc__/bundles/animations.umd.js",
+              "node_modules/@angular/animations/__ivy_ngcc__/bundles/animations-browser.umd.js",
+              "node_modules/@angular/platform-browser/__ivy_ngcc__/bundles/platform-browser-animations.umd.js",
+              {
+                "bundleName": "ngrx-store",
+                "input": "node_modules/@ngrx/store/__ivy_ngcc__/bundles/store.umd.js"
+              },
+              {
+                "bundleName": "ngrx-store",
+                "input": "node_modules/@ngrx/store-devtools/__ivy_ngcc__/bundles/store-devtools.umd.js"
+              },
+              {
+                "bundleName": "ngrx-store",
+                "input": "node_modules/@ngrx/effects/__ivy_ngcc__/bundles/effects.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/bundles/cdk.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-platform.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-bidi.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-collections.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/bundles/cdk-coercion.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-table.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-observers.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-keycodes.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-a11y.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-text-field.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-collections.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-portal.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-accordion.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-scrolling.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-overlay.umd.js"
+              },
+              {
+                "bundleName": "angular-cdk",
+                "input": "node_modules/@angular/cdk/__ivy_ngcc__/bundles/cdk-layout.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-core.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-icon.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-button.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-button-toggle.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-card.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-form-field.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-input.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-expansion.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-sort.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-tooltip.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-select.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-table.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-paginator.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-menu.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-radio.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-dialog.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-datepicker.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-checkbox.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material-moment-adapter/__ivy_ngcc__/bundles/material-moment-adapter.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-slide-toggle.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-autocomplete.umd.js"
+              },
+              {
+                "bundleName": "angular-material",
+                "input": "node_modules/@angular/material/__ivy_ngcc__/bundles/material-tabs.umd.js"
+              },
+              {
+                "bundleName": "chart",
+                "input": "node_modules/chart.js/dist/Chart.min.js"
+              },
+              {
+                "bundleName": "chart",
+                "input": "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"
+              },
+              {
+                "bundleName": "chart",
+                "input": "node_modules/chartjs-plugin-piechart-outlabels/dist/chartjs-plugin-piechart-outlabels.min.js"
+              },
+              {
+                "bundleName": "chart",
+                "input": "node_modules/chartjs-plugin-doughnutlabel/dist/chartjs-plugin-doughnutlabel.js"
+              },
+              {
+                "bundleName": "appInsights",
+                "input": "node_modules/@microsoft/applicationinsights-web/dist/applicationinsights-web.min.js"
+              },
+              {
+                "bundleName": "msal-browser",
+                "input": "node_modules/@azure/msal-browser/lib/msal-browser.js"
+              },
+              {
+                "bundleName": "msal",
+                "input": "libs/core/src/msal/msal.js"
+              },
+              {
+                "bundleName": "msal-angular",
+                "input": "node_modules/@azure/msal-angular/__ivy_ngcc__/bundles/azure-msal-angular.umd.js"
+              },
+              {
+                "bundleName": "digital-core",
+                "input": "dist/libs/core/bundles/core.umd.js"
+              },
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,12 +325,15 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/digital-platform/jest.config.js",
+            "main": "apps/digital-platform/src/test.ts",
             "tsConfig": "apps/digital-platform/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/digital-platform/src/test-setup.ts"
+            "karmaConfig": "apps/digital-platform/karma.conf.js",
+            "polyfills": "apps/digital-platform/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
@@ -123,6 +364,210 @@
           }
         }
       }
+    },
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "nx-angular9",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "node-sass libs/core/src/scss -o dist/libs/core/assets/theme"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/core/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/core/src/test.ts",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "karmaConfig": "libs/core/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "mfe1": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/mfe1",
+      "sourceRoot": "apps/mfe1/src",
+      "prefix": "nx-angular9",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mfe1",
+            "index": "apps/mfe1/src/index.html",
+            "main": "apps/mfe1/src/main.ts",
+            "polyfills": "apps/mfe1/src/polyfills.ts",
+            "tsConfig": "apps/mfe1/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/mfe1/src/favicon.ico", "apps/mfe1/src/assets"],
+            "styles": ["apps/mfe1/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe1/src/environments/environment.ts",
+                  "with": "apps/mfe1/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mfe1:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mfe1:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mfe1:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mfe1/tsconfig.app.json",
+              "apps/mfe1/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/mfe1/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/mfe1/src/test.ts",
+            "tsConfig": "apps/mfe1/tsconfig.spec.json",
+            "karmaConfig": "apps/mfe1/karma.conf.js",
+            "polyfills": "apps/mfe1/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "mfe1-e2e": {
+      "root": "apps/mfe1-e2e",
+      "sourceRoot": "apps/mfe1-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/mfe1-e2e/cypress.json",
+            "tsConfig": "apps/mfe1-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mfe1:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/mfe1-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/mfe1-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "lib1": {
+      "projectType": "library",
+      "root": "libs/lib1",
+      "sourceRoot": "libs/lib1/src",
+      "prefix": "nx-angular9",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/lib1/tsconfig.lib.json",
+            "project": "libs/lib1/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/lib1/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/lib1/tsconfig.lib.json",
+              "libs/lib1/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/lib1/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/lib1/src/test.ts",
+            "tsConfig": "libs/lib1/tsconfig.spec.json",
+            "karmaConfig": "libs/lib1/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
@@ -130,11 +575,11 @@
   },
   "schematics": {
     "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "karma"
     }
   },
   "defaultProject": "digital-platform"

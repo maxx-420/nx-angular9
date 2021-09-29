@@ -1,0 +1,24 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.item-value {
+  @include lg-min {
+    @include padding(null, null, null, $sp-10);
+  }
+}
+
+.item-title {
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.14px;
+  color: $grey-700;
+  display: inline-block;
+}
+
+.card-block-section {
+  display: flex;
+  flex-direction: column;
+  @include lg-min {
+    flex-direction: row;
+  }
+ }

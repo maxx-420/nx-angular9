@@ -28,6 +28,19 @@
     "digital-platform-e2e": {
       "tags": [],
       "implicitDependencies": ["digital-platform"]
+    },
+    "core": {
+      "tags": []
+    },
+    "mfe1": {
+      "tags": []
+    },
+    "mfe1-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mfe1"]
+    },
+    "lib1": {
+      "tags": []
     }
   }
 }

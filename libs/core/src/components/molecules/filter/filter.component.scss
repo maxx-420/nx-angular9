@@ -1,0 +1,205 @@
+// 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY
+@import "libs/core/src/scss/mixins";
+
+@import "libs/core/src/scss/_variables.scss";
+
+.filters-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  background-color: $primary-white;
+  border: 1px solid $primary-grey;
+  border-radius: $sp-4;
+  min-width: 106px;
+  margin-left: auto;
+
+  @include padding($sp-10, $sp-21, $sp-10, $sp-13);
+
+  &.filterApplied {
+    border: 2px solid $accent-blue;
+  }
+
+  &:hover {
+    border: 2px solid $accent-yellow;
+  }
+
+  &:focus {
+    border: 2px solid $primary-black;
+  }
+}
+
+.symphony-icons-filter {
+  font-size: $fs-15;
+}
+
+.filter-label {
+  font-weight: $font-weight-bold;
+}
+
+.filters-wrapper {
+  background-color: $grey-100;
+  border: 1px solid $grey-300;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+
+  @include md-min {
+    width: 320px;
+    box-shadow: 0px 0px 24px #0000000f;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    z-index: $zi-3;
+    top: $height-header;
+    height: calc(100% - #{$height-header});
+
+    &.bannerVisible {
+      top: $height-header-with-banner;
+      height: calc(100% - #{$height-header-with-banner});
+    }
+  }
+
+  @include lg-min {
+    top: $height-header-lg;
+    height: calc(100% - #{$height-header-lg});
+
+    &.bannerVisible {
+      top: $height-header-with-banner-lg;
+      height: calc(100% - #{$height-header-with-banner-lg});
+    }
+  }
+}
+
+.filters-header {
+  height: 53px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $grey-300;
+
+  @include padding($sp-20, $sp-25, $sp-20, $sp-25);
+}
+
+.closeBtn {
+  background-color: transparent;
+  font-size: $fs-15;
+  cursor: pointer;
+
+  @include padding($sp-3, $sp-0, $sp-0, $sp-0);
+
+  &:focus {
+    border: 2px solid $primary-black;
+    border-radius: $sp-4;
+  }
+}
+
+.filters-body {
+  height: 100%;
+  overflow-y: auto;
+
+  @include padding($sp-0, $sp-25, $sp-0, $sp-25);
+}
+
+.filters-footer {
+  height: 78px;
+  background-color: $grey-100;
+
+  @include padding($sp-17, $sp-25, $sp-17, $sp-25);
+}
+
+.filter-select-dropdown {
+  border-bottom: 1px solid $grey-300;
+
+  @include padding($sp-18, 0, $sp-18, 0);
+
+  ::ng-deep .select-label {
+    font-size: $fs-16;
+    line-height: $lh-21;
+    font-weight: $font-weight-medium;
+    color: $primary-black;
+    display: inline-flex;
+    margin-bottom: $sp-10;
+  }
+}
+
+::ng-deep .filter-panel {
+
+  .mat-expansion-panel {
+    background-color: $grey-100;
+    box-shadow: none;
+    border-bottom: 1px solid $grey-300;
+
+    .mat-expansion-panel-header {
+      align-items: flex-start;
+      height: 60px !important;
+
+      @include padding($sp-19, $sp-2, $sp-19, $sp-0);
+
+      &.showSelection {
+        height: 78px !important;
+      }
+
+      &:hover {
+        background: none !important;
+      }
+
+      .mat-content {
+        flex-direction: column;
+
+        .mat-expansion-panel-header-title {
+          font-size: $fs-16;
+          line-height: 22px;
+          font-weight: $font-weight-medium;
+          color: $primary-black;
+        }
+
+        .mat-expansion-panel-header-description {
+          justify-content: flex-start;
+          align-items: center;
+          flex-grow: 1;
+
+          .selected-value {
+            line-height: 22px;
+            font-style: italic;
+            color: $primary-black;
+            font-weight: $font-weight-light;
+
+            @include margin($sp-0, $sp-12, $sp-0, $sp-0);
+
+            &.isSelected {
+              font-style: normal;
+              font-weight: $font-weight-normal;
+              text-decoration: underline;
+              color: $accent-blue;
+            }
+          }
+
+          .close-btn {
+            background-color: $primary-black;
+            color: $primary-white;
+            border-radius: 50%;
+            height: $sp-15;
+            width: $sp-15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: $fs-13;
+
+            @include padding($sp-0, $sp-0, $sp-0, $sp-0);
+
+            .symphony-icons {
+              color: $primary-white;
+              font-weight: $font-weight-extra-bold;
+              position: relative;
+            }
+          }
+        }
+      }
+    }
+
+    .mat-expansion-panel-body {
+      @include padding($sp-0, $sp-0, $sp-19, $sp-0);
+    }
+  }
+}

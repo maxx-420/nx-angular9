@@ -1,0 +1,45 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.table-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .table-cell-content {
+    display: flex;
+
+    @include margin($sp-0, $sp-0, $sp-0, $sp-25);
+
+    @include md-min {
+      @include margin($sp-0, $sp-0, $sp-0, $sp-0);
+    }
+
+    .hover-link {
+      text-decoration: none;
+
+      @include padding($sp-0, $sp-10, $sp-0, $sp-10);
+
+      @include lg-min {
+        text-decoration: underline;
+      }
+
+      .temperature,
+      .reference {
+        display: flex;
+
+        &_label {
+          display: none;
+
+          @include lg-min {
+            display: block;
+          }
+        }
+
+        &_icon {
+          padding-left: $sp-2;
+        }
+      }
+    }
+  }
+}

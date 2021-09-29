@@ -1,0 +1,22 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div
+  *ngIf="isMessageBarVisible"
+  [ngClass]="'message-bar-' + messageType"
+  [class.auto-height]="autoHeight"
+  class="message-bar"
+>
+  <div class="message-bar-text">
+    {{ message }}
+  </div>
+  <div class="message-bar-close">
+    <span
+      class="symphony-icons symphony-icons-circle-close message-bar-close-icon"
+      role="button"
+      (click)="closeMessageBar()"
+      (keypress)="closeMessageBar()"
+      tabindex="0"
+    >
+      <span class="sr-only">{{ ariaLabel }}</span>
+    </span>
+  </div>
+</div>

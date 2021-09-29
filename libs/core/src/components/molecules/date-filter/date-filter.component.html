@@ -1,0 +1,86 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+
+<mat-accordion class="filter-panel">
+  <mat-expansion-panel [attr.data-automation]="'bar-filter-'+filterConfiguration.key">
+    <mat-expansion-panel-header
+      [class.showSelection]="filterConfiguration.showSelection"
+    >
+      <mat-panel-title>
+        {{ filterConfiguration.label | content }}
+      </mat-panel-title>
+      <mat-panel-description *ngIf="filterConfiguration.showSelection">
+        <span class="selected-value" [class.isSelected]="isSelected">{{
+          viewValue
+        }}</span>
+        <button
+          *ngIf="showClearButton"
+          class="close-btn"
+          (click)="resetFilter.emit($event)"
+          [attr.aria-label]="'lbl_close' | content"
+        >
+          <i class="symphony-icons symphony-icons-close" aria-hidden="true"></i>
+        </button>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div [formGroup]="filterForm">
+      <lib-radio-buttons
+        controlName="filterValue"
+        [radioOptions]="filterConfiguration.options"
+      ></lib-radio-buttons>
+      <div *ngIf="showCustomRange">
+        <div class="date-filter-section">
+          <lib-datepicker
+            controlName="startDate"
+            [min]="
+              filterForm.get('endDate').value !== null
+                ? dateLimits.min
+                : allowPastDates
+                  ? defaultLimits.min
+                  : todayDate
+            "
+            [max]="
+              filterForm.get('endDate').value !== null
+                ? filterForm.get('endDate').value
+                : allowFutureDates
+                ? defaultLimits.max
+                : todayDate
+            "
+            [showTodaysDate]="false"
+            label="{{ 'lbl_start_date' | content }}"
+            placeholder="{{ 'lbl_start_date' | content }}"
+            [isReadOnly]="true"
+            [hideLabel]="true"
+            (dateChanged)="setLimits(true)"
+          >
+          </lib-datepicker>
+          <span class="customDateRange"> — </span>
+          <lib-datepicker
+            class="hasMarginLeft"
+            controlName="endDate"
+            [min]="
+              filterForm.get('startDate').value !== null
+                ? filterForm.get('startDate').value
+                : allowPastDates
+                  ? defaultLimits.min
+                  : todayDate
+            "
+            [max]="
+              filterForm.get('startDate').value !== null
+                ? dateLimits.max
+                : allowFutureDates
+                ? defaultLimits.max
+                : todayDate
+            "
+            [showTodaysDate]="false"
+            label="{{ 'lbl_end_date' | content }}"
+            placeholder="{{ 'lbl_end_date' | content }}"
+            [isReadOnly]="true"
+            [hideLabel]="true"
+            (dateChanged)="setLimits(false)"
+          >
+          </lib-datepicker>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

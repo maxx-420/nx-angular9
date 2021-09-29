@@ -1,0 +1,27 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.bu-item {
+  text-align: center;
+  height: $sp-100;
+  width: $sp-100;
+  border-radius: 50%;
+  display: block;
+  border: 1px solid $grey-600;
+  @include margin($sp-10, auto, $sp-10, auto);
+  @include padding($sp-25, null, null, null);
+
+  @include md-min {
+    @include margin($sp-10, $sp-10, $sp-10, $sp-10);
+    display: inline-block;
+  }
+}
+
+.bu-item-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+}

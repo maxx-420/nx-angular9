@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { lib1 } from '@nx-angular9/lib1';
 
 @Component({
   selector: 'nx-angular9-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'digital-platform';
+
+  lib2 = lib1
 }

@@ -1,0 +1,66 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+@import "libs/core/src/scss/mixins";
+
+.shipment-status-bar {
+  display: flex;
+  justify-content: space-evenly;
+  background: $primary-white;
+  border: 2px solid $primary-white;
+}
+
+.no-shipments-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 92px;
+  background: $primary-white;
+}
+
+.shipment-status {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.shipment-status-text {
+  @include padding($sp-7, null, $sp-21, null);
+  text-transform: uppercase;
+}
+
+.shipment-status-count {
+  @include padding($sp-13, null, null, null);
+}
+
+.actionable {
+  cursor: pointer;
+}
+
+.learn-more-section {
+  display: flex;
+  justify-content: space-between;
+  background: $primary-white;
+  @include padding($sp-15, $sp-18, $sp-15, $sp-18);
+  border-bottom: 1px solid $grey-200;
+  font-weight: $font-weight-medium;
+  font-size: $fs-14;
+  line-height: $sp-16;
+  letter-spacing: 0.14px;
+  color: $grey-700;
+}
+
+.shipment-status-section {
+  border: 1px solid $grey-200;
+  border-radius: 4px;
+}
+
+.shipment-status-bar.actionable:hover {
+  border: 2px solid $accent-yellow;
+}
+
+.shipment-status-bar.actionable:focus {
+  border: 2px solid $primary-black;
+}
+
+.card-header {
+  line-height: $lh-18;
+}

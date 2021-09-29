@@ -1,0 +1,86 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<div class="shipment-status-section">
+  <div class="learn-more-section">
+    <h3 class="h4 card-header">{{ "lbl_learn_more_heading" | content }}</h3>
+    <lib-button
+      variation="link-button"
+      (clickEvent)="openLearnMorePopUp()"
+      [text]="'lbl_learn_more_link' | content"
+      size="sm"
+      [ariaLabel]="
+        ('lbl_learn_more_prefix_aria' | content) +
+        ' ' +
+        ('lbl_learn_more_heading' | content)
+      "
+    >
+    </lib-button>
+  </div>
+  <div *ngIf="hasApiFailed">
+    <lib-error
+      variation="horizontal"
+      [customStyle]="customStyle"
+      [errorReason]="errorReason"
+      [pageSection]="pageSection"
+    ></lib-error>
+  </div>
+
+  <!-- disabling link for managed inbound account type -->
+  <ul
+    class="shipment-status-bar"
+    [ngClass]="{
+      actionable: !hideLink
+    }"
+    *ngIf="
+      !hasApiFailed && milestoneStatusData?.totalCount;
+      else noShipmentsTemplate
+    "
+    [attr.role]="hideLink ? null : 'link'"
+    [attr.tabindex]="hideLink ? null : '0'"
+    (click)="navigateToL2Page(summaryType)"
+    (keyup.enter)="navigateToL2Page(summaryType)"
+    [attr.aria-label]="getAriaLabel()"
+  >
+    <li class="shipment-status" *ngFor="let metricsData of rollupMetricsData">
+      <div class="shipment-status-count h2">
+        {{ metricsData?.count }}
+      </div>
+      <div class="shipment-status-text h7">
+        {{ "lbl_shipment_milestone_grp_" + metricsData?.id | content }}
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Open popup modal, when user click on learn-more link- -->
+<lib-modal
+  *ngIf="showLearnMorePopUp"
+  [title]="'lbl_learn_more_heading' | content"
+  [component]="learnMoretemplate"
+  [hasTemplate]="true"
+  [opened]="showLearnMorePopUp"
+  [okCTALabel]="'lbl_chart_modal_close'"
+  (afterClosed)="onPopUpClose($event)"
+  [showCancelCTA]="false"
+></lib-modal>
+
+<!-- Inside the modal popup, we are showing learn-more template-->
+<ng-template #learnMoretemplate>
+  <lib-status-bar-learn-more
+    [milestoneStatusConfigurations]="milestoneStatusConfig"
+    [milestoneStatusType]="summaryType"
+    [isConvergenceExperience]="isConvergenceExperience"
+  ></lib-status-bar-learn-more>
+</ng-template>
+
+<!-- show when total shipments are zero-->
+<ng-template #noShipmentsTemplate>
+  <div class="no-shipments-bar" *ngIf="!hasApiFailed">
+    <span class="no-data-icon-bg-small">
+      <i
+        class="symphony-icons symphony-icons-component-error no-data-icon"
+        aria-hidden="true"
+      ></i>
+    </span>
+    <span class="body2">{{ "lbl_no_record_found" | content }}</span>
+  </div>
+</ng-template>

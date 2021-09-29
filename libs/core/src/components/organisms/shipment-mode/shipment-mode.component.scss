@@ -1,0 +1,136 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/variables";
+
+.shipment-mode-container-parent {
+  border: 1px solid $grey-200;
+  border-radius: $sp-4;
+  background: $primary-white;
+}
+
+.shipment-mode-container-title {
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: .14px;
+  text-transform: capitalize;
+  opacity: 1;
+  text-align: left;
+  color: $grey-700;
+  font-size: $sp-14;
+  line-height: $lh-19;
+  font-family: $roboto;
+  font-weight: $font-weight-medium;
+
+  @include margin($sp-15, 0, $sp-18, $sp-19);
+
+  @include sm-max {
+    flex-direction: column;
+
+    @include margin($sp-16, 0, $sp-17, $sp-16);
+  }
+}
+
+.shipment-mode-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-top: 1px solid $grey-200;
+
+  @include sm-max {
+    flex-direction: column;
+  }
+}
+
+.shipment-wrapper {
+  flex-grow: 1;
+  background: $primary-white;
+  border-bottom: 1px solid $grey-200;
+
+  @include md-only {
+    max-width: 33.33%;
+    border-right: 1px solid $grey-200;
+  }
+
+  @include lg-min {
+    max-width: 50%;
+
+    &:nth-child(2n + 1) {
+      border-right: 1px solid $grey-200;
+    }
+  }
+}
+
+.mode-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: flex-start;
+
+  @include padding($sp-14, $sp-0, $sp-16, $sp-0);
+
+  @include md-only {
+    @include padding($sp-15, $sp-0, $sp-16, $sp-0);
+  }
+
+  @include sm-max {
+    @include padding($sp-14, $sp-0, $sp-16, $sp-0);
+  }
+}
+
+.mode-icon-wrapper {
+  height: $sp-40;
+  width: $sp-40;
+
+  @include margin($sp-0, $sp-16, $sp-0, $sp-17);
+
+  @include md-only {
+    @include margin($sp-0, $sp-16, $sp-0, $sp-19);
+  }
+
+  @include sm-max {
+    @include margin($sp-0, $sp-16, $sp-0, $sp-16);
+  }
+}
+
+.mode-icon {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $alternate-blue;
+}
+
+.mode-details {
+  height: $sp-47;
+  font-family: $roboto;
+  text-align: left;
+  width: 116px;
+
+  @include margin($sp-0, $sp-24, $sp-0, 0);
+}
+
+.mode-name {
+  text-transform: uppercase;
+}
+
+.no-shipment-mode-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-top: 1px solid $grey-200;
+  height: 79px;
+
+  @include padding($sp-20, $sp-0, $sp-20, $sp-0);
+}
+
+.no-shipment-mode-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  @include sm-max {
+    text-align: left;
+    padding-top: $sp-20;
+    padding-bottom: $sp-8;
+  }
+}

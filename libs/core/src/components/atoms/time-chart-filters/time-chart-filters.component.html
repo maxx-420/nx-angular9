@@ -1,0 +1,9 @@
+<!-- 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY -->
+<lib-page-filter
+  (setDates)="dateRangeChanged.emit($event)"
+  [isChartFilter]="isChartFilter"
+  (dateChange)="trackDateFilterChange()"
+  *ngIf="showDateRangeFilter"
+  [title]="title"
+  [classNameDateRange]="selectClassName"
+></lib-page-filter>

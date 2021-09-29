@@ -1,0 +1,157 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+
+@import "libs/core/src/scss/_variables.scss";
+
+@import "libs/core/src/scss/common/_modeColor.scss";
+
+.mat-card-header {
+  &-text {
+    flex: 1;
+  }
+}
+
+.mat-card {
+  max-height: 455px;
+  min-height: 400px;
+  border: 1px solid $grey-200;
+  padding: $sp-16 0 0;
+
+  @include md-min {
+    max-height: 400px;
+  }
+
+  &-header {
+    border-bottom: 1px solid $grey-200;
+    padding-left: $sp-4;
+
+    &-text {
+      margin: 0;
+
+      @include sm-max {
+        display: block;
+      }
+    }
+  }
+
+  &-title {
+    color: $grey-700;
+    line-height: 19px;
+    letter-spacing: 0.14px;
+    text-align: left;
+  }
+
+  &-header &-title {
+    height: 21px;
+    display: flex;
+    align-items: center;
+
+    @include sm-max {
+      display: block;
+    }
+  }
+
+  .learn-more-info-icon {
+    background: transparent;
+    padding: $sp-0;
+    line-height: 1;
+    overflow: visible;
+    color: $accent-blue;
+    cursor: pointer;
+
+    &:hover {
+      color: $accent-blue;
+    }
+
+    &:focus {
+      color: $accent-yellow;
+    }
+  }
+
+  .learn-more-info-icon .card-icon {
+    font-size: $fs-15;
+    padding: $sp-0;
+    line-height: 1;
+    margin: 0 $sp-5;
+
+    @include md-min {
+      margin: 0 $sp-7;
+    }
+  }
+}
+
+.learn-more-link {
+  background: transparent;
+  color: inherit;
+  padding: $sp-0;
+  font: inherit;
+  font-weight: $font-weight-medium;
+  font-size: $fs-14;
+  line-height: $lh-21;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+
+  @include margin(0, 0, 0, 0);
+
+  @include md-min {
+    width: 40%;
+
+    @include margin(0, 0, 0, 0);
+  }
+}
+
+.header-right {
+  margin-left: auto;
+
+  @include md-min {
+    margin-right: -10px;
+  }
+}
+
+.delivery-status-links {
+  cursor: pointer;
+
+  @include padding(20px, 0, 0, 20px);
+
+  @include md-min {
+    @include padding(0, 0, 0, 42px);
+  }
+
+  .symphony-icons {
+    height: 18px;
+    width: 18px;
+    border-radius: 4px;
+    font-size: 10px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.icon-checked {
+  background-color: $alternate-green;
+  color: $primary-white;
+}
+
+.delivered-late {
+  background-color: $alternate-orange;
+  color: $primary-black;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.learn-more-container {
+  display: flex;
+  justify-content: flex-end;
+
+  @include padding(8px, 16px, 0, 0);
+}

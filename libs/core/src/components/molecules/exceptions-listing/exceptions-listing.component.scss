@@ -1,0 +1,45 @@
+/* 9fbef606107a605d69c0edbcd8029e5d_SYMPHONY */
+@import "libs/core/src/scss/_variables.scss";
+
+.undelivered-exceptions-header {
+  width: 100%;
+  height: $sp-65;
+  border: $sp-1 solid $grey-200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $primary-white;
+  @include padding($sp-0, $sp-0, $sp-0, $sp-15);
+}
+
+.undelivered-exceptions-header-title {
+  color: $grey-700;
+  line-height: $lh-19;
+  text-align: left;
+  font-weight: $font-weight-medium;
+  font-size: $fs-14;
+}
+
+.angle-right {
+  font-size: $fs-32;
+  margin-right: $sp-24;
+}
+
+.undelivered-exceptions-list-title {
+  color: $primary-black;
+  font-size: $fs-22;
+  font-weight: $font-weight-light;
+  @include margin($sp-0, $sp-0, $sp-20, $sp-0);
+}
+
+.undelivered-exceptions-table {
+  min-height: $sp-400;
+  background-color: $primary-white;
+  border-radius: $sp-4;
+}
+
+.trucateText {
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
