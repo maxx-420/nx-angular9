@@ -6,4 +6,4 @@ import { CommonModule } from '@angular/common';
 })
 export class Lib1Module { }
 
-export const lib1 = "lib3"
+export const lib1 = "lib5"

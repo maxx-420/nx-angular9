@@ -1,18 +1,77 @@
 const webpack = require('webpack');
 
 module.exports = {
-    "externals": {
-        "rxjs": "rxjs",
-        "@angular/core": "ng.core",
-        "@angular/common": "ng.common",
-        "@angular/common/http": "ng.common.http",
-        "@angular/platform-browser": "ng.platformBrowser",
-        "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
-        "@angular/compiler": "ng.compiler",
-        "@angular/elements": "ng.elements",
+  externals: {
+    rxjs: 'rxjs',
+    'rxjs/operators': 'rxjs.operators',
 
-        // Uncomment and add to scripts in angular.json if needed
-        // "@angular/router": "ng.router",
-        // "@angular/forms": "ng.forms"
-    }
-}
+    '@digital/core': 'digital.core',
+    '@angular/core': 'ng.core',
+    '@angular/common': 'ng.common',
+    '@angular/common/http': 'ng.common.http',
+    '@angular/platform-browser': 'ng.platformBrowser',
+    '@angular/platform-browser/animations': 'ng.platformBrowser.animations',
+    '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+    '@angular/compiler': 'ng.compiler',
+    '@angular/elements': 'ng.elements',
+    '@angular/animations': 'ng.animations',
+    '@angular/forms': 'ng.forms',
+
+    '@angular/cdk': 'ng.cdk',
+    '@angular/cdk/a11y': 'ng.cdk.a11y',
+    '@angular/cdk/accordion': 'ng.cdk.accordion',
+    '@angular/cdk/bidi': 'ng.cdk.bidi',
+    '@angular/cdk/coercion': 'ng.cdk.coercion',
+    '@angular/cdk/collections': 'ng.cdk.collections',
+    '@angular/cdk/keycodes': 'ng.cdk.keycodes',
+    '@angular/cdk/layout': 'ng.cdk.layout',
+    '@angular/cdk/observers': 'ng.cdk.observers',
+    '@angular/cdk/overlay': 'ng.cdk.overlay',
+    '@angular/cdk/platform': 'ng.cdk.platform',
+    '@angular/cdk/portal': 'ng.cdk.portal',
+    '@angular/cdk/scrolling': 'ng.cdk.scrolling',
+    '@angular/cdk/table': 'ng.cdk.table',
+    '@angular/cdk/textField': 'ng.cdk.textField',
+
+    '@angular/material': 'ng.material',
+    '@angular/material/core': 'ng.material.core',
+    '@angular/material/button': 'ng.material.button',
+    '@angular/material/button-toggle': 'ng.material.buttonToggle',
+    '@angular/material/card': 'ng.material.card',
+    '@angular/material/datepicker': 'ng.material.datepicker',
+    '@angular/material/dialog': 'ng.material.dialog',
+    '@angular/material/expansion': 'ng.material.expansion',
+    '@angular/material/form-field': 'ng.material.formField',
+    '@angular/material/icon': 'ng.material.icon',
+    '@angular/material/input': 'ng.material.input',
+    '@angular/material/menu': 'ng.material.menu',
+    '@angular/material/checkbox': 'ng.material.checkbox',
+    '@angular/material/paginator': 'ng.material.paginator',
+    '@angular/material/radio': 'ng.material.radio',
+    '@angular/material/select': 'ng.material.select',
+    '@angular/material/sort': 'ng.material.sort',
+    '@angular/material/table': 'ng.material.table',
+    '@angular/material/tooltip': 'ng.material.toolTip',
+    '@angular/material/autocomplete': 'ng.material.autocomplete',
+    '@angular/material/tabs': 'ng.material.tabs',
+
+    moment: 'moment',
+    '@angular/material-moment-adapter': 'ng.materialMomentAdapter',
+
+    '@ngrx/store': 'ngrx.store',
+    '@ngrx/store-devtools': 'ngrx.storeDevtools',
+    '@ngrx/effects': 'ngrx.effects',
+
+    // Uncomment and add to scripts in angular.json if needed
+    '@angular/router': 'ng.router',
+
+    '@microsoft/applicationinsights-web': 'Microsoft.ApplicationInsights',
+    'chart.js': 'Chart',
+    'chartjs-plugin-datalabels': 'ChartDataLabels',
+    'chartjs-plugin-doughnutlabel': 'ChartDoughnutLabel',
+    'chartjs-plugin-piechart-outlabels': 'ChartOutLabels',
+    '@azure/msal-browser': 'msal',
+    '@azure/msal-angular': 'azure["msal-angular"]',
+    // "@angular/forms": "ng.forms"
+  },
+};

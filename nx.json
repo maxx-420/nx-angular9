@@ -23,7 +23,8 @@
   },
   "projects": {
     "digital-platform": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["core", "lib1"]
     },
     "digital-platform-e2e": {
       "tags": [],
@@ -33,7 +34,8 @@
       "tags": []
     },
     "mfe1": {
-      "tags": []
+      "tags": [],
+       "implicitDependencies": ["core", "lib1"]
     },
     "mfe1-e2e": {
       "tags": [],

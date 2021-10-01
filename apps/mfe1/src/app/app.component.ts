@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { lib1 } from '@nx-angular9/lib1';
+import { lib1 } from 'dist/libs/';
 
 @Component({
   selector: 'nx-angular9-root',
