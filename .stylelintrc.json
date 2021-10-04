@@ -1,0 +1,25 @@
+{
+  "extends": "stylelint-config-airbnb",
+  "defaultSeverity": "warning",
+  "rules": {
+    "indentation": 2,
+    "declaration-block-single-line-max-declarations": [
+      1,
+      {
+        "severity": "error"
+      }
+    ],
+    "scss/dollar-variable-pattern": [
+      "^_?[a-z]+[\\w-]*$",
+      {
+        "severity": "error"
+      }
+    ],
+    "max-nesting-depth": [
+      6,
+      {
+        "severity": "error"
+      }
+    ]
+  }
+}

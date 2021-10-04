@@ -4,6 +4,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [CommonModule],
 })
-export class Lib1Module { }
+export class Lib1Module {}
 
-export const lib1 = "lib5"
+export const sampleExport = 'This text is from Lib1';

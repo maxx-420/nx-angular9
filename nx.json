@@ -24,24 +24,24 @@
   "projects": {
     "digital-platform": {
       "tags": [],
-      "implicitDependencies": ["core", "lib1"]
+      "implicitDependencies": []
     },
     "digital-platform-e2e": {
       "tags": [],
       "implicitDependencies": ["digital-platform"]
     },
-    "core": {
-      "tags": []
-    },
     "mfe1": {
       "tags": [],
-       "implicitDependencies": ["core", "lib1"]
+      "implicitDependencies": []
     },
     "mfe1-e2e": {
       "tags": [],
       "implicitDependencies": ["mfe1"]
     },
     "lib1": {
+      "tags": []
+    },
+    "lib2": {
       "tags": []
     }
   }

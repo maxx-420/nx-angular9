@@ -17,14 +17,14 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@nx-angular9/core": ["libs/core/src/index.ts"],
-      "@nx-angular9/lib1": ["libs/lib1/src/index.ts"]
+      "@nx-angular9/lib1": ["libs/lib1/src/index.ts"],
+      "@nx-angular9/lib2": ["libs/lib2/src/index.ts"]
     }
   },
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
+    "fullTemplateTypeCheck": false,
     "preserveWhitespaces": true,
-    "strictTemplates": true
+    "strictTemplates": false
   },
   "exclude": ["node_modules", "tmp"]
 }
