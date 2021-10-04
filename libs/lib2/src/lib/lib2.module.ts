@@ -13,4 +13,4 @@ import { RouterModule } from '@angular/router';
 })
 export class Lib2Module {}
 
-export const sampleExport = 'This is from lib2';
+export let sampleExport = 'This is from lib2!';
