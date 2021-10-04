@@ -127,9 +127,9 @@
 
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged -r --debug",
+      "pre-commit": "nx affected:test --parallel",
       "post-commit": "git update-index --again",
-      "pre-push": "nx affected:test --parallel"
+      "pre-push": ""
     }
   },
 
