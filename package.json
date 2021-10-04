@@ -129,7 +129,7 @@
     "hooks": {
       "pre-commit": "lint-staged -r --debug",
       "post-commit": "git update-index --again",
-      "pre-push": "npm run test:all"
+      "pre-push": "nx affected:test --parallel"
     }
   },
 
@@ -141,7 +141,7 @@
       "stylelint --fix --config ./.stylelintrc.json"
     ],
     "*.ts": [
-      "tslint --fix"
+      "nx affected:lint --uncommitted --parallel --fix=true"
     ]
   }
 }
