@@ -6,4 +6,4 @@ import { CommonModule } from '@angular/common';
 })
 export class Lib1Module {}
 
-export const sampleExport = 'This text is from Lib1';
+export const sampleExport = 'This text is from Lib1!';
