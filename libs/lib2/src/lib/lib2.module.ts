@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -13,4 +13,4 @@ import { RouterModule } from '@angular/router';
 })
 export class Lib2Module {}
 
-export let sampleExport = 'This is from lib2!';
+export const testLib2 = 'test from lib2!';

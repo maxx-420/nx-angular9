@@ -10,6 +10,9 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
+    "app1:build": "nx build app1",
+    "app2:build": "nx build app2",
+    "app3:build": "nx build app3",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -124,7 +127,6 @@
     "typescript": "~3.8.3",
     "webpack-bundle-analyzer": "^3.8.0"
   },
-
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged -r --debug",
@@ -132,7 +134,6 @@
       "pre-push": "nx affected:test --parallel"
     }
   },
-
   "lint-staged": {
     "*.{html,css,scss,ts,js}": [
       "prettier --write"
