@@ -6,4 +6,4 @@ import { NgModule } from '@angular/core';
 })
 export class Lib1Module {}
 
-export const testLib1 = 'Test from lib1';
+export const testLib1 = 'Test from lib1!';
